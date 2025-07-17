@@ -4,6 +4,7 @@
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
   category="std" ipr="trust200902"
+  submissionType="IETF" consensus="yes"
   docName="draft-ietf-oauth-rfc7523bis-latest"
   updates="7521, 7522, 7523, 9126">
 
@@ -41,7 +42,7 @@
       </address>
     </author>
 
-    <date day="23" month="April" year="2025" />
+    <date day="16" month="July" year="2025" />
 
     <area>Security</area>
     <workgroup>OAuth Working Group</workgroup>
@@ -75,7 +76,7 @@
       </t>
       <t>
 	When performing a security analysis of a pre-final version of
-	the OpenID Federation specification <xref target="OpenID.Federation.ID4"/>,
+	the OpenID Federation specification <xref target="OpenID.Federation"/>,
 	University of Stuttgart security researchers
 	Pedram Hosseyni, Dr. Ralf Küsters, and Tim Würtele
 	discovered a vulnerability affecting multiple OpenID and OAuth
@@ -146,14 +147,13 @@
 	  <t hangText="Audience">
 	    <vspace/>
             A value that identifies the party intended to process the assertion.
-	    The audience MUST contain the issuer identifier <xref target="RFC8414"/>
-	    of the authorization server as its sole value.
-	    Unlike the audience value specified
-	    in <xref target="RFC7521"/>, there MUST be no value other than
-	    the issuer identifier of the intended authorization server
-	    used as the audience of the assertion;
-	    this includes that the token endpoint URL of the authorization server
-	    MUST NOT be used as an audience value.
+	    The audience value MUST
+	    identify the authorization server as the intended audience.
+	    It is the responsibility of the client to use only audience values
+	    that are specific to the authorization server being used.
+	    This MAY be the issuer identifier of the authorization server.
+	    The authorization server MUST reject any assertion that does not
+	    contain its own identity as the intended audience.
 	  </t>
 	</list>
       </t>
@@ -163,19 +163,14 @@
 	is replaced by:
 	<list style="empty">
 	  <t>
-	    The assertion MUST contain an audience that identifies the
-            authorization server as the intended audience,
-	    with the issuer identifier <xref target="RFC8414"/>
-	    of the authorization server as its sole value.
-            The authorization server MUST reject any assertion that does not
-            contain its own issuer identifier as the sole audience value.
+	    The assertion MUST contain an audience value that identifies the
+	    authorization server as the intended audience.
+	    It is the responsibility of the client to use only audience values
+	    that are specific to the authorization server being used.
+	    The authorization server MUST reject any assertion that does not
+	    contain its own identity as the intended audience.
 	  </t>
 	</list>
-      </t>
-      <t>
-	In the list of agreements required by participants
-	in Section 7 of <xref target="RFC7521"/> (Interoperability Considerations),
-	"audience identifiers" is removed from the list.
       </t>
     </section>
 
@@ -183,8 +178,20 @@
       <t>
 	This section updates
 	"Security Assertion Markup Language (SAML) 2.0 Profile for OAuth 2.0
-	Client Authentication and Authorization Grants" <xref target="RFC7522"/>
-	to tighten its audience requirements.
+	Client Authentication and Authorization Grants" <xref target="RFC7522"/>.
+	It tightens its audience requirements for SAML authorization grants and
+	it deprecates the use of SAML assertions for client authentication.
+      </t>
+      <t>
+	The text and example in Section 2.2 of <xref target="RFC7522"/>
+	(Using SAML Assertions for Client Authentication)
+	is replaced by:
+	<list style="empty">
+	  <t>
+	    It is RECOMMENDED that SAML Bearer Assertions
+	    not be used for for client authentication.
+	  </t>
+	</list>
       </t>
       <t>
 	The description of the Audience element in Item 2 of
@@ -194,24 +201,19 @@
 	  <t>
 	    The Assertion MUST contain a &lt;Conditions&gt; element
 	    with an &lt;AudienceRestriction&gt; element
-	    with a single &lt;Audience&gt; element that identifies the
+	    with an &lt;Audience&gt; element that identifies the
 	    authorization server as the intended audience.
-	    The value of the &lt;Audience&gt; element MUST be
-	    the issuer identifier <xref target="RFC8414"/> of the authorization server.
+	    It is the responsibility of the client to use only audience values
+	    that are specific to the authorization server being used.
+	    This MAY be the issuer identifier of the authorization server,
+	    the token endpoint URL of the authorization server, or
+	    a SAML Entity ID.
 	    Section 2.5.1.4 of
 	    "Assertions and Protocols for the OASIS Security Assertion Markup Language (SAML) V2.0"
 	    <xref target="OASIS.saml-core-2.0-os"/>
 	    defines the &lt;AudienceRestriction&gt; and &lt;Audience&gt; elements.
-	    Unlike the audience value specified in <xref target="RFC7522"/>,
-	    there MUST be no value other than
-	    the issuer identifier of the intended authorization server
-	    used as the audience of the assertion;
-	    this includes that the token endpoint URL of the authorization server
-	    MUST NOT be used as an audience value.
-	    <vspace blankLine="1"/>
-
 	    The authorization server MUST reject any assertion that does not
-	    contain its own issuer identifier as the sole audience value.
+	    contain its own identity as the intended audience.
 	  </t>
 	</list>
       </t>
@@ -240,7 +242,7 @@
 	  In the same section, the SAML 2.0 Assertion example is replaced by:
 	</preamble>
 	<artwork><![CDATA[
-  <Assertion IssueInstant="2024-11-17T00:53:34.619Z"
+  <Assertion IssueInstant="2025-07-17T00:53:34.619Z"
     ID="ef1xsbZxPV2oqjd7HTLRLIBlBb7"
     Version="2.0"
     xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
@@ -256,7 +258,7 @@
     <SubjectConfirmation
       Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
      <SubjectConfirmationData
-       NotOnOrAfter="2024-11-17T00:58:34.619Z"
+       NotOnOrAfter="2025-07-17T00:58:34.619Z"
        Recipient="https://authz.example.net/token.oauth2"/>
      </SubjectConfirmation>
     </Subject>
@@ -265,7 +267,7 @@
         <Audience>https://authz.example.net</Audience>
       </AudienceRestriction>
     </Conditions>
-    <AuthnStatement AuthnInstant="2024-11-17T00:53:34.371Z">
+    <AuthnStatement AuthnInstant="2025-07-17T00:53:34.371Z">
       <AuthnContext>
         <AuthnContextClassRef>
           urn:oasis:names:tc:SAML:2.0:ac:classes:X509
@@ -275,11 +277,7 @@
   </Assertion>
 ]]></artwork>
       </figure>
-      <t>
-	In the list of agreements required by participants
-	in Section 5 of <xref target="RFC7521"/> (Interoperability Considerations),
-	"audience identifiers" is removed from the list.
-      </t>
+
     </section>
 
     <section title="Updates to RFC 7523" anchor="RFC7523Updates">
@@ -288,48 +286,80 @@
 	"JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants" <xref target="RFC7523"/>
 	to tighten its audience requirements.
       </t>
+
+      <t>
+	In Section 2.2 of <xref target="RFC7523"/>
+	(Using JWTs for Client Authentication),
+	the example is replaced by:
+      </t>
+
+      <figure>
+	<artwork><![CDATA[
+  POST /token.oauth2 HTTP/1.1
+  Host: as.example.com
+  Content-Type: application/x-www-form-urlencoded
+
+  grant_type=authorization_code&
+  code=n0esc3NRze7LTCu7iYzS6a5acc3f0ogp4&
+  client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
+    client-assertion-type%3Ajwt-bearer&
+  client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0IiwiYWx
+    nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.
+  e2F1ZDpodHRwczovL2F1dGh6LmV4YW1wbGUubmV0LA[...omitted...].
+  cC4hiUPo[...omitted for brevity...]
+]]></artwork>
+      </figure>
+
       <t>
 	In Section 3 of <xref target="RFC7523"/> (JWT Format and Processing Requirements),
-
 	Item 3, which describes the audience value,
 	is replaced by:
 	<list style="empty">
 	  <t>
 	    The JWT MUST contain an <spanx style="verb">aud</spanx>
-	    (audience) claim containing
-	    the issuer identifier <xref target="RFC8414"/>
-	    of the authorization server as its sole value.
-	    The authorization server MUST have an issuer identifier
-	    to be used with this specification.
-	    Unlike the <spanx style="verb">aud</spanx> value specified
-	    in <xref target="RFC7523"/>, there MUST be no value other than
-	    the issuer identifier of the intended authorization server
-	    used as the audience of the JWT;
-	    this includes that the token endpoint URL of the authorization server
-	    MUST NOT be used as an audience value.
-	    To simplify implementations,
-	    the <spanx style="verb">aud</spanx> claim value MUST
-	    be a JSON string, and not a single-valued JSON array.
-	    The authorization server MUST reject any JWT that does not
-	    contain its issuer identifier as its sole audience value.
+	    (audience) claim containing a value that
+	    identifies the authorization server as the intended audience.
+	    Two cases are differentiated:
+
+	    <list style="letters">
+	      <t>
+		For the authorization grant,
+		it is the responsibility of the client to use only audience values
+		that are specific to the authorization server being used.
+		This MAY be either
+		the issuer identifier of the authorization server or
+		the token endpoint URL of the authorization server.
+		The authorization server MUST reject any JWT that does not
+		contain its own identity as the intended audience,
+		and if the value of <spanx style="verb">aud</spanx> is an array,
+		all array values MUST identify the authorization server
+		as the intended audience.
+	      </t>
+	      <t>
+		For client authentication,
+		the <spanx style="verb">aud</spanx> (audience) claim value MUST use
+		the issuer identifier <xref target="RFC8414"/>
+		of the authorization server as its sole value.
+		The authorization server MUST have an issuer identifier
+		to be used with this specification.
+		Unlike the <spanx style="verb">aud</spanx> value specified
+		in <xref target="RFC7523"/>, there MUST be no value other than
+		the issuer identifier of the intended authorization server
+		used as the audience of the JWT;
+		this includes that the token endpoint URL of the authorization server
+		MUST NOT be used as an audience value.
+		To simplify implementations,
+		the <spanx style="verb">aud</spanx> claim value MUST
+		be a JSON string, and not a single-valued JSON array.
+		The authorization server MUST reject any JWT that does not
+		contain its issuer identifier as its sole audience value.
+	      </t>
+	    </list>
+
 	    In the absence of an application profile specifying
-	    otherwise, compliant applications MUST compare the audience
+	    otherwise, applications MUST compare the audience
 	    values using the Simple String Comparison method defined in Section
 	    6.2.1 of RFC 3986 <xref target="RFC3986"/>.
-	  </t>
-	</list>
-      </t>
-      <t>
-	In Section 3.1 of <xref target="RFC7523"/> (Authorization Grant Processing),
-	the following requirement is added:
-	<list style="empty">
-	  <t>
-	    Authorization grant JWTs MUST be explicitly typed by using the
-	    <spanx style="verb">typ</spanx> header parameter value
-	    <spanx style="verb">authorization-grant+jwt</spanx> or
-	    another more specific explicit type value defined by a specification profiling this specification.
-	    Authorization grant JWTs not using the explicit type value
-	    MUST be rejected by the authorization server.
 	  </t>
 	</list>
       </t>
@@ -366,6 +396,7 @@
 	  </t>
 	</list>
       </t>
+
       <figure title="Example JWT Claims Set" anchor="JWTClaims">
 	<preamble>
 	  In the same section, the JWT Claims Set example is replaced by:
@@ -380,52 +411,88 @@
   }
 ]]></artwork>
       </figure>
-      <t>
-	In the same section, the sentence:
-	<list style="empty">
-	  <t>
-	    The following example JSON object, used as the header of a
-	    JWT, declares that the JWT is signed with the Elliptic Curve
-	    Digital Signature Algorithm (ECDSA) P-256
-	    SHA-256 using a key identified by the <spanx style="verb">kid</spanx> value <spanx style="verb">16</spanx>.
-	  </t>
-	</list>
-	is replaced by:
-	<list style="empty">
-	  <t>
-	    The following example JSON object, used as the header parameters of a JWT,
-	    declares that the JWT is an authorization grant JWT,
-	    is signed with the Elliptic Curve Digital Signature Algorithm (ECDSA) P-256 with SHA-256,
-	    and was signed with a key identified by
-	    the <spanx style="verb">kid</spanx> value <spanx style="verb">16</spanx>.
-	  </t>
-	</list>
-      </t>
-      <figure title="Example JOSE Header Parameters" anchor="HeaderParameters">
-	<preamble>
-	  In the same section, the JOSE Header Parameters example is replaced by:
-	</preamble>
-	<artwork><![CDATA[
-  {"typ":"authorization-grant+jwt","alg":"ES256","kid":"16"}
-]]></artwork>
-      </figure>
-      <figure title="Example POST Body" anchor="POSTBody">
-	<preamble>
-	  In the same section, the example POST body is replaced by:
-	</preamble>
-	<artwork><![CDATA[
-  grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
-  &assertion=eyJ0eXAiOiJhdXRob3JpemF0aW9uLWdyYW50K2p3dCIsImFsZyI6Ik
-    VTMjU2Iiwia2lkIjoiMTYifQ.
-  eyJhdWQiOiJodHRwczovLw[...omitted for brevity...].
-  J9l-ZhwP[...omitted for brevity...]
-]]></artwork>
-      </figure>
+
       <t>
 	In the list of agreements required by participants
 	in Section 5 of <xref target="RFC7523"/> (Interoperability Considerations),
-	"audience identifiers" is removed from the list.
+	an agreement on "audience identifiers" is no longer needed
+	for client authentication JWTs.
       </t>
+
+      <t>
+	The additional example in the following subsection
+	is added after Section 4 of <xref target="RFC7523"/>
+      </t>
+
+      <section title="Client Authentication JWT Example" anchor="ClientAuthExample">
+	<t>
+	  The following example illustrates what a client authentication JWT
+	  and token request using it would look like.
+	</t>
+	<t>
+	  The example shows a JWT issued and signed by the system entity identified as
+	  <spanx style='verb'>https://jwt-idp.example.com</spanx>.
+	  The subject of the JWT is identified by email address as <spanx style='verb'>mike@example.com</spanx>.
+	  The intended audience of the JWT is
+	  <spanx style="verb">https://authz.example.net</spanx>,
+	  which is the authorization server's issuer identifier.
+	  The JWT is sent as part of a token request to the authorization server's
+	  token endpoint at <spanx style='verb'>https://authz.example.net/token.oauth2</spanx>.
+	</t>
+	<figure>
+	  <preamble>
+	    Below is an example JSON object that could be encoded to
+	    produce the JWT Claims Set for a client authentication JWT:
+	  </preamble>
+	  <artwork><![CDATA[
+  {"aud":"https://authz.example.net",
+   "iss":"https://jwt-idp.example.com",
+   "sub":"mailto:mike@example.com",
+   "iat":1752702206,
+   "exp":1752705806,
+   "http://claims.example.com/member":true
+  }
+]]></artwork>
+	</figure>
+
+	<figure>
+	  <preamble>
+	    The following example JSON object, used as the header parameters of a JWT,
+	    declares that the JWT is a client authentication JWT,
+	    is signed with the Elliptic Curve Digital Signature Algorithm (ECDSA) P-256 with SHA-256,
+	    and was signed with a key identified by
+	    the <spanx style="verb">kid</spanx> value <spanx style="verb">16</spanx>.
+	  </preamble>
+	  <artwork><![CDATA[
+  {"typ":"client-authentication+jwt","alg":"ES256","kid":"16"}
+]]></artwork>
+	</figure>
+
+	<figure>
+	  <preamble>
+	    To present the JWT with the claims and header parameters shown above
+	    as part of an access token request, for example,
+	    the client might make the following HTTPS request
+	    (with extra line breaks for display purposes only):
+	  </preamble>
+	  <artwork><![CDATA[
+  POST /token.oauth2 HTTP/1.1
+  Host: authz.example.net
+  Content-Type: application/x-www-form-urlencoded
+
+  grant_type=authorization_code&
+  code=n0esc3NRze7LTCu7iYzS6a5acc3f0ogp4&
+  client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
+    client-assertion-type%3Ajwt-bearer&
+  client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0IiwiYWx
+    nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.
+  e2F1ZDpodHRwczovL2F1dGh6LmV4YW1wbGUubmV0LA[...omitted...].
+  J9l-ZhwP[...omitted for brevity...]
+]]></artwork>
+	</figure>
+
+      </section>
+
     </section>
 
     <section title="Updates to RFC 9126" anchor="RFC9126Updates">
@@ -443,7 +510,8 @@
 	    This update resolves the potential ambiguity regarding
 	    the appropriate audience value to use when employing
 	    JWT client assertion-based authentication
-	    (as defined in Section 2.2 of <xref target="RFC7523"/> with the
+	    (as defined in Section 2.2 of <xref target="RFC7523"/>
+	    and as updated by <xref target="RFC7523Updates"/> with the
 	    <spanx style="verb">private_key_jwt</spanx> or
 	    <spanx style="verb">client_secret_jwt</spanx> authentication method names
 	    per Section 9 of <xref target="OpenID.Core"/>)
@@ -487,81 +555,12 @@
 
       <section title="Media Type Registration" anchor="MediaReg">
         <t>
-          This section registers the following media types <xref target="RFC2046"/>
+          This section registers the following media type <xref target="RFC2046"/>
           in the "Media Types" registry <xref target="IANA.MediaTypes"/>
           in the manner described in <xref target="RFC6838"/>.
         </t>
 
         <section title="Registry Contents" anchor="MediaContents">
-          <t>
-            <?rfc subcompact="yes"?>
-            <list style="symbols">
-              <t>
-                Type name: application
-              </t>
-              <t>
-                Subtype name: authorization-grant+jwt
-              </t>
-              <t>
-                Required parameters: n/a
-              </t>
-              <t>
-                Optional parameters: n/a
-              </t>
-              <t>
-                Encoding considerations: binary;
-                An authorization grant JWT is a JWT;
-                JWT values are encoded as a
-                series of base64url-encoded values (some of which may be the
-                empty string) separated by period ('.') characters.
-              </t>
-              <t>
-                Security considerations: See <xref target="Security"/> of this specification
-              </t>
-              <t>
-                Interoperability considerations: n/a
-              </t>
-              <t>
-                Published specification: <xref target="RFC7523Updates"/> of this specification
-              </t>
-              <t>
-                Applications that use this media type:
-                Applications that use this specification
-              </t>
-              <t>
-                Fragment identifier considerations: n/a
-              </t>
-              <t>
-                Additional information:<list style="empty">
-                <t>Magic number(s): n/a</t>
-                <t>File extension(s): n/a</t>
-                <t>Macintosh file type code(s): n/a </t></list>
-                <vspace/>
-              </t>
-              <t>
-                Person &amp; email address to contact for further information:
-                <vspace/>
-                Michael B. Jones, michael_b_jones@hotmail.com
-              </t>
-              <t>
-                Intended usage: COMMON
-              </t>
-              <t>
-                Restrictions on usage: none
-              </t>
-              <t>
-                Author: Michael B. Jones, michael_b_jones@hotmail.com
-              </t>
-              <t>
-                Change controller: IETF
-              </t>
-              <t>
-                Provisional registration? No
-              </t>
-            </list>
-            <?rfc subcompact="no"?>
-          </t>
-
           <t>
             <?rfc subcompact="yes"?>
             <list style="symbols">
@@ -750,7 +749,7 @@
 	</front>
       </reference>
 
-      <reference anchor="OpenID.Federation.ID4" target="https://openid.net/specs/openid-federation-1_0-ID4.html">
+      <reference anchor="OpenID.Federation" target="https://openid.net/specs/openid-federation-1_0.html">
 	<front>
 	  <title>OpenID Federation 1.0</title>
 	  <author fullname="Roland Hedberg">
@@ -771,7 +770,7 @@
 	  <author fullname="Vladimir Dzhuvinov">
 	    <organization>Connect2id</organization>
 	  </author>
-	  <date day="31" month="May" year="2024"/>
+	  <date day="2" month="June" year="2025"/>
 	</front>
       </reference>
 
@@ -790,6 +789,27 @@
     <section title="Document History" anchor="History">
       <t>
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
+      </t>
+
+      <t>
+	-02
+	<list style="symbols">
+	  <t>
+	    Applied Brian Campbell's suggestions made at IETF 122.  Specifically:
+	  </t>
+	  <t>
+	    Focused RFC 7523 updates on JWT client authentication case.
+	  </t>
+	  <t>
+	    Described client responsibilities for the audience value
+	    of authorization grants.
+	    No longer mandate that the audience for authorization grants
+	    be the issuer identifier, so as to make a minimum of breaking changes.
+	  </t>
+	  <t>
+	    Deprecated the use of SAML assertions for client authentication.
+	  </t>
+	</list>
       </t>
 
       <t>
