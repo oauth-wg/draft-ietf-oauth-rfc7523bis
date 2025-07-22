@@ -6,11 +6,11 @@ OAuth Working Group                                           M.B. Jones
 Internet-Draft                                    Self-Issued Consulting
 Updates: 7521, 7522, 7523, 9126 (if approved)                B. Campbell
 Intended status: Standards Track                           Ping Identity
-Expires: 21 January 2026                                    C. Mortimore
+Expires: 23 January 2026                                    C. Mortimore
                                                                   Disney
                                                                F. Skokan
                                                                     Okta
-                                                            20 July 2025
+                                                            22 July 2025
 
 
      Updates to Audience Values for OAuth 2.0 Authorization Servers
@@ -38,7 +38,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 January 2026.
+   This Internet-Draft will expire on 23 January 2026.
 
 Copyright Notice
 
