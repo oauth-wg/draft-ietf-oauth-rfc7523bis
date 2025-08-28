@@ -68,6 +68,8 @@ Table of Contents
    7.  IANA Considerations
      7.1.  Media Type Registration
        7.1.1.  Registry Contents
+     7.2.  OAuth Token Endpoint Authentication Methods
+       7.2.1.  Registry Contents
    8.  References
      8.1.  Normative References
      8.2.  Informative References
@@ -473,6 +475,22 @@ Table of Contents
    *  Change controller: IETF
    *  Provisional registration?  No
 
+7.2.  OAuth Token Endpoint Authentication Methods
+
+   This section updates entries in the "OAuth Token Endpoint
+   Authentication Methods" registry [IANA.OAuthParameters]
+
+7.2.1.  Registry Contents
+
+   *  Token Endpoint Authentication Method Name: private_key_jwt
+   *  Change Controller: IETF
+   *  Reference: Section 9 of [OpenID.Core], [[this specification]]
+
+
+   *  Token Endpoint Authentication Method Name: client_secret_jwt
+   *  Change Controller: IETF
+   *  Reference: Section 9 of [OpenID.Core], [[this specification]]
+
 8.  References
 
 8.1.  Normative References
@@ -550,6 +568,11 @@ Table of Contents
               IANA, "Media Types",
               <https://www.iana.org/assignments/media-types>.
 
+   [IANA.OAuthParameters]
+              IANA, "OAuth Parameters",
+              <https://www.iana.org/assignments/oauth-parameters/oauth-
+              parameters.xhtml>.
+
    [OpenID.Core]
               Sakimura, N., Bradley, J., Jones, M.B., de Medeiros, B.,
               and C. Mortimore, "OpenID Connect Core 1.0 incorporating
@@ -584,6 +607,9 @@ Appendix A.  Document History
    [[ to be removed by the RFC Editor before publication as an RFC ]]
 
    -03
+
+   *  Update OAuth Token Endpoint Authentication Methods IANA entries
+      with reference to this specification
 
    *  Relaxed client requirement to use strong typed JWTs.  SHOULD
       instead of MUST.
