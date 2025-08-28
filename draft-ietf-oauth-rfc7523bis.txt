@@ -286,11 +286,9 @@ Table of Contents
           value other than the issuer identifier of the intended
           authorization server used as the audience of the JWT; this
           includes that the token endpoint URL of the authorization
-          server MUST NOT be used as an audience value.  To simplify
-          implementations, the aud claim value MUST be a JSON string,
-          and not a single-valued JSON array.  The authorization server
-          MUST reject any JWT that does not contain its issuer
-          identifier as its sole audience value.
+          server MUST NOT be used as an audience value.  The
+          authorization server MUST reject any JWT that does not contain
+          its issuer identifier as its sole audience value.
 
       In the absence of an application profile specifying otherwise,
       applications MUST compare the audience values using the Simple
@@ -300,11 +298,10 @@ Table of Contents
    In Section 3.2 of [RFC7523] (Client Authentication Processing), the
    following requirement is added:
 
-      Client authentication JWTs MUST be explicitly typed by using the
-      typ header parameter value client-authentication+jwt another more
-      specific explicit type value defined by a specification profiling
-      this specification.  Client authentication JWTs not using the
-      explicit type value MUST be rejected by the authorization server.
+      Client authentication JWTs SHOULD be explicitly typed by using the
+      typ header parameter value client-authentication+jwt or another
+      more specific explicit type value defined by a specification
+      profiling this specification.
 
    In Section 4 of [RFC7523] (Authorization Grant Example), the
    sentence:
@@ -407,6 +404,20 @@ Table of Contents
       audience.  The authorization server MUST reject any such JWT that
       does not contain its own issuer identifier as the sole audience
       value.
+
+      The introduction of strong typing for JWTs (using explicit typ
+      values) serves as a signal to distinguish between tokens produced
+      in accordance with specifications published prior to these updates
+      and those incorporating them.  However, the primary security
+      protection comes from the tightened audience requirements.  Since
+      strong typing alone does not prevent the attacks described in
+      [private_key_jwt.Disclosure] and [Audience.Injection], the use of
+      explicit typing is suggestion for clients enabling them to signal
+      their intention of sending a JWT conforming to the requirements
+      herein.  This approach balances security signaling with practical
+      deployment considerations, avoiding disruption to client
+      deployments that already conform to the tightened audience
+      requirements but have not yet adopted explicit typing.
 
 6.  Security Considerations
 
@@ -571,6 +582,14 @@ Table of Contents
 Appendix A.  Document History
 
    [[ to be removed by the RFC Editor before publication as an RFC ]]
+
+   -03
+
+   *  Relaxed client requirement to use strong typed JWTs.  SHOULD
+      instead of MUST.
+
+   *  Do not restrict the "aud" claim's type.  Allow it to be a an array
+      with a single member.
 
    -02
 

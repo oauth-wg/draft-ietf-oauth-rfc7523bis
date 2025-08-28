@@ -1529,9 +1529,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
  used as the audience of the JWT;
  this includes that the token endpoint URL of the authorization server
  MUST NOT be used as an audience value.
- To simplify implementations,
- the <code>aud</code> claim value MUST
- be a JSON string, and not a single-valued JSON array.
  The authorization server MUST reject any JWT that does not
  contain its issuer identifier as its sole audience value.<a href="#section-4-5.1.2.2.1" class="pilcrow">¶</a></p>
 </li>
@@ -1550,12 +1547,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-4-7.1">
           <p id="section-4-7.1.1">
-     Client authentication JWTs MUST be explicitly typed by using the
+     Client authentication JWTs SHOULD be explicitly typed by using the
      <code>typ</code> header parameter value
      <code>client-authentication+jwt</code>
-     another more specific explicit type value defined by a specification profiling this specification.
-     Client authentication JWTs not using the explicit type value
-     MUST be rejected by the authorization server.<a href="#section-4-7.1.1" class="pilcrow">¶</a></p>
+     or another more specific explicit type value defined by a specification profiling this specification.<a href="#section-4-7.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="section-4-8">
@@ -1703,6 +1698,18 @@ svg :is([fill="white"], [fill^="#fff"]) {
      MUST be used as the sole value of the audience.
             The authorization server MUST reject any such JWT that does not
             contain its own issuer identifier as the sole audience value.<a href="#section-5-3.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal ulEmpty" id="section-5-3.2">
+          <p id="section-5-3.2.1">
+     The introduction of strong typing for JWTs (using explicit <code>typ</code>
+     values) serves as a signal to distinguish between tokens produced in accordance with
+     specifications published prior to these updates and those incorporating them. However,
+     the primary security protection comes from the tightened audience requirements. Since
+     strong typing alone does not prevent the attacks described in <span>[<a href="#private_key_jwt.Disclosure" class="cite xref">private_key_jwt.Disclosure</a>]</span> and <span>[<a href="#Audience.Injection" class="cite xref">Audience.Injection</a>]</span>, the
+     use of explicit typing is suggestion for clients enabling them to signal their intention of sending
+     a JWT conforming to the requirements herein. This approach balances security signaling with practical
+     deployment considerations, avoiding disruption to client deployments that already
+     conform to the tightened audience requirements but have not yet adopted explicit typing.<a href="#section-5-3.2.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
@@ -1949,56 +1956,68 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="appendix-A-1">
  [[ to be removed by the RFC Editor before publication as an RFC ]]<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <p id="appendix-A-2">
- -02<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+ -03<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-3.1">
           <p id="appendix-A-3.1.1">
-     Added Filip Skokan as an author.<a href="#appendix-A-3.1.1" class="pilcrow">¶</a></p>
+     Relaxed client requirement to use strong typed JWTs. SHOULD instead of MUST.<a href="#appendix-A-3.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-A-3.2">
           <p id="appendix-A-3.2.1">
-     Applied Brian Campbell's suggestions made at IETF 122.  Specifically:<a href="#appendix-A-3.2.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="appendix-A-3.2.2.1">
-              <p id="appendix-A-3.2.2.1.1">
- Focused RFC 7523 updates on JWT client authentication case.<a href="#appendix-A-3.2.2.1.1" class="pilcrow">¶</a></p>
+     Do not restrict the "aud" claim's type. Allow it to be a an array with a single member.<a href="#appendix-A-3.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-A-3.2.2.2">
-              <p id="appendix-A-3.2.2.2.1">
+      </ul>
+<p id="appendix-A-4">
+ -02<a href="#appendix-A-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-5.1">
+          <p id="appendix-A-5.1.1">
+     Added Filip Skokan as an author.<a href="#appendix-A-5.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-5.2">
+          <p id="appendix-A-5.2.1">
+     Applied Brian Campbell's suggestions made at IETF 122.  Specifically:<a href="#appendix-A-5.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-5.2.2.1">
+              <p id="appendix-A-5.2.2.1.1">
+ Focused RFC 7523 updates on JWT client authentication case.<a href="#appendix-A-5.2.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-A-5.2.2.2">
+              <p id="appendix-A-5.2.2.2.1">
  Described client responsibilities for the audience value
  of authorization grants.
  No longer mandate that the audience for authorization grants
- be the issuer identifier, so as to make a minimum of breaking changes.<a href="#appendix-A-3.2.2.2.1" class="pilcrow">¶</a></p>
+ be the issuer identifier, so as to make a minimum of breaking changes.<a href="#appendix-A-5.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-A-3.2.2.3">
-              <p id="appendix-A-3.2.2.3.1">
- Deprecated the use of SAML assertions for client authentication.<a href="#appendix-A-3.2.2.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-A-5.2.2.3">
+              <p id="appendix-A-5.2.2.3.1">
+ Deprecated the use of SAML assertions for client authentication.<a href="#appendix-A-5.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
       </ul>
-<p id="appendix-A-4">
- -01<a href="#appendix-A-4" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="appendix-A-5.1">
-          <p id="appendix-A-5.1.1">
-     Reworked to make updates to RFC 7523, rather than replacing it.<a href="#appendix-A-5.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-5.2">
-          <p id="appendix-A-5.2.1">
-     Removed updates to RFC 9101.<a href="#appendix-A-5.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-5.3">
-          <p id="appendix-A-5.3.1">
-     Added reference to the University of Stuttgart paper <span>[<a href="#Audience.Injection" class="cite xref">Audience.Injection</a>]</span>.<a href="#appendix-A-5.3.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
 <p id="appendix-A-6">
- -00<a href="#appendix-A-6" class="pilcrow">¶</a></p>
+ -01<a href="#appendix-A-6" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-7.1">
           <p id="appendix-A-7.1.1">
-     Initial working group draft, replacing draft-jones-oauth-rfc7523bis-00.<a href="#appendix-A-7.1.1" class="pilcrow">¶</a></p>
+     Reworked to make updates to RFC 7523, rather than replacing it.<a href="#appendix-A-7.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-7.2">
+          <p id="appendix-A-7.2.1">
+     Removed updates to RFC 9101.<a href="#appendix-A-7.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-7.3">
+          <p id="appendix-A-7.3.1">
+     Added reference to the University of Stuttgart paper <span>[<a href="#Audience.Injection" class="cite xref">Audience.Injection</a>]</span>.<a href="#appendix-A-7.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-A-8">
+ -00<a href="#appendix-A-8" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-9.1">
+          <p id="appendix-A-9.1.1">
+     Initial working group draft, replacing draft-jones-oauth-rfc7523bis-00.<a href="#appendix-A-9.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
