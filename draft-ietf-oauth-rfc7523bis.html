@@ -1588,12 +1588,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <figure id="figure-2">
         <div class="alignLeft art-text artwork" id="section-4-13.1">
 <pre>
-  {"aud":"https://authz.example.net",
-   "iss":"https://jwt-idp.example.com",
-   "sub":"mailto:mike@example.com",
-   "iat":1731721541,
-   "exp":1731725141,
-   "http://claims.example.com/member":true
+  {
+    "aud": "https://authz.example.net",
+    "iss": "https://jwt-idp.example.com",
+    "sub": "mailto:mike@example.com",
+    "iat": 1731721541,
+    "exp": 1731725141,
+    "http://claims.example.com/member": true
   }
 </pre>
 </div>
@@ -1631,12 +1632,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
      produce the JWT Claims Set for a client authentication JWT:<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-4.1-4">
 <pre>
-  {"aud":"https://authz.example.net",
-   "iss":"https://jwt-idp.example.com",
-   "sub":"mailto:mike@example.com",
-   "iat":1752702206,
-   "exp":1752705806,
-   "http://claims.example.com/member":true
+  {
+    "aud": "https://authz.example.net",
+    "iss": "https://jwt-idp.example.com",
+    "sub": "mailto:mike@example.com",
+    "iat": 1752702206,
+    "exp": 1752705806,
+    "http://claims.example.com/member": true
   }
 </pre><a href="#section-4.1-4" class="pilcrow">¶</a>
 </div>
@@ -1648,7 +1650,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
      the <code>kid</code> value <code>16</code>.<a href="#section-4.1-5" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-4.1-6">
 <pre>
-  {"typ":"client-authentication+jwt","alg":"ES256","kid":"16"}
+  {
+    "typ": "client-authentication+jwt",
+    "alg": "ES256",
+    "kid": "16"
+  }
 </pre><a href="#section-4.1-6" class="pilcrow">¶</a>
 </div>
 <p id="section-4.1-7" class="keepWithNext">

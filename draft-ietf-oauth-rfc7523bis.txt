@@ -319,12 +319,13 @@ Table of Contents
 
    In the same section, the JWT Claims Set example is replaced by:
 
-     {"aud":"https://authz.example.net",
-      "iss":"https://jwt-idp.example.com",
-      "sub":"mailto:mike@example.com",
-      "iat":1731721541,
-      "exp":1731725141,
-      "http://claims.example.com/member":true
+     {
+       "aud": "https://authz.example.net",
+       "iss": "https://jwt-idp.example.com",
+       "sub": "mailto:mike@example.com",
+       "iat": 1731721541,
+       "exp": 1731725141,
+       "http://claims.example.com/member": true
      }
 
                       Figure 2: Example JWT Claims Set
@@ -353,12 +354,13 @@ Table of Contents
    Below is an example JSON object that could be encoded to produce the
    JWT Claims Set for a client authentication JWT:
 
-     {"aud":"https://authz.example.net",
-      "iss":"https://jwt-idp.example.com",
-      "sub":"mailto:mike@example.com",
-      "iat":1752702206,
-      "exp":1752705806,
-      "http://claims.example.com/member":true
+     {
+       "aud": "https://authz.example.net",
+       "iss": "https://jwt-idp.example.com",
+       "sub": "mailto:mike@example.com",
+       "iat": 1752702206,
+       "exp": 1752705806,
+       "http://claims.example.com/member": true
      }
 
    The following example JSON object, used as the header parameters of a
@@ -367,7 +369,11 @@ Table of Contents
    with SHA-256, and was signed with a key identified by the kid value
    16.
 
-     {"typ":"client-authentication+jwt","alg":"ES256","kid":"16"}
+     {
+       "typ": "client-authentication+jwt",
+       "alg": "ES256",
+       "kid": "16"
+     }
 
    To present the JWT with the claims and header parameters shown above
    as part of an access token request, for example, the client might
