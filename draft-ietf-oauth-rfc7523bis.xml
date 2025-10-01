@@ -154,28 +154,9 @@
 	  <t hangText="Audience">
 	    <vspace/>
             A value that identifies the party intended to process the assertion.
-	    The audience value MUST
-	    identify the authorization server as the intended audience.
-	    It is the responsibility of the client to use only audience values
-	    that are specific to the authorization server being used.
-	    This MAY be the issuer identifier of the authorization server.
-	    The authorization server MUST reject any assertion that does not
-	    contain its own identity as the intended audience.
-	  </t>
-	</list>
-      </t>
-      <t>
-	The description of the Audience parameter
-	in Section 5.2 of <xref target="RFC7521"/> (General Assertion Format and Processing Rules)
-	is replaced by:
-	<list style="empty">
-	  <t>
-	    The assertion MUST contain an audience value that identifies the
-	    authorization server as the intended audience.
-	    It is the responsibility of the client to use only audience values
-	    that are specific to the authorization server being used.
-	    The authorization server MUST reject any assertion that does not
-	    contain its own identity as the intended audience.
+           The issuer identifier of the authorization server,
+           as defined in <xref target="RFC8414"/>, can be used to indicate that
+           the authorization server is a valid intended audience of the assertion.
 	  </t>
 	</list>
       </t>
