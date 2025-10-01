@@ -866,7 +866,10 @@
 	    Relaxed client requirement to use strong typed JWTs. SHOULD instead of MUST.
 	  </t>
 	  <t>
-	    Do not restrict the "aud" claim's type. Allow it to be a an array with a single member.
+	    Do not restrict the "aud" claim's type. Allow it to be an array with a single member.
+	  </t>
+	  <t>
+		Advise the client to ensure that the audience of a JWT assertion authorization grant makes sense with respect to where it’s being sent.
 	  </t>
 	</list>
 	-02
