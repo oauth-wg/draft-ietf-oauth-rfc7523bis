@@ -332,24 +332,22 @@ Table of Contents
    The following example illustrates what a client authentication JWT
    and token request using it would look like.
 
-   The example shows a JWT issued and signed by the system entity
-   identified as https://jwt-idp.example.com.  The subject of the JWT is
-   identified by email address as mike@example.com.  The intended
-   audience of the JWT is https://authz.example.net, which is the
-   authorization server's issuer identifier.  The JWT is sent as part of
-   a token request to the authorization server's token endpoint at
-   https://authz.example.net/token.oauth2.
+   The example shows a JWT issued and signed by the OAuth client
+   identified as https://client.example.  The intended audience of the
+   JWT is https://authz.example.net, which is the authorization server's
+   issuer identifier.  The JWT is sent as part of a token request to the
+   authorization server's token endpoint at https://authz.example.net/
+   token.oauth2.
 
    Below is an example JSON object that could be encoded to produce the
    JWT Claims Set for a client authentication JWT:
 
      {
        "aud": "https://authz.example.net",
-       "iss": "https://jwt-idp.example.com",
-       "sub": "mailto:mike@example.com",
+       "iss": "https://client.example",
+       "sub": "https://client.example",
        "iat": 1752702206,
-       "exp": 1752705806,
-       "http://claims.example.com/member": true
+       "exp": 1752705806
      }
 
    The following example JSON object, used as the header parameters of a
@@ -378,9 +376,10 @@ Table of Contents
     client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
       client-assertion-type%3Ajwt-bearer&
     client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0IiwiYWx
-      nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.
-    e2F1ZDpodHRwczovL2F1dGh6LmV4YW1wbGUubmV0LA[...omitted...].
-    J9l-ZhwP[...omitted for brevity...]
+      nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.eyJhdWQiOiAiaHR0cHM6Ly9hdXRoei5leGFt
+      cGxlLm5ldCIsImlzcyI6ICJodHRwczovL2NsaWVudC5leGFtcGxlIiwic3ViIjogIm
+      h0dHBzOi8vY2xpZW50LmV4YW1wbGUiLCJpYXQiOiAxNzUyNzAyMjA2LCJleHAiOiAx
+      NzUyNzA1ODA2fQ.6KraSQUxWdl9ehs[...omitted for brevity...]bwc0ZOJw
 
 5.  Updates to RFC 9126
 
@@ -631,6 +630,8 @@ Appendix A.  Document History
 
    *  Add request to update existing OAuth URI registrations to add
       reference to this specification for the four relevant URNs.
+
+   *  Fixup the new Client Authentication JWT Example.
 
    -02
 
