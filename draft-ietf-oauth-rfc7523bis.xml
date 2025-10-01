@@ -416,9 +416,8 @@
 	  and token request using it would look like.
 	</t>
 	<t>
-	  The example shows a JWT issued and signed by the system entity identified as
-	  <spanx style='verb'>https://jwt-idp.example.com</spanx>.
-	  The subject of the JWT is identified by email address as <spanx style='verb'>mike@example.com</spanx>.
+	  The example shows a JWT issued and signed by the OAuth client identified as
+	  <spanx style='verb'>https://client.example</spanx>.
 	  The intended audience of the JWT is
 	  <spanx style="verb">https://authz.example.net</spanx>,
 	  which is the authorization server's issuer identifier.
@@ -433,11 +432,10 @@
 	  <artwork><![CDATA[
   {
     "aud": "https://authz.example.net",
-    "iss": "https://jwt-idp.example.com",
-    "sub": "mailto:mike@example.com",
+    "iss": "https://client.example",
+    "sub": "https://client.example",
     "iat": 1752702206,
-    "exp": 1752705806,
-    "http://claims.example.com/member": true
+    "exp": 1752705806
   }
 ]]></artwork>
 	</figure>
@@ -476,9 +474,10 @@
   client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
     client-assertion-type%3Ajwt-bearer&
   client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0IiwiYWx
-    nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.
-  e2F1ZDpodHRwczovL2F1dGh6LmV4YW1wbGUubmV0LA[...omitted...].
-  J9l-ZhwP[...omitted for brevity...]
+    nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.eyJhdWQiOiAiaHR0cHM6Ly9hdXRoei5leGFt
+    cGxlLm5ldCIsImlzcyI6ICJodHRwczovL2NsaWVudC5leGFtcGxlIiwic3ViIjogIm
+    h0dHBzOi8vY2xpZW50LmV4YW1wbGUiLCJpYXQiOiAxNzUyNzAyMjA2LCJleHAiOiAx
+    NzUyNzA1ODA2fQ.6KraSQUxWdl9ehs[...omitted for brevity...]bwc0ZOJw
 ]]></artwork>
 	</figure>
 
@@ -882,6 +881,9 @@
 	  </t>
 	  <t>
 	    Add request to update existing OAuth URI registrations to add reference to this specification for the four relevant URNs.
+	  </t>
+	  <t>
+	    Fixup the new Client Authentication JWT Example.
 	  </t>
 	</list>
 	-02
