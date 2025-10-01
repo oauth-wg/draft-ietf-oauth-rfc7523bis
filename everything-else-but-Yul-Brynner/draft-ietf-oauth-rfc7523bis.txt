@@ -333,7 +333,7 @@ Table of Contents
    and token request using it would look like.
 
    The example shows a JWT issued and signed by the OAuth client
-   identified as https://client.example.  The intended audience of the
+   identified as https://client.example/.  The intended audience of the
    JWT is https://authz.example.net, which is the authorization server's
    issuer identifier.  The JWT is sent as part of a token request to the
    authorization server's token endpoint at https://authz.example.net/
@@ -344,8 +344,8 @@ Table of Contents
 
      {
        "aud": "https://authz.example.net",
-       "iss": "https://client.example",
-       "sub": "https://client.example",
+       "iss": "https://client.example/",
+       "sub": "https://client.example/",
        "iat": 1752702206,
        "exp": 1752705806
      }
@@ -377,9 +377,9 @@ Table of Contents
       client-assertion-type%3Ajwt-bearer&
     client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0IiwiYWx
       nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.eyJhdWQiOiAiaHR0cHM6Ly9hdXRoei5leGFt
-      cGxlLm5ldCIsImlzcyI6ICJodHRwczovL2NsaWVudC5leGFtcGxlIiwic3ViIjogIm
-      h0dHBzOi8vY2xpZW50LmV4YW1wbGUiLCJpYXQiOiAxNzUyNzAyMjA2LCJleHAiOiAx
-      NzUyNzA1ODA2fQ.6KraSQUxWdl9ehs[...omitted for brevity...]bwc0ZOJw
+      cGxlLm5ldCIsImlzcyI6ICJodHRwczovL2NsaWVudC5leGFtcGxlLyIsInN1YiI6IC
+      JodHRwczovL2NsaWVudC5leGFtcGxlLyIsImlhdCI6IDE3NTI3MDIyMDYsImV4cCI6
+      IDE3NTI3MDU4MDZ9.6KrSQUxdl9ehs[...omitted for brevity...]bwc0ZOJw
 
 5.  Updates to RFC 9126
 
