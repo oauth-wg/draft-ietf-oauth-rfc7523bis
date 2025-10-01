@@ -638,7 +638,7 @@
 
       <section title="OAuth Token Endpoint Authentication Methods" anchor="MethodsReg">
         <t>
-          This section updates entries in the "OAuth Token Endpoint Authentication Methods" registry <xref target="IANA.OAuthParameters"/>
+          This section updates entries in the "OAuth Token Endpoint Authentication Methods" registry of <xref target="IANA.OAuthParameters"/>
         </t>
 
         <section title="Registry Contents" anchor="MethodsContents">
@@ -676,6 +676,23 @@
         </section>
 
       </section>
+
+	<section title="OAuth URI Registration Updates">
+		<t>
+			This section requests updates to the following entries in the "OAuth URI" registry of <xref target="IANA.OAuthParameters"/>
+			to add [[this specification]] as an additional reference.
+			<?rfc subcompact="yes"?>
+			<list style="symbols">
+				<t>urn:ietf:params:oauth:grant-type:jwt-bearer</t>
+				<t>urn:ietf:params:oauth:client-assertion-type:jwt-bearer</t>
+				<t>urn:ietf:params:oauth:grant-type:saml2-bearer</t>
+				<t>urn:ietf:params:oauth:client-assertion-type:saml2-bearer</t>
+			</list>
+			<?rfc subcompact="no"?>
+
+		</t>
+	</section>
+
     </section>
 
   </middle>
@@ -862,6 +879,9 @@
 	  </t>
 	  <t>
 	    Remove JWTs for Client Authentication example replacement (not worth it for including typ in the encoded JWT header).
+	  </t>
+	  <t>
+	    Add request to update existing OAuth URI registrations to add reference to this specification for the four relevant URNs.
 	  </t>
 	</list>
 	-02
