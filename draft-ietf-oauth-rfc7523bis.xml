@@ -300,23 +300,6 @@
 	the example is replaced by:
       </t>
 
-      <figure>
-	<artwork><![CDATA[
-  POST /token.oauth2 HTTP/1.1
-  Host: as.example.com
-  Content-Type: application/x-www-form-urlencoded
-
-  grant_type=authorization_code&
-  code=n0esc3NRze7LTCu7iYzS6a5acc3f0ogp4&
-  client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
-    client-assertion-type%3Ajwt-bearer&
-  client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0IiwiYWx
-    nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.
-  e2F1ZDpodHRwczovL2F1dGh6LmV4YW1wbGUubmV0LA[...omitted...].
-  cC4hiUPo[...omitted for brevity...]
-]]></artwork>
-      </figure>
-
       <t>
 	In Section 3 of <xref target="RFC7523"/> (JWT Format and Processing Requirements),
 	Item 3, which describes the audience value,
@@ -876,6 +859,9 @@
 	  </t>
 	  <t>
 	    Updates to the abstract and introduction to (hopefully) better reflect the more targeted scope of the work.
+	  </t>
+	  <t>
+	    Remove JWTs for Client Authentication example replacement (not worth it for including typ in the encoded JWT header).
 	  </t>
 	</list>
 	-02
