@@ -63,7 +63,7 @@
     <abstract>
       <t>
 	This specification updates the requirements for audience values
-	for tokens whose audience is an OAuth 2.0 authorization server
+	in OAuth 2.0 Client Assertion Authentication and Assertion-based Authorization Grants
 	to address a security vulnerability identified in the previous
 	requirements for those audience values in multiple OAuth 2.0 specifications.
       </t>
@@ -103,11 +103,11 @@
 	of tokens sent to OAuth 2.0 authorization servers.
       </t>
       <t>
-	A general description of the update made to each specification is for it
+	A general description of the updates made is
 	to require that the issuer identifier URL of the authorization server,
 	as defined in <xref target="RFC8414"/>,
-	be used as the sole value of the token audience.
-	Furthermore, the authorization server MUST reject any such token that
+	be used as the sole value of the audience of the JWT client authentication assertion.
+	Furthermore, the authorization server rejects any JWT client authentication assertion that
 	does not contain its own issuer identifier as the sole audience value.
 	An explicit type for each affected kind of token,
 	as defined in <xref target="RFC8725"/>,
@@ -874,6 +874,9 @@
 	  <t>
 	    Do not restrict the "aud" claim's type. Allow it to be a an array with a single member.
 	  </t>
+	  <t>
+	    Updates to the abstract and introduction to (hopefully) better reflect the more targeted scope of the work.
+	  </t>
 	</list>
 	-02
 	<list style="symbols">
@@ -931,11 +934,17 @@
       <t>
 	We would like to acknowledge the contributions of the following
 	people to this specification:
+	Brock Allen
 	John Bradley,
 	Ralph Bragg,
 	Joseph Heenan,
 	Pedram Hosseyni,
+	Pieter Kasselman,
+	Ralf Küsters,
+	Martin Lindström,
 	Aaron Parecki,
+	Dean H. Saxe,
+	Arndt Schwenkschuster,
 	and
 	Tim Würtele.
       </t>
