@@ -1,6 +1,7 @@
-# JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants
+# draft-ietf-oauth-rfc7523bis
 
-This is the working area for the individual Internet-Draft, "JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants".
+This is the working area for draft-ietf-oauth-rfc7523bis
+
 
 * [Editor's Copy](https://oauth-wg.github.io/draft-ietf-oauth-rfc7523bis/#go.draft-ietf-oauth-rfc7523bis.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-oauth-rfc7523bis)
