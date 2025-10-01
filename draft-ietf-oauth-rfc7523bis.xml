@@ -417,7 +417,7 @@
 	</t>
 	<t>
 	  The example shows a JWT issued and signed by the OAuth client identified as
-	  <spanx style='verb'>https://client.example</spanx>.
+	  <spanx style='verb'>https://client.example/</spanx>.
 	  The intended audience of the JWT is
 	  <spanx style="verb">https://authz.example.net</spanx>,
 	  which is the authorization server's issuer identifier.
@@ -432,8 +432,8 @@
 	  <artwork><![CDATA[
   {
     "aud": "https://authz.example.net",
-    "iss": "https://client.example",
-    "sub": "https://client.example",
+    "iss": "https://client.example/",
+    "sub": "https://client.example/",
     "iat": 1752702206,
     "exp": 1752705806
   }
@@ -475,9 +475,9 @@
     client-assertion-type%3Ajwt-bearer&
   client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0IiwiYWx
     nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.eyJhdWQiOiAiaHR0cHM6Ly9hdXRoei5leGFt
-    cGxlLm5ldCIsImlzcyI6ICJodHRwczovL2NsaWVudC5leGFtcGxlIiwic3ViIjogIm
-    h0dHBzOi8vY2xpZW50LmV4YW1wbGUiLCJpYXQiOiAxNzUyNzAyMjA2LCJleHAiOiAx
-    NzUyNzA1ODA2fQ.6KraSQUxWdl9ehs[...omitted for brevity...]bwc0ZOJw
+    cGxlLm5ldCIsImlzcyI6ICJodHRwczovL2NsaWVudC5leGFtcGxlLyIsInN1YiI6IC
+    JodHRwczovL2NsaWVudC5leGFtcGxlLyIsImlhdCI6IDE3NTI3MDIyMDYsImV4cCI6
+    IDE3NTI3MDU4MDZ9.6KrSQUxdl9ehs[...omitted for brevity...]bwc0ZOJw
 ]]></artwork>
 	</figure>
 
