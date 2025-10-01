@@ -331,16 +331,10 @@
 	    <list style="letters">
 	      <t>
 		For the authorization grant,
-		it is the responsibility of the client to use only audience values
-		that are specific to the authorization server being used.
-		This MAY be either
-		the issuer identifier of the authorization server or
-		the token endpoint URL of the authorization server.
-		The authorization server MUST reject any JWT that does not
-		contain its own identity as the intended audience,
-		and if the value of <spanx style="verb">aud</spanx> is an array,
-		all array values MUST identify the authorization server
-		as the intended audience.
+		the client is responsible for ensuring that the audience of the JWT assertion
+		is appropriate for the authorization server to which it is sent. An
+		authorization server MAY be identified by either its issuer identifier
+		or its token endpoint URL.
 	      </t>
 	      <t>
 		For client authentication,
