@@ -177,7 +177,7 @@
 	<list style="empty">
 	  <t>
 	    It is RECOMMENDED that SAML Bearer Assertions
-	    not be used for for client authentication.
+	    not be used for client authentication.
 	  </t>
 	</list>
       </t>
