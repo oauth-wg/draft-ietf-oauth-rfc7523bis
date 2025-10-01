@@ -156,7 +156,7 @@ Table of Contents
    The text and example in Section 2.2 of [RFC7522] (Using SAML
    Assertions for Client Authentication) is replaced by:
 
-      It is RECOMMENDED that SAML Bearer Assertions not be used for for
+      It is RECOMMENDED that SAML Bearer Assertions not be used for
       client authentication.
 
    The description of the Audience element in Item 2 of Section 3 of
