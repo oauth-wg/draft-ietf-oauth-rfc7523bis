@@ -1326,31 +1326,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dt id="section-2-3.1">Audience</dt>
         <dd style="margin-left: 1.5em" id="section-2-3.2">
             A value that identifies the party intended to process the assertion.
-     The audience value MUST
-     identify the authorization server as the intended audience.
-     It is the responsibility of the client to use only audience values
-     that are specific to the authorization server being used.
-     This MAY be the issuer identifier of the authorization server.
-     The authorization server MUST reject any assertion that does not
-     contain its own identity as the intended audience.<a href="#section-2-3.2" class="pilcrow">¶</a>
+           The issuer identifier of the authorization server,
+           as defined in <span>[<a href="#RFC8414" class="cite xref">RFC8414</a>]</span>, can be used to indicate that
+           the authorization server is a valid intended audience of the assertion.<a href="#section-2-3.2" class="pilcrow">¶</a>
 </dd>
       <dd class="break"></dd>
 </dl>
-<p id="section-2-4">
- The description of the Audience parameter
- in Section 5.2 of <span>[<a href="#RFC7521" class="cite xref">RFC7521</a>]</span> (General Assertion Format and Processing Rules)
- is replaced by:<a href="#section-2-4" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-2-5.1">
-          <p id="section-2-5.1.1">
-     The assertion MUST contain an audience value that identifies the
-     authorization server as the intended audience.
-     It is the responsibility of the client to use only audience values
-     that are specific to the authorization server being used.
-     The authorization server MUST reject any assertion that does not
-     contain its own identity as the intended audience.<a href="#section-2-5.1.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
 </section>
 </div>
 <div id="RFC7522Updates">
