@@ -18,7 +18,7 @@
   <?rfc subcompact="no"?>
 
   <front>
-    <title>Updates to OAuth 2.0 JSON Web Token (JWT) Client Authentication and Assertion-Based Authorization Grants</title>
+    <title abbrev="JWT Client Auth Updates">Updates to OAuth 2.0 JSON Web Token (JWT) Client Authentication and Assertion-Based Authorization Grants</title>
 
     <author fullname="Michael B. Jones" surname="Jones" initials="M.B.">
       <organization>Self-Issued Consulting</organization>
