@@ -37,7 +37,7 @@
     PyYAML 6.0.2
     requests 2.32.5
     setuptools 80.9.0
-    wcwidth 0.2.13
+    wcwidth 0.2.14
 -->
 <link href="draft-ietf-oauth-rfc7523bis.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1481,23 +1481,19 @@ svg :is([fill="white"], [fill^="#fff"]) {
  "JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants" <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span>
  to tighten its audience requirements.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">
- In Section 2.2 of <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span>
- (Using JWTs for Client Authentication),
- the example is replaced by:<a href="#section-4-2" class="pilcrow">¶</a></p>
-<p id="section-4-3">
  In Section 3 of <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span> (JWT Format and Processing Requirements),
  Item 3, which describes the audience value,
- is replaced by:<a href="#section-4-3" class="pilcrow">¶</a></p>
+ is replaced by:<a href="#section-4-2" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-4-4.1">
-          <p id="section-4-4.1.1">
+<li class="normal ulEmpty" id="section-4-3.1">
+          <p id="section-4-3.1.1">
      The JWT MUST contain an <code>aud</code>
      (audience) claim containing a value that
      identifies the authorization server as the intended audience.
-     Two cases are differentiated:<a href="#section-4-4.1.1" class="pilcrow">¶</a></p>
-<ol start="1" type="a" class="normal type-a" id="section-4-4.1.2">
-<li id="section-4-4.1.2.1">
-              <p id="section-4-4.1.2.1.1">
+     Two cases are differentiated:<a href="#section-4-3.1.1" class="pilcrow">¶</a></p>
+<ol start="1" type="a" class="normal type-a" id="section-4-3.1.2">
+<li id="section-4-3.1.2.1">
+              <p id="section-4-3.1.2.1.1">
  For the authorization grant,
  it is the responsibility of the client to use only audience values
  that are specific to the authorization server being used.
@@ -1508,10 +1504,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
  contain its own identity as the intended audience,
  and if the value of <code>aud</code> is an array,
  all array values MUST identify the authorization server
- as the intended audience.<a href="#section-4-4.1.2.1.1" class="pilcrow">¶</a></p>
+ as the intended audience.<a href="#section-4-3.1.2.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-4-4.1.2.2">
-              <p id="section-4-4.1.2.2.1">
+            <li id="section-4-3.1.2.2">
+              <p id="section-4-3.1.2.2.1">
  For client authentication,
  the <code>aud</code> (audience) claim value MUST use
  the issuer identifier <span>[<a href="#RFC8414" class="cite xref">RFC8414</a>]</span>
@@ -1525,55 +1521,55 @@ svg :is([fill="white"], [fill^="#fff"]) {
  this includes that the token endpoint URL of the authorization server
  MUST NOT be used as an audience value.
  The authorization server MUST reject any JWT that does not
- contain its issuer identifier as its sole audience value.<a href="#section-4-4.1.2.2.1" class="pilcrow">¶</a></p>
+ contain its issuer identifier as its sole audience value.<a href="#section-4-3.1.2.2.1" class="pilcrow">¶</a></p>
 </li>
           </ol>
-<p id="section-4-4.1.3">
+<p id="section-4-3.1.3">
 
      In the absence of an application profile specifying
      otherwise, applications MUST compare the audience
      values using the Simple String Comparison method defined in Section
-     6.2.1 of RFC 3986 <span>[<a href="#RFC3986" class="cite xref">RFC3986</a>]</span>.<a href="#section-4-4.1.3" class="pilcrow">¶</a></p>
+     6.2.1 of RFC 3986 <span>[<a href="#RFC3986" class="cite xref">RFC3986</a>]</span>.<a href="#section-4-3.1.3" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-4-5">
+<p id="section-4-4">
  In Section 3.2 of <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span> (Client Authentication Processing),
- the following requirement is added:<a href="#section-4-5" class="pilcrow">¶</a></p>
+ the following requirement is added:<a href="#section-4-4" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-4-6.1">
-          <p id="section-4-6.1.1">
+<li class="normal ulEmpty" id="section-4-5.1">
+          <p id="section-4-5.1.1">
      Client authentication JWTs SHOULD be explicitly typed by using the
      <code>typ</code> header parameter value
      <code>client-authentication+jwt</code>
-     or another more specific explicit type value defined by a specification profiling this specification.<a href="#section-4-6.1.1" class="pilcrow">¶</a></p>
+     or another more specific explicit type value defined by a specification profiling this specification.<a href="#section-4-5.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-4-7">
+<p id="section-4-6">
  In Section 4 of <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span> (Authorization Grant Example),
- the sentence:<a href="#section-4-7" class="pilcrow">¶</a></p>
+ the sentence:<a href="#section-4-6" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-4-8.1">
-          <p id="section-4-8.1.1">
+<li class="normal ulEmpty" id="section-4-7.1">
+          <p id="section-4-7.1.1">
      The intended audience of the JWT is
      <code>https://jwt-rp.example.net</code>, which is an
-     identifier with which the authorization server identifies itself.<a href="#section-4-8.1.1" class="pilcrow">¶</a></p>
+     identifier with which the authorization server identifies itself.<a href="#section-4-7.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-4-9">
- is replaced by:<a href="#section-4-9" class="pilcrow">¶</a></p>
+<p id="section-4-8">
+ is replaced by:<a href="#section-4-8" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-4-10.1">
-          <p id="section-4-10.1.1">
+<li class="normal ulEmpty" id="section-4-9.1">
+          <p id="section-4-9.1.1">
      The intended audience of the JWT is
      <code>https://authz.example.net</code>,
-     which is the authorization server's issuer identifier.<a href="#section-4-10.1.1" class="pilcrow">¶</a></p>
+     which is the authorization server's issuer identifier.<a href="#section-4-9.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-4-11" class="keepWithNext">
-   In the same section, the JWT Claims Set example is replaced by:<a href="#section-4-11" class="pilcrow">¶</a></p>
+<p id="section-4-10" class="keepWithNext">
+   In the same section, the JWT Claims Set example is replaced by:<a href="#section-4-10" class="pilcrow">¶</a></p>
 <span id="name-example-jwt-claims-set"></span><div id="JWTClaims">
 <figure id="figure-2">
-        <div class="alignLeft art-text artwork" id="section-4-12.1">
+        <div class="alignLeft art-text artwork" id="section-4-11.1">
 <pre>
   {
     "aud": "https://authz.example.net",
@@ -1589,14 +1585,14 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-example-jwt-claims-set" class="selfRef">Example JWT Claims Set</a>
         </figcaption></figure>
 </div>
-<p id="section-4-13">
+<p id="section-4-12">
  In the list of agreements required by participants
  in Section 5 of <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span> (Interoperability Considerations),
  an agreement on "audience identifiers" is no longer needed
- for client authentication JWTs.<a href="#section-4-13" class="pilcrow">¶</a></p>
-<p id="section-4-14">
+ for client authentication JWTs.<a href="#section-4-12" class="pilcrow">¶</a></p>
+<p id="section-4-13">
  The additional example in the following subsection
- is added after Section 4 of <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span><a href="#section-4-14" class="pilcrow">¶</a></p>
+ is added after Section 4 of <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span><a href="#section-4-13" class="pilcrow">¶</a></p>
 <div id="ClientAuthExample">
 <section id="section-4.1">
         <h3 id="name-client-authentication-jwt-e">

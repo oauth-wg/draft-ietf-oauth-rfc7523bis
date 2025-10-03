@@ -249,9 +249,6 @@ Table of Contents
    Client Authentication and Authorization Grants" [RFC7523] to tighten
    its audience requirements.
 
-   In Section 2.2 of [RFC7523] (Using JWTs for Client Authentication),
-   the example is replaced by:
-
    In Section 3 of [RFC7523] (JWT Format and Processing Requirements),
    Item 3, which describes the audience value, is replaced by:
 
