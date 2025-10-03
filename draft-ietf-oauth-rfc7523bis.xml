@@ -295,12 +295,6 @@
       </t>
 
       <t>
-	In Section 2.2 of <xref target="RFC7523"/>
-	(Using JWTs for Client Authentication),
-	the example is replaced by:
-      </t>
-
-      <t>
 	In Section 3 of <xref target="RFC7523"/> (JWT Format and Processing Requirements),
 	Item 3, which describes the audience value,
 	is replaced by:
