@@ -63,7 +63,7 @@
     <abstract>
       <t>
 	This specification updates the requirements for audience values
-	for tokens whose audience is an OAuth 2.0 authorization server
+	in OAuth 2.0 Client Assertion Authentication and Assertion-based Authorization Grants
 	to address a security vulnerability identified in the previous
 	requirements for those audience values in multiple OAuth 2.0 specifications.
       </t>
@@ -103,11 +103,11 @@
 	of tokens sent to OAuth 2.0 authorization servers.
       </t>
       <t>
-	A general description of the update made to each specification is for it
+	A general description of the updates made is
 	to require that the issuer identifier URL of the authorization server,
 	as defined in <xref target="RFC8414"/>,
-	be used as the sole value of the token audience.
-	Furthermore, the authorization server MUST reject any such token that
+	be used as the sole value of the audience of the JWT client authentication assertion.
+	Furthermore, the authorization server rejects any JWT client authentication assertion that
 	does not contain its own issuer identifier as the sole audience value.
 	An explicit type for each affected kind of token,
 	as defined in <xref target="RFC8725"/>,
@@ -213,29 +213,6 @@
 	"JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants" <xref target="RFC7523"/>
 	to tighten its audience requirements.
       </t>
-
-      <t>
-	In Section 2.2 of <xref target="RFC7523"/>
-	(Using JWTs for Client Authentication),
-	the example is replaced by:
-      </t>
-
-      <figure>
-	<artwork><![CDATA[
-  POST /token.oauth2 HTTP/1.1
-  Host: as.example.com
-  Content-Type: application/x-www-form-urlencoded
-
-  grant_type=authorization_code&
-  code=n0esc3NRze7LTCu7iYzS6a5acc3f0ogp4&
-  client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
-    client-assertion-type%3Ajwt-bearer&
-  client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0IiwiYWx
-    nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.
-  e2F1ZDpodHRwczovL2F1dGh6LmV4YW1wbGUubmV0LA[...omitted...].
-  cC4hiUPo[...omitted for brevity...]
-]]></artwork>
-      </figure>
 
       <t>
 	In Section 3 of <xref target="RFC7523"/> (JWT Format and Processing Requirements),
@@ -347,9 +324,8 @@
 	  and token request using it would look like.
 	</t>
 	<t>
-	  The example shows a JWT issued and signed by the system entity identified as
-	  <spanx style='verb'>https://jwt-idp.example.com</spanx>.
-	  The subject of the JWT is identified by email address as <spanx style='verb'>mike@example.com</spanx>.
+	  The example shows a JWT issued and signed by the OAuth client identified as
+	  <spanx style='verb'>https://client.example/</spanx>.
 	  The intended audience of the JWT is
 	  <spanx style="verb">https://authz.example.net</spanx>,
 	  which is the authorization server's issuer identifier.
@@ -364,11 +340,10 @@
 	  <artwork><![CDATA[
   {
     "aud": "https://authz.example.net",
-    "iss": "https://jwt-idp.example.com",
-    "sub": "mailto:mike@example.com",
+    "iss": "https://client.example/",
+    "sub": "https://client.example/",
     "iat": 1752702206,
-    "exp": 1752705806,
-    "http://claims.example.com/member": true
+    "exp": 1752705806
   }
 ]]></artwork>
 	</figure>
@@ -407,9 +382,10 @@
   client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
     client-assertion-type%3Ajwt-bearer&
   client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0IiwiYWx
-    nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.
-  e2F1ZDpodHRwczovL2F1dGh6LmV4YW1wbGUubmV0LA[...omitted...].
-  J9l-ZhwP[...omitted for brevity...]
+    nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.eyJhdWQiOiAiaHR0cHM6Ly9hdXRoei5leGFt
+    cGxlLm5ldCIsImlzcyI6ICJodHRwczovL2NsaWVudC5leGFtcGxlLyIsInN1YiI6IC
+    JodHRwczovL2NsaWVudC5leGFtcGxlLyIsImlhdCI6IDE3NTI3MDIyMDYsImV4cCI6
+    IDE3NTI3MDU4MDZ9.6KrSQUxdl9ehs[...omitted for brevity...]bwc0ZOJw
 ]]></artwork>
 	</figure>
 
@@ -569,7 +545,7 @@
 
       <section title="OAuth Token Endpoint Authentication Methods" anchor="MethodsReg">
         <t>
-          This section updates entries in the "OAuth Token Endpoint Authentication Methods" registry <xref target="IANA.OAuthParameters"/>
+          This section updates entries in the "OAuth Token Endpoint Authentication Methods" registry of <xref target="IANA.OAuthParameters"/>
         </t>
 
         <section title="Registry Contents" anchor="MethodsContents">
@@ -607,6 +583,23 @@
         </section>
 
       </section>
+
+	<section title="OAuth URI Registration Updates">
+		<t>
+			This section requests updates to the following entries in the "OAuth URI" registry of <xref target="IANA.OAuthParameters"/>
+			to add [[this specification]] as an additional reference.
+			<?rfc subcompact="yes"?>
+			<list style="symbols">
+				<t>urn:ietf:params:oauth:grant-type:jwt-bearer</t>
+				<t>urn:ietf:params:oauth:client-assertion-type:jwt-bearer</t>
+				<t>urn:ietf:params:oauth:grant-type:saml2-bearer</t>
+				<t>urn:ietf:params:oauth:client-assertion-type:saml2-bearer</t>
+			</list>
+			<?rfc subcompact="no"?>
+
+		</t>
+	</section>
+
     </section>
 
   </middle>
@@ -791,6 +784,18 @@
 	  <t>
 		Advise the client to ensure that the audience of an assertion authorization grant makes sense with respect to where it’s being sent.
 	  </t>
+	  <t>
+	    Updates to the abstract and introduction to (hopefully) better reflect the more targeted scope of the work.
+	  </t>
+	  <t>
+	    Remove JWTs for Client Authentication example replacement (not worth it for including typ in the encoded JWT header).
+	  </t>
+	  <t>
+	    Add request to update existing OAuth URI registrations to add reference to this specification for the four relevant URNs.
+	  </t>
+	  <t>
+	    Fixup the new Client Authentication JWT Example.
+	  </t>
 	</list>
 	-02
 	<list style="symbols">
@@ -848,11 +853,17 @@
       <t>
 	We would like to acknowledge the contributions of the following
 	people to this specification:
+	Brock Allen
 	John Bradley,
 	Ralph Bragg,
 	Joseph Heenan,
 	Pedram Hosseyni,
+	Pieter Kasselman,
+	Ralf Küsters,
+	Martin Lindström,
 	Aaron Parecki,
+	Dean H. Saxe,
+	Arndt Schwenkschuster,
 	and
 	Tim Würtele.
       </t>
