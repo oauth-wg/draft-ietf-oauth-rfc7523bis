@@ -1326,31 +1326,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dt id="section-2-3.1">Audience</dt>
         <dd style="margin-left: 1.5em" id="section-2-3.2">
             A value that identifies the party intended to process the assertion.
-     The audience value MUST
-     identify the authorization server as the intended audience.
-     It is the responsibility of the client to use only audience values
-     that are specific to the authorization server being used.
-     This MAY be the issuer identifier of the authorization server.
-     The authorization server MUST reject any assertion that does not
-     contain its own identity as the intended audience.<a href="#section-2-3.2" class="pilcrow">¶</a>
+           The issuer identifier of the authorization server,
+           as defined in <span>[<a href="#RFC8414" class="cite xref">RFC8414</a>]</span>, can be used to indicate that
+           the authorization server is a valid intended audience of the assertion.<a href="#section-2-3.2" class="pilcrow">¶</a>
 </dd>
       <dd class="break"></dd>
 </dl>
-<p id="section-2-4">
- The description of the Audience parameter
- in Section 5.2 of <span>[<a href="#RFC7521" class="cite xref">RFC7521</a>]</span> (General Assertion Format and Processing Rules)
- is replaced by:<a href="#section-2-4" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-2-5.1">
-          <p id="section-2-5.1.1">
-     The assertion MUST contain an audience value that identifies the
-     authorization server as the intended audience.
-     It is the responsibility of the client to use only audience values
-     that are specific to the authorization server being used.
-     The authorization server MUST reject any assertion that does not
-     contain its own identity as the intended audience.<a href="#section-2-5.1.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
 </section>
 </div>
 <div id="RFC7522Updates">
@@ -1372,7 +1353,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <li class="normal ulEmpty" id="section-3-3.1">
           <p id="section-3-3.1.1">
      It is RECOMMENDED that SAML Bearer Assertions
-     not be used for for client authentication.<a href="#section-3-3.1.1" class="pilcrow">¶</a></p>
+     not be used for client authentication.<a href="#section-3-3.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="section-3-4">
@@ -1386,8 +1367,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
      with an &lt;AudienceRestriction&gt; element
      with an &lt;Audience&gt; element that identifies the
      authorization server as the intended audience.
-     It is the responsibility of the client to use only audience values
-     that are specific to the authorization server being used.
+     The client is responsible for ensuring that the audience of the Assertion
+     is appropriate for the authorization server to which it is sent.
      This MAY be the issuer identifier of the authorization server,
      the token endpoint URL of the authorization server, or
      a SAML Entity ID.
@@ -1399,73 +1380,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
      contain its own identity as the intended audience.<a href="#section-3-5.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-3-6">
- In Section 4 of <span>[<a href="#RFC7522" class="cite xref">RFC7522</a>]</span> (Authorization Grant Example),
- the sentence:<a href="#section-3-6" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-3-7.1">
-          <p id="section-3-7.1.1">
-     The intended audience of the Assertion is
-     <code>https://saml-sp.example.net</code>,
-     which is an identifier for a SAML Service Provider
-     with which the authorization server identifies itself.<a href="#section-3-7.1.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
-<p id="section-3-8">
- is replaced by:<a href="#section-3-8" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-3-9.1">
-          <p id="section-3-9.1.1">
-     The intended audience of the Assertion is
-     <code>https://authz.example.net</code>,
-     which is the authorization server's issuer identifier.<a href="#section-3-9.1.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
-<p id="section-3-10" class="keepWithNext">
-   In the same section, the SAML 2.0 Assertion example is replaced by:<a href="#section-3-10" class="pilcrow">¶</a></p>
-<span id="name-example-saml-20-assertion"></span><div id="assertion">
-<figure id="figure-1">
-        <div class="alignLeft art-text artwork" id="section-3-11.1">
-<pre>
-  &lt;Assertion IssueInstant="2025-07-17T00:53:34.619Z"
-    ID="ef1xsbZxPV2oqjd7HTLRLIBlBb7"
-    Version="2.0"
-    xmlns="urn:oasis:names:tc:SAML:2.0:assertion"&gt;
-   &lt;Issuer&gt;https://saml-idp.example.com&lt;/Issuer&gt;
-   &lt;ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
-    [...omitted for brevity...]
-   &lt;/ds:Signature&gt;
-   &lt;Subject&gt;
-    &lt;NameID
-     Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"&gt;
-     brian@example.com
-    &lt;/NameID&gt;
-    &lt;SubjectConfirmation
-      Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"&gt;
-     &lt;SubjectConfirmationData
-       NotOnOrAfter="2025-07-17T00:58:34.619Z"
-       Recipient="https://authz.example.net/token.oauth2"/&gt;
-     &lt;/SubjectConfirmation&gt;
-    &lt;/Subject&gt;
-    &lt;Conditions&gt;
-      &lt;AudienceRestriction&gt;
-        &lt;Audience&gt;https://authz.example.net&lt;/Audience&gt;
-      &lt;/AudienceRestriction&gt;
-    &lt;/Conditions&gt;
-    &lt;AuthnStatement AuthnInstant="2025-07-17T00:53:34.371Z"&gt;
-      &lt;AuthnContext&gt;
-        &lt;AuthnContextClassRef&gt;
-          urn:oasis:names:tc:SAML:2.0:ac:classes:X509
-        &lt;/AuthnContextClassRef&gt;
-      &lt;/AuthnContext&gt;
-    &lt;/AuthnStatement&gt;
-  &lt;/Assertion&gt;
-</pre>
-</div>
-<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
-<a href="#name-example-saml-20-assertion" class="selfRef">Example SAML 2.0 Assertion</a>
-        </figcaption></figure>
-</div>
 </section>
 </div>
 <div id="RFC7523Updates">
@@ -1512,16 +1426,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <li id="section-4-5.1.2.1">
               <p id="section-4-5.1.2.1.1">
  For the authorization grant,
- it is the responsibility of the client to use only audience values
- that are specific to the authorization server being used.
- This MAY be either
- the issuer identifier of the authorization server or
- the token endpoint URL of the authorization server.
- The authorization server MUST reject any JWT that does not
- contain its own identity as the intended audience,
- and if the value of <code>aud</code> is an array,
- all array values MUST identify the authorization server
- as the intended audience.<a href="#section-4-5.1.2.1.1" class="pilcrow">¶</a></p>
+ the client is responsible for ensuring that the audience of the JWT assertion
+ is appropriate for the authorization server to which it is sent. An
+ authorization server MAY be identified by either its issuer identifier
+ or its token endpoint URL.<a href="#section-4-5.1.2.1.1" class="pilcrow">¶</a></p>
 </li>
             <li id="section-4-5.1.2.2">
               <p id="section-4-5.1.2.2.1">
@@ -1585,7 +1493,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-4-12" class="keepWithNext">
    In the same section, the JWT Claims Set example is replaced by:<a href="#section-4-12" class="pilcrow">¶</a></p>
 <span id="name-example-jwt-claims-set"></span><div id="JWTClaims">
-<figure id="figure-2">
+<figure id="figure-1">
         <div class="alignLeft art-text artwork" id="section-4-13.1">
 <pre>
   {
@@ -1598,7 +1506,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
   }
 </pre>
 </div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
 <a href="#name-example-jwt-claims-set" class="selfRef">Example JWT Claims Set</a>
         </figcaption></figure>
 </div>
@@ -2031,7 +1939,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
         <li class="normal" id="appendix-A-3.3">
           <p id="appendix-A-3.3.1">
-     Do not restrict the "aud" claim's type. Allow it to be a an array with a single member.<a href="#appendix-A-3.3.1" class="pilcrow">¶</a></p>
+     Do not restrict the "aud" claim's type. Allow it to be an array with a single member.<a href="#appendix-A-3.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-3.4">
+          <p id="appendix-A-3.4.1">
+ Advise the client to ensure that the audience of an assertion authorization grant makes sense with respect to where it’s being sent.<a href="#appendix-A-3.4.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="appendix-A-4">
