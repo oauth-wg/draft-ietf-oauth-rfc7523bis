@@ -19,10 +19,11 @@ Expires: 23 January 2026                                    C. Mortimore
 
 Abstract
 
-   This specification updates the requirements for audience values for
-   tokens whose audience is an OAuth 2.0 authorization server to address
-   a security vulnerability identified in the previous requirements for
-   those audience values in multiple OAuth 2.0 specifications.
+   This specification updates the requirements for audience values in
+   OAuth 2.0 Client Assertion Authentication and Assertion-based
+   Authorization Grants to address a security vulnerability identified
+   in the previous requirements for those audience values in multiple
+   OAuth 2.0 specifications.
 
 Status of This Memo
 
@@ -71,6 +72,7 @@ Table of Contents
        7.1.1.  Registry Contents
      7.2.  OAuth Token Endpoint Authentication Methods
        7.2.1.  Registry Contents
+     7.3.  OAuth URI Registration Updates
    8.  References
      8.1.  Normative References
      8.2.  Informative References
@@ -103,17 +105,17 @@ Table of Contents
    eliminates former ambiguities in the audience values of tokens sent
    to OAuth 2.0 authorization servers.
 
-   A general description of the update made to each specification is for
-   it to require that the issuer identifier URL of the authorization
-   server, as defined in [RFC8414], be used as the sole value of the
-   token audience.  Furthermore, the authorization server MUST reject
-   any such token that does not contain its own issuer identifier as the
-   sole audience value.  An explicit type for each affected kind of
-   token, as defined in [RFC8725], is also defined to facilitate
-   distinguishing between tokens produced in accordance with
-   specifications published prior to these updates and those
-   incorporating them.  Specific updates made to each affected
-   specification follow.
+   A general description of the updates made is to require that the
+   issuer identifier URL of the authorization server, as defined in
+   [RFC8414], be used as the sole value of the audience of the JWT
+   client authentication assertion.  Furthermore, the authorization
+   server rejects any JWT client authentication assertion that does not
+   contain its own issuer identifier as the sole audience value.  An
+   explicit type for each affected kind of token, as defined in
+   [RFC8725], is also defined to facilitate distinguishing between
+   tokens produced in accordance with specifications published prior to
+   these updates and those incorporating them.  Specific updates made to
+   each affected specification follow.
 
 1.1.  Notational Conventions
 
@@ -183,22 +185,6 @@ Table of Contents
    This section updates "JSON Web Token (JWT) Profile for OAuth 2.0
    Client Authentication and Authorization Grants" [RFC7523] to tighten
    its audience requirements.
-
-   In Section 2.2 of [RFC7523] (Using JWTs for Client Authentication),
-   the example is replaced by:
-
-    POST /token.oauth2 HTTP/1.1
-    Host: as.example.com
-    Content-Type: application/x-www-form-urlencoded
-
-    grant_type=authorization_code&
-    code=n0esc3NRze7LTCu7iYzS6a5acc3f0ogp4&
-    client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
-      client-assertion-type%3Ajwt-bearer&
-    client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0IiwiYWx
-      nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.
-    e2F1ZDpodHRwczovL2F1dGh6LmV4YW1wbGUubmV0LA[...omitted...].
-    cC4hiUPo[...omitted for brevity...]
 
    In Section 3 of [RFC7523] (JWT Format and Processing Requirements),
    Item 3, which describes the audience value, is replaced by:
@@ -276,24 +262,22 @@ Table of Contents
    The following example illustrates what a client authentication JWT
    and token request using it would look like.
 
-   The example shows a JWT issued and signed by the system entity
-   identified as https://jwt-idp.example.com.  The subject of the JWT is
-   identified by email address as mike@example.com.  The intended
-   audience of the JWT is https://authz.example.net, which is the
-   authorization server's issuer identifier.  The JWT is sent as part of
-   a token request to the authorization server's token endpoint at
-   https://authz.example.net/token.oauth2.
+   The example shows a JWT issued and signed by the OAuth client
+   identified as https://client.example/.  The intended audience of the
+   JWT is https://authz.example.net, which is the authorization server's
+   issuer identifier.  The JWT is sent as part of a token request to the
+   authorization server's token endpoint at https://authz.example.net/
+   token.oauth2.
 
    Below is an example JSON object that could be encoded to produce the
    JWT Claims Set for a client authentication JWT:
 
      {
        "aud": "https://authz.example.net",
-       "iss": "https://jwt-idp.example.com",
-       "sub": "mailto:mike@example.com",
+       "iss": "https://client.example/",
+       "sub": "https://client.example/",
        "iat": 1752702206,
-       "exp": 1752705806,
-       "http://claims.example.com/member": true
+       "exp": 1752705806
      }
 
    The following example JSON object, used as the header parameters of a
@@ -322,9 +306,10 @@ Table of Contents
     client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
       client-assertion-type%3Ajwt-bearer&
     client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0IiwiYWx
-      nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.
-    e2F1ZDpodHRwczovL2F1dGh6LmV4YW1wbGUubmV0LA[...omitted...].
-    J9l-ZhwP[...omitted for brevity...]
+      nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.eyJhdWQiOiAiaHR0cHM6Ly9hdXRoei5leGFt
+      cGxlLm5ldCIsImlzcyI6ICJodHRwczovL2NsaWVudC5leGFtcGxlLyIsInN1YiI6IC
+      JodHRwczovL2NsaWVudC5leGFtcGxlLyIsImlhdCI6IDE3NTI3MDIyMDYsImV4cCI6
+      IDE3NTI3MDU4MDZ9.6KrSQUxdl9ehs[...omitted for brevity...]bwc0ZOJw
 
 5.  Updates to RFC 9126
 
@@ -417,7 +402,7 @@ Table of Contents
 7.2.  OAuth Token Endpoint Authentication Methods
 
    This section updates entries in the "OAuth Token Endpoint
-   Authentication Methods" registry [IANA.OAuthParameters]
+   Authentication Methods" registry of [IANA.OAuthParameters]
 
 7.2.1.  Registry Contents
 
@@ -429,6 +414,17 @@ Table of Contents
    *  Token Endpoint Authentication Method Name: client_secret_jwt
    *  Change Controller: IETF
    *  Reference: Section 9 of [OpenID.Core], [[this specification]]
+
+7.3.  OAuth URI Registration Updates
+
+   This section requests updates to the following entries in the "OAuth
+   URI" registry of [IANA.OAuthParameters] to add [[this specification]]
+   as an additional reference.
+
+   *  urn:ietf:params:oauth:grant-type:jwt-bearer
+   *  urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+   *  urn:ietf:params:oauth:grant-type:saml2-bearer
+   *  urn:ietf:params:oauth:client-assertion-type:saml2-bearer
 
 8.  References
 
@@ -560,6 +556,17 @@ Appendix A.  Document History
       authorization grant makes sense with respect to where it’s being
       sent.
 
+   *  Updates to the abstract and introduction to (hopefully) better
+      reflect the more targeted scope of the work.
+
+   *  Remove JWTs for Client Authentication example replacement (not
+      worth it for including typ in the encoded JWT header).
+
+   *  Add request to update existing OAuth URI registrations to add
+      reference to this specification for the four relevant URNs.
+
+   *  Fixup the new Client Authentication JWT Example.
+
    -02
 
    *  Added Filip Skokan as an author.
@@ -594,8 +601,10 @@ Appendix A.  Document History
 Acknowledgements
 
    We would like to acknowledge the contributions of the following
-   people to this specification: John Bradley, Ralph Bragg, Joseph
-   Heenan, Pedram Hosseyni, Aaron Parecki, and Tim Würtele.
+   people to this specification: Brock Allen John Bradley, Ralph Bragg,
+   Joseph Heenan, Pedram Hosseyni, Pieter Kasselman, Ralf Küsters,
+   Martin Lindström, Aaron Parecki, Dean H.  Saxe, Arndt
+   Schwenkschuster, and Tim Würtele.
 
 Authors' Addresses
 
