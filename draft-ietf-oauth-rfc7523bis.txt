@@ -13,7 +13,8 @@ Expires: 23 January 2026                                    C. Mortimore
                                                             22 July 2025
 
 
-     Updates to Audience Values for OAuth 2.0 Authorization Servers
+  Updates to OAuth 2.0 JSON Web Token (JWT) Client Authentication and
+                  Assertion-Based Authorization Grants
                    draft-ietf-oauth-rfc7523bis-latest
 
 Abstract
