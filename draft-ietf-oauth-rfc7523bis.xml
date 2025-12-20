@@ -49,7 +49,7 @@
       </address>
     </author>
 
-    <date day="22" month="July" year="2025" />
+    <date day="20" month="December" year="2025" />
 
     <area>Security</area>
     <workgroup>OAuth Working Group</workgroup>
@@ -268,6 +268,18 @@
 	    <spanx style="verb">client-authentication+jwt</spanx>
 	    or another more specific explicit type value defined by a specification profiling this specification.
 	  </t>
+	  <t>
+	    The introduction of strong typing for JWTs (using explicit <spanx style="verb">typ</spanx>
+	    values) serves as a signal to distinguish between tokens produced in accordance with
+	    specifications published prior to these updates and those incorporating them. However,
+	    the primary security protection comes from the tightened audience requirements. Since
+	    strong typing alone does not prevent the attacks described in <xref
+	      target="private_key_jwt.Disclosure" /> and <xref target="Audience.Injection" />, the
+	    use of explicit typing is RECOMMENDED for clients, enabling them to signal their intention of sending
+	    a JWT conforming to the requirements herein. This approach balances security signaling with practical
+	    deployment considerations, avoiding disruption to client deployments that already
+	    conform to the tightened audience requirements but have not yet adopted explicit typing.
+	  </t>
 	</list>
       </t>
       <t>
@@ -427,10 +439,16 @@
 	    the primary security protection comes from the tightened audience requirements. Since
 	    strong typing alone does not prevent the attacks described in <xref
 	      target="private_key_jwt.Disclosure" /> and <xref target="Audience.Injection" />, the
-	    use of explicit typing is suggestion for clients enabling them to signal their intention of sending
+	    use of explicit typing is RECOMMENDED for clients, enabling them to signal their intention of sending
 	    a JWT conforming to the requirements herein. This approach balances security signaling with practical
 	    deployment considerations, avoiding disruption to client deployments that already
 	    conform to the tightened audience requirements but have not yet adopted explicit typing.
+	  </t>
+	  <t>
+	    Client authentication JWTs SHOULD be explicitly typed by using the
+	    <spanx style="verb">typ</spanx> header parameter value
+	    <spanx style="verb">client-authentication+jwt</spanx>
+	    or another more specific explicit type value defined by a specification profiling this specification.
 	  </t>
 	</list>
       </t>
@@ -770,6 +788,15 @@
       </t>
 
       <t>
+	-04
+	<list style="symbols">
+	  <t>
+	    Applied editorial suggestions by Jamshid Khosravian.
+	  </t>
+	</list>
+      </t>
+
+      <t>
 	-03
 	<list style="symbols">
 	  <t>
@@ -853,12 +880,13 @@
       <t>
 	We would like to acknowledge the contributions of the following
 	people to this specification:
-	Brock Allen
+	Brock Allen,
 	John Bradley,
 	Ralph Bragg,
 	Joseph Heenan,
 	Pedram Hosseyni,
 	Pieter Kasselman,
+	Jamshid Khosravian,
 	Ralf Küsters,
 	Martin Lindström,
 	Aaron Parecki,
