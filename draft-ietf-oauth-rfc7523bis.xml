@@ -49,7 +49,7 @@
       </address>
     </author>
 
-    <date day="20" month="December" year="2025" />
+    <date day="9" month="January" year="2026" />
 
     <area>Security</area>
     <workgroup>OAuth Working Group</workgroup>
@@ -756,7 +756,7 @@
 	  <author fullname="Vladimir Dzhuvinov">
 	    <organization>Connect2id</organization>
 	  </author>
-	  <date day="2" month="June" year="2025"/>
+	  <date day="4" month="December" year="2025"/>
 	</front>
       </reference>
 
