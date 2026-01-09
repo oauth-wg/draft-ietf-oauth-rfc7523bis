@@ -17,7 +17,7 @@
  requirements for those audience values in multiple OAuth 2.0 specifications.
        
     " name="description">
-<meta content="xml2rfc 3.30.2" name="generator">
+<meta content="xml2rfc 3.31.0" name="generator">
 <meta content="OAuth" name="keyword">
 <meta content="JWT" name="keyword">
 <meta content="Assertion" name="keyword">
@@ -25,18 +25,17 @@
 <meta content="Security Token" name="keyword">
 <meta content="draft-ietf-oauth-rfc7523bis-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.30.2
-    Python 3.12.11
+  xml2rfc 3.31.0
+    Python 3.12.12
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
-    intervaltree 3.1.0
+    intervaltree 3.2.1
     Jinja2 3.1.6
-    lxml 5.3.1
-    platformdirs 4.4.0
+    lxml 6.0.2
+    platformdirs 4.5.1
     pycountry 24.6.1
-    PyYAML 6.0.2
+    PyYAML 6.0.3
     requests 2.32.5
-    setuptools 80.9.0
     wcwidth 0.2.14
 -->
 <link href="draft-ietf-oauth-rfc7523bis.xml" rel="alternate" type="application/rfc+xml">
@@ -1056,11 +1055,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">JWT Client Auth Updates</td>
-<td class="right">July 2025</td>
+<td class="right">December 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Jones, et al.</td>
-<td class="center">Expires 23 January 2026</td>
+<td class="center">Expires 23 June 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1076,12 +1075,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc7521" class="eref">7521</a>, <a href="https://www.rfc-editor.org/rfc/rfc7522" class="eref">7522</a>, <a href="https://www.rfc-editor.org/rfc/rfc7523" class="eref">7523</a>, <a href="https://www.rfc-editor.org/rfc/rfc9126" class="eref">9126</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-07-22" class="published">22 July 2025</time>
+<time datetime="2025-12-20" class="published">20 December 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-01-23">23 January 2026</time></dd>
+<dd class="expires"><time datetime="2026-06-23">23 June 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1131,7 +1130,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 23 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 23 June 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1451,6 +1450,18 @@ svg :is([fill="white"], [fill^="#fff"]) {
      <code>client-authentication+jwt</code>
      or another more specific explicit type value defined by a specification profiling this specification.<a href="#section-4-5.1.1" class="pilcrow">¶</a></p>
 </li>
+        <li class="normal ulEmpty" id="section-4-5.2">
+          <p id="section-4-5.2.1">
+     The introduction of strong typing for JWTs (using explicit <code>typ</code>
+     values) serves as a signal to distinguish between tokens produced in accordance with
+     specifications published prior to these updates and those incorporating them. However,
+     the primary security protection comes from the tightened audience requirements. Since
+     strong typing alone does not prevent the attacks described in <span>[<a href="#private_key_jwt.Disclosure" class="cite xref">private_key_jwt.Disclosure</a>]</span> and <span>[<a href="#Audience.Injection" class="cite xref">Audience.Injection</a>]</span>, the
+     use of explicit typing is RECOMMENDED for clients, enabling them to signal their intention of sending
+     a JWT conforming to the requirements herein. This approach balances security signaling with practical
+     deployment considerations, avoiding disruption to client deployments that already
+     conform to the tightened audience requirements but have not yet adopted explicit typing.<a href="#section-4-5.2.1" class="pilcrow">¶</a></p>
+</li>
       </ul>
 <p id="section-4-6">
  In Section 4 of <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span> (Authorization Grant Example),
@@ -1610,10 +1621,17 @@ svg :is([fill="white"], [fill^="#fff"]) {
      specifications published prior to these updates and those incorporating them. However,
      the primary security protection comes from the tightened audience requirements. Since
      strong typing alone does not prevent the attacks described in <span>[<a href="#private_key_jwt.Disclosure" class="cite xref">private_key_jwt.Disclosure</a>]</span> and <span>[<a href="#Audience.Injection" class="cite xref">Audience.Injection</a>]</span>, the
-     use of explicit typing is suggestion for clients enabling them to signal their intention of sending
+     use of explicit typing is RECOMMENDED for clients, enabling them to signal their intention of sending
      a JWT conforming to the requirements herein. This approach balances security signaling with practical
      deployment considerations, avoiding disruption to client deployments that already
      conform to the tightened audience requirements but have not yet adopted explicit typing.<a href="#section-5-3.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal ulEmpty" id="section-5-3.3">
+          <p id="section-5-3.3.1">
+     Client authentication JWTs SHOULD be explicitly typed by using the
+     <code>typ</code> header parameter value
+     <code>client-authentication+jwt</code>
+     or another more specific explicit type value defined by a specification profiling this specification.<a href="#section-5-3.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
@@ -1934,92 +1952,100 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="appendix-A-1">
  [[ to be removed by the RFC Editor before publication as an RFC ]]<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <p id="appendix-A-2">
- -03<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+ -04<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-3.1">
           <p id="appendix-A-3.1.1">
-     Update OAuth Token Endpoint Authentication Methods IANA entries with reference to this specification<a href="#appendix-A-3.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-3.2">
-          <p id="appendix-A-3.2.1">
-     Relaxed client requirement to use strong typed JWTs. SHOULD instead of MUST.<a href="#appendix-A-3.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-3.3">
-          <p id="appendix-A-3.3.1">
-     Do not restrict the "aud" claim's type. Allow it to be an array with a single member.<a href="#appendix-A-3.3.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-3.4">
-          <p id="appendix-A-3.4.1">
- Advise the client to ensure that the audience of an assertion authorization grant makes sense with respect to where it’s being sent.<a href="#appendix-A-3.4.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-3.5">
-          <p id="appendix-A-3.5.1">
-     Updates to the abstract and introduction to (hopefully) better reflect the more targeted scope of the work.<a href="#appendix-A-3.5.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-3.6">
-          <p id="appendix-A-3.6.1">
-     Remove JWTs for Client Authentication example replacement (not worth it for including typ in the encoded JWT header).<a href="#appendix-A-3.6.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-3.7">
-          <p id="appendix-A-3.7.1">
-     Add request to update existing OAuth URI registrations to add reference to this specification for the four relevant URNs.<a href="#appendix-A-3.7.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-3.8">
-          <p id="appendix-A-3.8.1">
-     Fixup the new Client Authentication JWT Example.<a href="#appendix-A-3.8.1" class="pilcrow">¶</a></p>
+     Applied editorial suggestions by Jamshid Khosravian.<a href="#appendix-A-3.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="appendix-A-4">
- -02<a href="#appendix-A-4" class="pilcrow">¶</a></p>
+ -03<a href="#appendix-A-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-5.1">
           <p id="appendix-A-5.1.1">
-     Added Filip Skokan as an author.<a href="#appendix-A-5.1.1" class="pilcrow">¶</a></p>
+     Update OAuth Token Endpoint Authentication Methods IANA entries with reference to this specification<a href="#appendix-A-5.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-A-5.2">
           <p id="appendix-A-5.2.1">
-     Applied Brian Campbell's suggestions made at IETF 122.  Specifically:<a href="#appendix-A-5.2.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="appendix-A-5.2.2.1">
-              <p id="appendix-A-5.2.2.1.1">
- Focused RFC 7523 updates on JWT client authentication case.<a href="#appendix-A-5.2.2.1.1" class="pilcrow">¶</a></p>
+     Relaxed client requirement to use strong typed JWTs. SHOULD instead of MUST.<a href="#appendix-A-5.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-A-5.2.2.2">
-              <p id="appendix-A-5.2.2.2.1">
+        <li class="normal" id="appendix-A-5.3">
+          <p id="appendix-A-5.3.1">
+     Do not restrict the "aud" claim's type. Allow it to be an array with a single member.<a href="#appendix-A-5.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-5.4">
+          <p id="appendix-A-5.4.1">
+ Advise the client to ensure that the audience of an assertion authorization grant makes sense with respect to where it’s being sent.<a href="#appendix-A-5.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-5.5">
+          <p id="appendix-A-5.5.1">
+     Updates to the abstract and introduction to (hopefully) better reflect the more targeted scope of the work.<a href="#appendix-A-5.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-5.6">
+          <p id="appendix-A-5.6.1">
+     Remove JWTs for Client Authentication example replacement (not worth it for including typ in the encoded JWT header).<a href="#appendix-A-5.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-5.7">
+          <p id="appendix-A-5.7.1">
+     Add request to update existing OAuth URI registrations to add reference to this specification for the four relevant URNs.<a href="#appendix-A-5.7.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-5.8">
+          <p id="appendix-A-5.8.1">
+     Fixup the new Client Authentication JWT Example.<a href="#appendix-A-5.8.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-A-6">
+ -02<a href="#appendix-A-6" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-7.1">
+          <p id="appendix-A-7.1.1">
+     Added Filip Skokan as an author.<a href="#appendix-A-7.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-7.2">
+          <p id="appendix-A-7.2.1">
+     Applied Brian Campbell's suggestions made at IETF 122.  Specifically:<a href="#appendix-A-7.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-7.2.2.1">
+              <p id="appendix-A-7.2.2.1.1">
+ Focused RFC 7523 updates on JWT client authentication case.<a href="#appendix-A-7.2.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-A-7.2.2.2">
+              <p id="appendix-A-7.2.2.2.1">
  Described client responsibilities for the audience value
  of authorization grants.
  No longer mandate that the audience for authorization grants
- be the issuer identifier, so as to make a minimum of breaking changes.<a href="#appendix-A-5.2.2.2.1" class="pilcrow">¶</a></p>
+ be the issuer identifier, so as to make a minimum of breaking changes.<a href="#appendix-A-7.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-A-5.2.2.3">
-              <p id="appendix-A-5.2.2.3.1">
- Deprecated the use of SAML assertions for client authentication.<a href="#appendix-A-5.2.2.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-A-7.2.2.3">
+              <p id="appendix-A-7.2.2.3.1">
+ Deprecated the use of SAML assertions for client authentication.<a href="#appendix-A-7.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
       </ul>
-<p id="appendix-A-6">
- -01<a href="#appendix-A-6" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="appendix-A-7.1">
-          <p id="appendix-A-7.1.1">
-     Reworked to make updates to RFC 7523, rather than replacing it.<a href="#appendix-A-7.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-7.2">
-          <p id="appendix-A-7.2.1">
-     Removed updates to RFC 9101.<a href="#appendix-A-7.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-7.3">
-          <p id="appendix-A-7.3.1">
-     Added reference to the University of Stuttgart paper <span>[<a href="#Audience.Injection" class="cite xref">Audience.Injection</a>]</span>.<a href="#appendix-A-7.3.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
 <p id="appendix-A-8">
- -00<a href="#appendix-A-8" class="pilcrow">¶</a></p>
+ -01<a href="#appendix-A-8" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-9.1">
           <p id="appendix-A-9.1.1">
-     Initial working group draft, replacing draft-jones-oauth-rfc7523bis-00.<a href="#appendix-A-9.1.1" class="pilcrow">¶</a></p>
+     Reworked to make updates to RFC 7523, rather than replacing it.<a href="#appendix-A-9.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-9.2">
+          <p id="appendix-A-9.2.1">
+     Removed updates to RFC 9101.<a href="#appendix-A-9.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-9.3">
+          <p id="appendix-A-9.3.1">
+     Added reference to the University of Stuttgart paper <span>[<a href="#Audience.Injection" class="cite xref">Audience.Injection</a>]</span>.<a href="#appendix-A-9.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-A-10">
+ -00<a href="#appendix-A-10" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-11.1">
+          <p id="appendix-A-11.1.1">
+     Initial working group draft, replacing draft-jones-oauth-rfc7523bis-00.<a href="#appendix-A-11.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
@@ -2032,12 +2058,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="appendix-B-1">
  We would like to acknowledge the contributions of the following
  people to this specification:
- Brock Allen
+ Brock Allen,
  John Bradley,
  Ralph Bragg,
  Joseph Heenan,
  Pedram Hosseyni,
  Pieter Kasselman,
+ Jamshid Khosravian,
  Ralf Küsters,
  Martin Lindström,
  Aaron Parecki,

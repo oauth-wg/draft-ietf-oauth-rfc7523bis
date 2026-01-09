@@ -6,11 +6,11 @@ OAuth Working Group                                           M.B. Jones
 Internet-Draft                                    Self-Issued Consulting
 Updates: 7521, 7522, 7523, 9126 (if approved)                B. Campbell
 Intended status: Standards Track                           Ping Identity
-Expires: 23 January 2026                                    C. Mortimore
+Expires: 23 June 2026                                       C. Mortimore
                                                                   Disney
                                                                F. Skokan
                                                                     Okta
-                                                            22 July 2025
+                                                        20 December 2025
 
 
   Updates to OAuth 2.0 JSON Web Token (JWT) Client Authentication and
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 January 2026.
+   This Internet-Draft will expire on 23 June 2026.
 
 Copyright Notice
 
@@ -224,6 +224,20 @@ Table of Contents
       more specific explicit type value defined by a specification
       profiling this specification.
 
+      The introduction of strong typing for JWTs (using explicit typ
+      values) serves as a signal to distinguish between tokens produced
+      in accordance with specifications published prior to these updates
+      and those incorporating them.  However, the primary security
+      protection comes from the tightened audience requirements.  Since
+      strong typing alone does not prevent the attacks described in
+      [private_key_jwt.Disclosure] and [Audience.Injection], the use of
+      explicit typing is RECOMMENDED for clients, enabling them to
+      signal their intention of sending a JWT conforming to the
+      requirements herein.  This approach balances security signaling
+      with practical deployment considerations, avoiding disruption to
+      client deployments that already conform to the tightened audience
+      requirements but have not yet adopted explicit typing.
+
    In Section 4 of [RFC7523] (Authorization Grant Example), the
    sentence:
 
@@ -338,12 +352,17 @@ Table of Contents
       protection comes from the tightened audience requirements.  Since
       strong typing alone does not prevent the attacks described in
       [private_key_jwt.Disclosure] and [Audience.Injection], the use of
-      explicit typing is suggestion for clients enabling them to signal
-      their intention of sending a JWT conforming to the requirements
-      herein.  This approach balances security signaling with practical
-      deployment considerations, avoiding disruption to client
-      deployments that already conform to the tightened audience
+      explicit typing is RECOMMENDED for clients, enabling them to
+      signal their intention of sending a JWT conforming to the
+      requirements herein.  This approach balances security signaling
+      with practical deployment considerations, avoiding disruption to
+      client deployments that already conform to the tightened audience
       requirements but have not yet adopted explicit typing.
+
+      Client authentication JWTs SHOULD be explicitly typed by using the
+      typ header parameter value client-authentication+jwt or another
+      more specific explicit type value defined by a specification
+      profiling this specification.
 
 6.  Security Considerations
 
@@ -541,6 +560,10 @@ Appendix A.  Document History
 
    [[ to be removed by the RFC Editor before publication as an RFC ]]
 
+   -04
+
+   *  Applied editorial suggestions by Jamshid Khosravian.
+
    -03
 
    *  Update OAuth Token Endpoint Authentication Methods IANA entries
@@ -601,9 +624,9 @@ Appendix A.  Document History
 Acknowledgements
 
    We would like to acknowledge the contributions of the following
-   people to this specification: Brock Allen John Bradley, Ralph Bragg,
-   Joseph Heenan, Pedram Hosseyni, Pieter Kasselman, Ralf Küsters,
-   Martin Lindström, Aaron Parecki, Dean H.  Saxe, Arndt
+   people to this specification: Brock Allen, John Bradley, Ralph Bragg,
+   Joseph Heenan, Pedram Hosseyni, Pieter Kasselman, Jamshid Khosravian,
+   Ralf Küsters, Martin Lindström, Aaron Parecki, Dean H.  Saxe, Arndt
    Schwenkschuster, and Tim Würtele.
 
 Authors' Addresses
