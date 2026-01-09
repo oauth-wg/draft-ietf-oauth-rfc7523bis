@@ -6,11 +6,11 @@ OAuth Working Group                                           M.B. Jones
 Internet-Draft                                    Self-Issued Consulting
 Updates: 7521, 7522, 7523, 9126 (if approved)                B. Campbell
 Intended status: Standards Track                           Ping Identity
-Expires: 23 June 2026                                       C. Mortimore
+Expires: 13 July 2026                                       C. Mortimore
                                                                   Disney
                                                                F. Skokan
                                                                     Okta
-                                                        20 December 2025
+                                                          9 January 2026
 
 
   Updates to OAuth 2.0 JSON Web Token (JWT) Client Authentication and
@@ -40,11 +40,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 June 2026.
+   This Internet-Draft will expire on 13 July 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -535,8 +535,8 @@ Table of Contents
 
    [OpenID.Federation]
               Hedberg, R., Jones, M. B., Solberg, A., Bradley, J.,
-              Marco, G. D., and V. Dzhuvinov, "OpenID Federation 1.0", 2
-              June 2025,
+              Marco, G. D., and V. Dzhuvinov, "OpenID Federation 1.0", 4
+              December 2025,
               <https://openid.net/specs/openid-federation-1_0.html>.
 
    [private_key_jwt.Disclosure]
