@@ -99,8 +99,10 @@
       <t>
 	This specification updates the affected OAuth specifications
 	to address the security vulnerability identified.
-	Specifically, it eliminates former ambiguities in the audience values
+	Specifically, it eliminates former choices in the audience values
 	of tokens sent to OAuth 2.0 authorization servers.
+	<xref target="RFC8414"/> section 3.3 requires that the client having retrieved the metadata validates the returned issuer value.
+	Other values of the metadata are not validated and if used as audience can open an attack vector.
       </t>
       <t>
 	A general description of the updates made is
