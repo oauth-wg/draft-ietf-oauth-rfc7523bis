@@ -1268,8 +1268,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-1-3">
  This specification updates the affected OAuth specifications
  to address the security vulnerability identified.
- Specifically, it eliminates former ambiguities in the audience values
- of tokens sent to OAuth 2.0 authorization servers.<a href="#section-1-3" class="pilcrow">¶</a></p>
+ Specifically, it eliminates former choices in the audience values
+ of tokens sent to OAuth 2.0 authorization servers.
+ <span>[<a href="#RFC8414" class="cite xref">RFC8414</a>]</span> section 3.3 requires that the client having retrieved the metadata validates the returned issuer value.
+ Other endpoint values of the metadata are not directly validated and, if used as audience when sent to a different endpoint, can open an attack vector.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">
  A general description of the updates made is
  to require that the issuer identifier URL of the authorization server,
