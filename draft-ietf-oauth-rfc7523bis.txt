@@ -6,11 +6,11 @@ OAuth Working Group                                           M.B. Jones
 Internet-Draft                                    Self-Issued Consulting
 Updates: 7521, 7522, 7523, 9126 (if approved)                B. Campbell
 Intended status: Standards Track                           Ping Identity
-Expires: 13 July 2026                                       C. Mortimore
+Expires: 16 July 2026                                       C. Mortimore
                                                                   Disney
                                                                F. Skokan
                                                                     Okta
-                                                          9 January 2026
+                                                         12 January 2026
 
 
   Updates to OAuth 2.0 JSON Web Token (JWT) Client Authentication and
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 July 2026.
+   This Internet-Draft will expire on 16 July 2026.
 
 Copyright Notice
 
@@ -564,6 +564,10 @@ Appendix A.  Document History
 
    [[ to be removed by the RFC Editor before publication as an RFC ]]
 
+   -05
+
+   *  Applied editorial suggestions by Axel Nennker.
+
    -04
 
    *  Applied editorial suggestions by Jamshid Khosravian.
@@ -630,8 +634,8 @@ Acknowledgements
    We would like to acknowledge the contributions of the following
    people to this specification: Brock Allen, John Bradley, Ralph Bragg,
    Joseph Heenan, Pedram Hosseyni, Pieter Kasselman, Jamshid Khosravian,
-   Ralf Küsters, Martin Lindström, Aaron Parecki, Dean H.  Saxe, Arndt
-   Schwenkschuster, and Tim Würtele.
+   Ralf Küsters, Martin Lindström, Axel Nennker, Aaron Parecki, Dean H.
+   Saxe, Arndt Schwenkschuster, and Tim Würtele.
 
 Authors' Addresses
 
