@@ -49,7 +49,7 @@
       </address>
     </author>
 
-    <date day="9" month="January" year="2026" />
+    <date day="12" month="January" year="2026" />
 
     <area>Security</area>
     <workgroup>OAuth Working Group</workgroup>
@@ -790,6 +790,15 @@
       </t>
 
       <t>
+	-05
+	<list style="symbols">
+	  <t>
+	    Applied editorial suggestions by Axel Nennker.
+	  </t>
+	</list>
+      </t>
+
+      <t>
 	-04
 	<list style="symbols">
 	  <t>
@@ -891,6 +900,7 @@
 	Jamshid Khosravian,
 	Ralf Küsters,
 	Martin Lindström,
+	Axel Nennker,
 	Aaron Parecki,
 	Dean H. Saxe,
 	Arndt Schwenkschuster,
