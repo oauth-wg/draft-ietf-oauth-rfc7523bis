@@ -96,6 +96,19 @@
 	A paper they published describing the attack is
 	<xref target="Audience.Injection"/>.
       </t>
+	<t>
+	  The core vulnerability stems from the use of unvalidated metadata values. 
+	  When endpoint URLs are discovered dynamically from authorization server metadata 
+	  rather than configured out-of-band from trusted sources, an attacker may be able 
+	  to substitute malicious endpoint URLs. If assertions use overly broad audience 
+	  values (such as the issuer identifier), these assertions may be accepted at 
+	  unintended endpoints. The most secure approach is to use the specific endpoint 
+	  URL as the audience value when endpoint URLs are obtained from trusted, 
+	  out-of-band configuration. However, for practical deployment reasons and to 
+	  maintain compatibility with existing implementations, this specification 
+	  requires the issuer identifier as the audience for client authentication while 
+	  allowing either the issuer identifier or endpoint URL for authorization grants.
+	</t>
       <t>
 	This specification updates the affected OAuth specifications
 	to address the security vulnerability identified.
@@ -229,12 +242,15 @@
 
 	    <list style="letters">
 	      <t>
-		For the authorization grant,
-		the client is responsible for ensuring that the audience of the JWT assertion
-		is appropriate for the authorization server to which it is sent. An
-		authorization server MAY be identified by either its issuer identifier
-		or its token endpoint URL.
-	      </t>
+			  For the authorization grant,
+			  the client is responsible for ensuring that the audience of the JWT assertion
+			  is appropriate for the authorization server to which it is sent. An
+			  authorization server MAY be identified by either its issuer identifier
+			  or its token endpoint URL. Using the specific token endpoint URL provides
+			  stronger endpoint binding and is RECOMMENDED when the endpoint URL is
+			  configured from a trusted, out-of-band source. Using the issuer identifier
+			  allows greater flexibility at the cost of reduced endpoint-specific binding.
+		  </t>
 	      <t>
 		For client authentication,
 		the <spanx style="verb">aud</spanx> (audience) claim value MUST use
@@ -479,6 +495,44 @@
 	and <xref target="Audience.Injection"/>.
       </t>
 
+		<section title="Audience Values and Endpoint Binding" anchor="AudienceBinding">
+		  <t>
+		    The choice of audience value represents a trade-off between security 
+		    granularity and practical deployment considerations. Using the specific 
+		    endpoint URL as the audience value provides the strongest protection 
+		    against token substitution attacks, as it binds the assertion to exactly 
+		    one endpoint. This prevents an assertion from being replayed at different 
+		    endpoints, even within the same authorization server.
+		  </t>
+		  <t>
+		    This specification permits the issuer identifier as the audience value 
+		    for practical reasons: it allows a single assertion to be used across 
+		    multiple endpoints of the same authorization server and simplifies client 
+		    implementation. However, implementers should understand that this reduces 
+		    the granularity of endpoint binding. An assertion with the issuer 
+		    identifier as its audience could potentially be accepted at any endpoint 
+		    operated by that authorization server, not just the intended one.
+		  </t>
+		  <t>
+		    When endpoint URLs are configured out-of-band from trusted sources 
+		    (rather than discovered dynamically from metadata), clients SHOULD 
+		    consider using the specific endpoint URL as the audience value for 
+		    authorization grants to provide stronger endpoint binding. Authorization 
+		    servers MAY support and prefer this approach.
+		  </t>
+		  <t>
+		    The attacks described in <xref target="private_key_jwt.Disclosure"/> 
+		    and <xref target="Audience.Injection"/> exploit scenarios where 
+		    unvalidated metadata values are used to construct or validate assertions. 
+		    While <xref target="RFC8414"/> Section 3.3 requires validation of the 
+		    issuer value in metadata, other endpoint URLs in the metadata are not 
+		    subject to equivalent validation requirements. Implementations MUST NOT 
+		    trust endpoint URLs from unvalidated metadata sources. When using 
+		    authorization server metadata discovery, clients MUST ensure they 
+		    retrieve metadata over a secure channel and validate the authenticity 
+		    of the metadata.
+		  </t>
+		</section>
     </section>
 
     <section title="IANA Considerations" anchor="IANA">
