@@ -514,10 +514,10 @@
 		    operated by that authorization server, not just the intended one.
 		  </t>
 		  <t>
-		    When endpoint URLs are configured out-of-band from trusted sources 
-		    (rather than discovered dynamically from metadata), clients SHOULD 
-		    consider using the specific endpoint URL as the audience value for 
-		    authorization grants to provide stronger endpoint binding. Authorization 
+		    When endpoint URLs are configured out-of-band from trusted sources
+		    (rather than discovered dynamically from metadata), clients SHOULD
+		    consider using the specific endpoint URL as the audience value for
+		    authorization grants to provide stronger endpoint binding. Authorization
 		    servers MAY support and prefer this approach.
 		  </t>
 		  <t>
