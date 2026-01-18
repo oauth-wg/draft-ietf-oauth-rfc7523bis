@@ -497,20 +497,20 @@
 
 		<section title="Audience Values and Endpoint Binding" anchor="AudienceBinding">
 		  <t>
-		    The choice of audience value represents a trade-off between security 
-		    granularity and practical deployment considerations. Using the specific 
-		    endpoint URL as the audience value provides the strongest protection 
-		    against token substitution attacks, as it binds the assertion to exactly 
-		    one endpoint. This prevents an assertion from being replayed at different 
+		    The choice of audience value represents a trade-off between security
+		    granularity and practical deployment considerations. Using the specific
+		    endpoint URL as the audience value provides the strongest protection
+		    against token substitution attacks, as it binds the assertion to exactly
+		    one endpoint. This prevents an assertion from being replayed at different
 		    endpoints, even within the same authorization server.
 		  </t>
 		  <t>
-		    This specification permits the issuer identifier as the audience value 
-		    for practical reasons: it allows a single assertion to be used across 
-		    multiple endpoints of the same authorization server and simplifies client 
-		    implementation. However, implementers should understand that this reduces 
-		    the granularity of endpoint binding. An assertion with the issuer 
-		    identifier as its audience could potentially be accepted at any endpoint 
+		    This specification permits the issuer identifier as the audience value
+		    for practical reasons: it allows a single assertion to be used across
+		    multiple endpoints of the same authorization server and simplifies client
+		    implementation. However, implementers should understand that this reduces
+		    the granularity of endpoint binding. An assertion with the issuer
+		    identifier as its audience could potentially be accepted at any endpoint
 		    operated by that authorization server, not just the intended one.
 		  </t>
 		  <t>
