@@ -521,15 +521,15 @@
 		    servers MAY support and prefer this approach.
 		  </t>
 		  <t>
-		    The attacks described in <xref target="private_key_jwt.Disclosure"/> 
-		    and <xref target="Audience.Injection"/> exploit scenarios where 
-		    unvalidated metadata values are used to construct or validate assertions. 
-		    While <xref target="RFC8414"/> Section 3.3 requires validation of the 
-		    issuer value in metadata, other endpoint URLs in the metadata are not 
-		    subject to equivalent validation requirements. Implementations MUST NOT 
-		    trust endpoint URLs from unvalidated metadata sources. When using 
-		    authorization server metadata discovery, clients MUST ensure they 
-		    retrieve metadata over a secure channel and validate the authenticity 
+		    The attacks described in <xref target="private_key_jwt.Disclosure"/>
+		    and <xref target="Audience.Injection"/> exploit scenarios where
+		    unvalidated metadata values are used to construct or validate assertions.
+		    While <xref target="RFC8414"/> Section 3.3 requires validation of the
+		    issuer value in metadata, other endpoint URLs in the metadata are not
+		    subject to equivalent validation requirements. Implementations MUST NOT
+		    trust endpoint URLs from unvalidated metadata sources. When using
+		    authorization server metadata discovery, clients MUST ensure they
+		    retrieve metadata over a secure channel and validate the authenticity
 		    of the metadata.
 		  </t>
 		</section>
