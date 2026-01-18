@@ -97,16 +97,16 @@
 	<xref target="Audience.Injection"/>.
       </t>
 	<t>
-	  The core vulnerability stems from the use of unvalidated metadata values. 
-	  When endpoint URLs are discovered dynamically from authorization server metadata 
-	  rather than configured out-of-band from trusted sources, an attacker may be able 
-	  to substitute malicious endpoint URLs. If assertions use overly broad audience 
-	  values (such as the issuer identifier), these assertions may be accepted at 
-	  unintended endpoints. The most secure approach is to use the specific endpoint 
-	  URL as the audience value when endpoint URLs are obtained from trusted, 
-	  out-of-band configuration. However, for practical deployment reasons and to 
-	  maintain compatibility with existing implementations, this specification 
-	  requires the issuer identifier as the audience for client authentication while 
+	  The core vulnerability stems from the use of unvalidated metadata values.
+	  When endpoint URLs are discovered dynamically from authorization server metadata
+	  rather than configured out-of-band from trusted sources, an attacker may be able
+	  to substitute malicious endpoint URLs. If assertions use overly broad audience
+	  values (such as the issuer identifier), these assertions may be accepted at
+	  unintended endpoints. The most secure approach is to use the specific endpoint
+	  URL as the audience value when endpoint URLs are obtained from trusted,
+	  out-of-band configuration. However, for practical deployment reasons and to
+	  maintain compatibility with existing implementations, this specification
+	  requires the issuer identifier as the audience for client authentication while
 	  allowing either the issuer identifier or endpoint URL for authorization grants.
 	</t>
       <t>
