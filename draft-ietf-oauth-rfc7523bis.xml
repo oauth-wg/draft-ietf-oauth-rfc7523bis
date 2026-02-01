@@ -100,13 +100,11 @@
 	  The core vulnerability stems from the use of unvalidated metadata values.
 	  When endpoint URLs are discovered dynamically from authorization server metadata
 	  an attacker may be able to substitute malicious endpoint URLs.
-	  If the endpoint URL retrieve from the metadata
-	  is from `signed_meta` as defined in [[RFC8414 section 2.1](https://datatracker.ietf.org/doc/html/rfc8414#section-2.1)]
-	  then it is RECOMMENDED to use that value.
-	  An endpoint URLs that was obtained from trusted,
-	  out-of-band configuration is also secure to be used as audience.
+	  An endpoint URL that was obtained from trusted,
+	  out-of-band configuration is recommended to use that endpoint URL as audience.
 	  If assertions use broad audience values (such as the issuer identifier), these assertions may be accepted at
 	  unintended endpoints at the isssuer.
+
 	  However, for practical deployment reasons and to
 	  maintain compatibility with existing implementations, the issuer identifier
 	  as the audience can also be used.
