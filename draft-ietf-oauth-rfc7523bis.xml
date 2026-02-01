@@ -241,14 +241,13 @@
 
 	    <list style="letters">
 	      <t>
-			  For the authorization grant,
-			  the client is responsible for ensuring that the audience of the JWT assertion
-			  is appropriate for the authorization server to which it is sent. An
-			  authorization server MAY be identified by either its issuer identifier
-			  or its token endpoint URL. Using the specific token endpoint URL provides
-			  stronger endpoint binding and is RECOMMENDED when the endpoint URL is
-			  configured from a trusted, out-of-band source. Using the issuer identifier
-			  allows greater flexibility at the cost of reduced endpoint-specific binding.
+			  The client is responsible for ensuring that the audience of the JWT assertion
+			  is appropriate for the authorization server to which it is sent.
+			  If audience value was received out-of-band or if the audience value starts
+			  with the same string as the issuer then it recommended to use that endpoint url
+			  as the audience to which the assertion is sent. The issuer identifier
+			  can be used as an audience value with the risk that this assertion can then
+			  be used at a different endpoint at the same server.
 		  </t>
 	      <t>
 		For client authentication,
