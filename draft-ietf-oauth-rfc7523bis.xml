@@ -100,8 +100,8 @@
 	  The core vulnerability stems from the use of unvalidated metadata values.
 	  When endpoint URLs are discovered dynamically from authorization server metadata
 	  an attacker may be able to substitute malicious endpoint URLs.
-	  An endpoint URL that was obtained from trusted,
-	  out-of-band configuration is recommended to use that endpoint URL as audience.
+	  If an endpoint URL that was obtained from trusted,
+	  out-of-band configuration, then it is recommended to use that endpoint URL as audience.
 	  If assertions use broad audience values (such as the issuer identifier), these assertions may be accepted at
 	  unintended endpoints at the isssuer.
 
