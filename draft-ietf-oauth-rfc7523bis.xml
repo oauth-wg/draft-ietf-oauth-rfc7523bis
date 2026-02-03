@@ -118,8 +118,7 @@
       </t>
       <t>
 	A general description of the updates made is
-	to require that the issuer identifier URL of the authorization server,
-	as defined in <xref target="RFC8414"/>,
+	to require that the issuer identifier of the authorization server
 	be used as the sole value of the audience of the JWT client authentication assertion.
 	Furthermore, the authorization server rejects any JWT client authentication assertion that
 	does not contain its own issuer identifier as the sole audience value.
