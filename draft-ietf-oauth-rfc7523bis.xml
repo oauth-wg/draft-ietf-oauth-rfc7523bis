@@ -120,11 +120,9 @@
 	The issuer identifier can be used as an audience value, which bears the risk that this assertion can be used at other endpoints at the same server.
       </t>
       <t>
-	A general description of the updates made is
-	to require that the issuer identifier of the authorization server
-	be used as the sole value of the audience of the JWT client authentication assertion.
+	A general description of the updates made is enable the authorization server to determine whether an assertion is intended for themselves.
 	Furthermore, the authorization server rejects any JWT client authentication assertion that
-	does not contain its own issuer identifier as the sole audience value.
+	does not contain its own issuer identifier.
 	An explicit type for each affected kind of token,
 	as defined in <xref target="RFC8725"/>,
 	is also defined to facilitate distinguishing between
@@ -169,10 +167,19 @@
 
 	  <t hangText="Audience">
 	    <vspace/>
-            A value that identifies the party intended to process the assertion.
-           The issuer identifier of the authorization server,
-           as defined in <xref target="RFC8414"/>, can be used to indicate that
-           the authorization server is a valid intended audience of the assertion.
+		  A value, string or array of strings, that identifies the party or
+		  parties intended to process the assertion.  The URL of the token endpoint,
+		  as defined in Section 3.2 of OAuth 2.0 [RFC6749], can be used to indicate that
+		  the authorization server is a valid intended audience of the
+		  assertion.  In the absence of an application profile specifying otherwise,
+		  compliant applications MUST compare the Audience values using the
+		  Simple String Comparison method defined in Section 6.2.1 of RFC 3986 [RFC3986].
+		  The issuer identifier of the authorization server can be used to indicate that
+		  the authorization server is a valid intended audience of the assertion.
+		  It is RECOMMENDED that a two value array is used as the audience.
+		  One value being the issuer identifier, the other value being the endpoint url
+		  the assertion is being sent to. The authorization server can reject assertions
+		  if the authorization server does not identify with each value.
 	  </t>
 	</list>
       </t>
