@@ -97,8 +97,8 @@
 	<xref target="Audience.Injection"/>.
       </t>
 	<t>
-	  The core vulnerability stems from the attacker convincing the client that an endpoint URL 
-	  belonging to honest-AZ belongs to the attacker. If the client creates an assertion with 
+	  The core vulnerability stems from the attacker convincing the client that an endpoint URL
+	  belonging to honest-AZ belongs to the attacker. If the client creates an assertion with
 	  that endpoint url as audience and sends it to the attacker then the attacker can use that
 	  asertion at honest-AZ.
 	  When endpoint URLs are discovered dynamically from authorization server metadata
