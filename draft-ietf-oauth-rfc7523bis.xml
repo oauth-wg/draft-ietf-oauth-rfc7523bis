@@ -115,9 +115,13 @@
 	to address the security vulnerability identified.
 
 	<xref target="RFC8414"/> section 3.3 requires that the client having retrieved the metadata validates the returned issuer value.
-	If an endpoint url starts with the same string as the issuer then that endpoint url should be used as the audience.
 	Other endpoint values of the metadata are not directly validated and, if used as audience when sent to a different endpoint, can open an attack vector.
 	The issuer identifier can be used as an audience value, which bears the risk that this assertion can be used at other endpoints at the same server.
+
+    Extending the validation to other endpoint URLs from <xref target="RFC8414"/>:
+
+	If an endpoint url starts with the same string as the issuer then that endpoint url is considered valid like the issuer identifer URL.
+    Simple String Comparison method defined in Section 6.2.1 of RFC 3986 [RFC3986] must be used to compare the issuer identifier URL and endpoint URLs used in audience values.
       </t>
       <t>
 	A general description of the updates made is enable the authorization server to determine whether an assertion is intended for themselves.
@@ -309,8 +313,8 @@
 	<list style="empty">
 	  <t>
 	    The intended audience of the JWT is
-	    <spanx style="verb">https://authz.example.net</spanx>,
-	    which is the authorization server's issuer identifier.
+	    <spanx style="verb">["https://authz.example.net", "https://authz.example.net/token"]</spanx>,
+	    which are the authorization server's issuer identifier and its token endpoint url.
 	  </t>
 	</list>
       </t>
@@ -321,7 +325,7 @@
 	</preamble>
 	<artwork><![CDATA[
   {
-    "aud": "https://authz.example.net",
+    "aud": ["https://authz.example.net","https://jwt-idp.example.com"],
     "iss": "https://jwt-idp.example.com",
     "sub": "mailto:mike@example.com",
     "iat": 1731721541,
@@ -330,13 +334,6 @@
   }
 ]]></artwork>
       </figure>
-
-      <t>
-	In the list of agreements required by participants
-	in Section 5 of <xref target="RFC7523"/> (Interoperability Considerations),
-	an agreement on "audience identifiers" is no longer needed
-	for client authentication JWTs.
-      </t>
 
       <t>
 	The additional example in the following subsection
