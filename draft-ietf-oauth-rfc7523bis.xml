@@ -96,21 +96,42 @@
 	A paper they published describing the attack is
 	<xref target="Audience.Injection"/>.
       </t>
+	<t>
+	  The core vulnerability stems from the attacker convincing the client that an endpoint URL
+	  belonging to honest-AZ belongs to the attacker. If the client creates an assertion with
+	  that endpoint url as audience and sends it to the attacker then the attacker can use that
+	  asertion at honest-AZ.
+	  When endpoint URLs are discovered dynamically from authorization server metadata
+	  an attacker may be able to substitute malicious endpoint URLs.
+	  If an endpoint URL that was obtained from trusted,
+	  out-of-band configuration, then it is recommended to use that endpoint URL as audience.
+	  If assertions use broad audience values (such as the issuer identifier), these assertions may be accepted at
+	  unintended endpoints at the isssuer.
+
+	  However, the issuer identifier as the audience can also be used.
+	</t>
       <t>
 	This specification updates the affected OAuth specifications
 	to address the security vulnerability identified.
-	Specifically, it eliminates former choices in the audience values
-	of tokens sent to OAuth 2.0 authorization servers.
+
 	<xref target="RFC8414"/> section 3.3 requires that the client having retrieved the metadata validates the returned issuer value.
 	Other endpoint values of the metadata are not directly validated and, if used as audience when sent to a different endpoint, can open an attack vector.
+	The issuer identifier can be used as an audience value, which bears the risk that this assertion can be used at other endpoints at the same server.
+
+    Extending the validation to other endpoint URLs from <xref target="RFC8414"/>:
+
+	If an endpoint url starts with the same string as the issuer then that endpoint url is considered valid like the issuer identifer URL.
+    Simple String Comparison method defined in Section 6.2.1 of RFC 3986 [RFC3986] must be used to compare the issuer identifier URL and endpoint URLs used in audience values.
+
+	Note: Checking the prefix is a check done by the client. More authorziation servers' endpoint URLs are now "trusted" by the client. The authorization server has no
+	means to know whether the client performed this check. Therefore the updates RECOMMEND that the client uses an two element array as the audience value that
+	include the issuer identifier and the endpoint URL to which the assertion is send. The authorization server can then reject assertions if it does not identify with all
+	audience values. Like the client the authorization server MUST use Simple String Comparison defined in Section 6.2.1 of RFC 3986 [RFC3986].
       </t>
       <t>
-	A general description of the updates made is
-	to require that the issuer identifier URL of the authorization server,
-	as defined in <xref target="RFC8414"/>,
-	be used as the sole value of the audience of the JWT client authentication assertion.
+	A general description of the updates made is enable the authorization server to determine whether an assertion is intended for themselves.
 	Furthermore, the authorization server rejects any JWT client authentication assertion that
-	does not contain its own issuer identifier as the sole audience value.
+	does not contain its own issuer identifier.
 	An explicit type for each affected kind of token,
 	as defined in <xref target="RFC8725"/>,
 	is also defined to facilitate distinguishing between
@@ -155,10 +176,19 @@
 
 	  <t hangText="Audience">
 	    <vspace/>
-            A value that identifies the party intended to process the assertion.
-           The issuer identifier of the authorization server,
-           as defined in <xref target="RFC8414"/>, can be used to indicate that
-           the authorization server is a valid intended audience of the assertion.
+		  A value, string or array of strings, that identifies the party or
+		  parties intended to process the assertion.  The URL of the token endpoint,
+		  as defined in Section 3.2 of OAuth 2.0 [RFC6749], can be used to indicate that
+		  the authorization server is a valid intended audience of the
+		  assertion.  In the absence of an application profile specifying otherwise,
+		  compliant applications MUST compare the Audience values using the
+		  Simple String Comparison method defined in Section 6.2.1 of RFC 3986 [RFC3986].
+		  The issuer identifier of the authorization server can be used to indicate that
+		  the authorization server is a valid intended audience of the assertion.
+		  It is RECOMMENDED that a two value array is used as the audience.
+		  One value being the issuer identifier, the other value being the endpoint url
+		  the assertion is being sent to. The authorization server can reject assertions
+		  if the authorization server does not identify with each value.
 	  </t>
 	</list>
       </t>
@@ -229,27 +259,17 @@
 
 	    <list style="letters">
 	      <t>
-		For the authorization grant,
-		the client is responsible for ensuring that the audience of the JWT assertion
-		is appropriate for the authorization server to which it is sent. An
-		authorization server MAY be identified by either its issuer identifier
-		or its token endpoint URL.
-	      </t>
+			  The client is responsible for ensuring that the audience of the JWT assertion
+			  is appropriate for the authorization server to which it is sent.
+		  </t>
 	      <t>
-		For client authentication,
-		the <spanx style="verb">aud</spanx> (audience) claim value MUST use
-		the issuer identifier <xref target="RFC8414"/>
-		of the authorization server as its sole value.
-		The authorization server MUST have an issuer identifier
-		to be used with this specification.
-		Unlike the <spanx style="verb">aud</spanx> value specified
-		in <xref target="RFC7523"/>, there MUST be no value other than
-		the issuer identifier of the intended authorization server
-		used as the audience of the JWT;
-		this includes that the token endpoint URL of the authorization server
-		MUST NOT be used as an audience value.
+		For client authentication, it is RECOMMENDED that
+		the <spanx style="verb">aud</spanx> (audience) claim value is a two element array
+		that has the issuer identifier of the authorization server as one array item and
+		the endpoint url to which the assertion is sent as the other array item.
+		The authorization server MUST have an issuer identifier to be used with this specification.
 		The authorization server MUST reject any JWT that does not
-		contain its issuer identifier as its sole audience value.
+		contain its issuer identifier as an audience value.
 	      </t>
 	    </list>
 
@@ -298,8 +318,8 @@
 	<list style="empty">
 	  <t>
 	    The intended audience of the JWT is
-	    <spanx style="verb">https://authz.example.net</spanx>,
-	    which is the authorization server's issuer identifier.
+	    <spanx style="verb">["https://authz.example.net", "https://authz.example.net/token"]</spanx>,
+	    which are the authorization server's issuer identifier and its token endpoint url.
 	  </t>
 	</list>
       </t>
@@ -310,7 +330,7 @@
 	</preamble>
 	<artwork><![CDATA[
   {
-    "aud": "https://authz.example.net",
+    "aud": ["https://authz.example.net","https://jwt-idp.example.com"],
     "iss": "https://jwt-idp.example.com",
     "sub": "mailto:mike@example.com",
     "iat": 1731721541,
@@ -319,13 +339,6 @@
   }
 ]]></artwork>
       </figure>
-
-      <t>
-	In the list of agreements required by participants
-	in Section 5 of <xref target="RFC7523"/> (Interoperability Considerations),
-	an agreement on "audience identifiers" is no longer needed
-	for client authentication JWTs.
-      </t>
 
       <t>
 	The additional example in the following subsection
@@ -409,14 +422,24 @@
 
     <section title="Updates to RFC 9126" anchor="RFC9126Updates">
       <t>
-	This section updates
-	"OAuth 2.0 Pushed Authorization Requests" <xref target="RFC9126"/>
-	to tighten its audience requirements.
+	This section updates a paragraph in Section 2 of <xref target="RFC9126"/> (Pushed Authorization Request Endpoint)
+	"OAuth 2.0 Pushed Authorization Requests" to tighten its audience requirements.
+	The following paragraph is replaced:
+	<list style="empty">
+	  <t>
+	Due to historical reasons, there is potential ambiguity regarding the appropriate audience
+	value to use when employing JWT client assertion-based authentication
+	(defined in Section 2.2 of [RFC7523] with private_key_jwt or client_secret_jwt authentication
+	method names per Section 9 of [OIDC]). To address that ambiguity, the issuer identifier URL
+	of the authorization server according to [RFC8414] SHOULD be used as the value of the audience.
+	In order to facilitate interoperability, the authorization server MUST accept its
+	issuer identifier, token endpoint URL, or pushed authorization request endpoint URL as values
+	that identify it as an intended audience.
+	  </t>
+	</list>
       </t>
       <t>
-	The paragraph describing the audience value
-	in Section 2 of <xref target="RFC9126"/> (Pushed Authorization Request Endpoint)
-	is replaced by:
+	The paragraph is replaced by:
 	<list style="empty">
 	  <t>
 	    This update resolves the potential ambiguity regarding
@@ -428,11 +451,10 @@
 	    <spanx style="verb">client_secret_jwt</spanx> authentication method names
 	    per Section 9 of <xref target="OpenID.Core"/>)
 	    that was described in <xref target="RFC9126"/>.
-	    To address that ambiguity, the issuer identifier URL
-	    of the authorization server according to <xref target="RFC8414"/>
-	    MUST be used as the sole value of the audience.
-            The authorization server MUST reject any such JWT that does not
-            contain its own issuer identifier as the sole audience value.
+		It is RECOMMENDED that the audience is a two element array that contains
+		the issuer identifier and the endpoint URL to which the assertion is send.
+		The authorization server SHOULD reject audience values that it does not identify with.
+		The authorization server SHOULD reject audience values that do not contain the issuer identifier.
 	  </t>
 	  <t>
 	    The introduction of strong typing for JWTs (using explicit <spanx style="verb">typ</spanx>
@@ -479,6 +501,34 @@
 	and <xref target="Audience.Injection"/>.
       </t>
 
+		<section title="Audience Values and Endpoint Binding" anchor="AudienceBinding">
+          <t>
+		    This specification permits the issuer identifier as the audience value.
+			However, implementers should understand that this reduces
+		    the granularity of endpoint binding. An assertion with the issuer
+		    identifier as its audience could potentially be accepted at any endpoint
+		    operated by that authorization server, not just the intended one.
+		  </t>
+		  <t>
+		    When endpoint URLs are configured out-of-band from trusted sources
+		    (rather than discovered dynamically from metadata), clients SHOULD
+		    consider using the specific endpoint URL as the audience value for
+		    authorization grants to provide endpoint binding. Authorization
+		    servers MAY support and prefer this approach.
+		  </t>
+		  <t>
+		    The attacks described in <xref target="private_key_jwt.Disclosure"/>
+		    and <xref target="Audience.Injection"/> exploit scenarios where
+		    unvalidated metadata values are used to construct or validate assertions.
+		    While <xref target="RFC8414"/> Section 3.3 requires validation of the
+		    issuer value in metadata, other endpoint URLs in the metadata are not
+		    subject to equivalent validation requirements. Implementations MUST NOT
+		    trust endpoint URLs from unvalidated metadata sources. When using
+		    authorization server metadata discovery, clients MUST ensure they
+		    retrieve metadata over a secure channel and validate the authenticity
+		    of the metadata.
+		  </t>
+		</section>
     </section>
 
     <section title="IANA Considerations" anchor="IANA">
