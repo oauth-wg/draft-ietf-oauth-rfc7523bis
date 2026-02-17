@@ -122,6 +122,11 @@
 
 	If an endpoint url starts with the same string as the issuer then that endpoint url is considered valid like the issuer identifer URL.
     Simple String Comparison method defined in Section 6.2.1 of RFC 3986 [RFC3986] must be used to compare the issuer identifier URL and endpoint URLs used in audience values.
+
+	Note: Checking the prefix is a check done by the client. More authorziation servers' endpoint URLs are now "trusted" by the client. The authorization server has no
+	means to know whether the client performed this check. Therefore the updates RECOMMEND that the client uses an two element array as the audience value that
+	include the issuer identifier and the endpoint URL to which the assertion is send. The authorization server can then reject assertions if it does not identify with all
+	audience values. Like the client the authorization server MUST use Simple String Comparison defined in Section 6.2.1 of RFC 3986 [RFC3986].
       </t>
       <t>
 	A general description of the updates made is enable the authorization server to determine whether an assertion is intended for themselves.
