@@ -252,27 +252,15 @@
 	      <t>
 			  The client is responsible for ensuring that the audience of the JWT assertion
 			  is appropriate for the authorization server to which it is sent.
-			  If audience value was received out-of-band or if the audience value starts
-			  with the same string as the issuer then it recommended to use that endpoint url
-			  as the audience to which the assertion is sent. The issuer identifier
-			  can be used as an audience value with the risk that this assertion can then
-			  be used at a different endpoint at the same server.
 		  </t>
 	      <t>
-		For client authentication,
-		the <spanx style="verb">aud</spanx> (audience) claim value MUST use
-		the issuer identifier <xref target="RFC8414"/>
-		of the authorization server as its sole value.
-		The authorization server MUST have an issuer identifier
-		to be used with this specification.
-		Unlike the <spanx style="verb">aud</spanx> value specified
-		in <xref target="RFC7523"/>, there MUST be no value other than
-		the issuer identifier of the intended authorization server
-		used as the audience of the JWT;
-		this includes that the token endpoint URL of the authorization server
-		MUST NOT be used as an audience value.
+		For client authentication, it is RECOMMENDED that
+		the <spanx style="verb">aud</spanx> (audience) claim value is a two element array
+		that has the issuer identifier of the authorization server as one array item and
+		the endpoint url to which the assertion is sent as the other array item.
+		The authorization server MUST have an issuer identifier to be used with this specification.
 		The authorization server MUST reject any JWT that does not
-		contain its issuer identifier as its sole audience value.
+		contain its issuer identifier as an audience value.
 	      </t>
 	    </list>
 
