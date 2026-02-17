@@ -417,14 +417,24 @@
 
     <section title="Updates to RFC 9126" anchor="RFC9126Updates">
       <t>
-	This section updates
-	"OAuth 2.0 Pushed Authorization Requests" <xref target="RFC9126"/>
-	to tighten its audience requirements.
+	This section updates a paragraph in Section 2 of <xref target="RFC9126"/> (Pushed Authorization Request Endpoint)
+	"OAuth 2.0 Pushed Authorization Requests" to tighten its audience requirements.
+	The following paragraph is replaced:
+	<list style="empty">
+	  <t>
+	Due to historical reasons, there is potential ambiguity regarding the appropriate audience
+	value to use when employing JWT client assertion-based authentication
+	(defined in Section 2.2 of [RFC7523] with private_key_jwt or client_secret_jwt authentication
+	method names per Section 9 of [OIDC]). To address that ambiguity, the issuer identifier URL
+	of the authorization server according to [RFC8414] SHOULD be used as the value of the audience.
+	In order to facilitate interoperability, the authorization server MUST accept its
+	issuer identifier, token endpoint URL, or pushed authorization request endpoint URL as values
+	that identify it as an intended audience.
+	  </t>
+	</list>
       </t>
       <t>
-	The paragraph describing the audience value
-	in Section 2 of <xref target="RFC9126"/> (Pushed Authorization Request Endpoint)
-	is replaced by:
+	The paragraph is replaced by:
 	<list style="empty">
 	  <t>
 	    This update resolves the potential ambiguity regarding
@@ -436,11 +446,10 @@
 	    <spanx style="verb">client_secret_jwt</spanx> authentication method names
 	    per Section 9 of <xref target="OpenID.Core"/>)
 	    that was described in <xref target="RFC9126"/>.
-	    To address that ambiguity, the issuer identifier URL
-	    of the authorization server according to <xref target="RFC8414"/>
-	    MUST be used as the sole value of the audience.
-            The authorization server MUST reject any such JWT that does not
-            contain its own issuer identifier as the sole audience value.
+		It is RECOMMENDED that the audience is a two element array that contains
+		the issuer identifier and the endpoint URL to which the assertion is send.
+		The authorization server SHOULD reject audience values that it does not identify with.
+		The authorization server SHOULD reject audience values that do not contain the issuer identifier.
 	  </t>
 	  <t>
 	    The introduction of strong typing for JWTs (using explicit <spanx style="verb">typ</spanx>
