@@ -36,7 +36,7 @@
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.32.5
-    wcwidth 0.2.14
+    wcwidth 0.3.0
 -->
 <link href="draft-ietf-oauth-rfc7523bis.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -177,7 +177,7 @@
   font-weight: 400;
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
   font-family: 'Oxygen Mono';
@@ -185,7 +185,8 @@
   font-weight: 400;
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 }
 
 @font-face {
@@ -577,6 +578,7 @@ aside, blockquote {
 }
 blockquote {
   margin: 1em 0;
+  border-left: 2px var(--pilcrow-strong) solid;
 }
 cite {
   display: block;
@@ -647,7 +649,7 @@ a.pilcrow {
   }
 }
 @media not print {
-  :hover > a.pilcrow {
+  :hover > a.pilcrow, a.pilcrow:focus {
     opacity: 1;
   }
   a.pilcrow[href]:hover {
@@ -1055,11 +1057,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">JWT Client Auth Updates</td>
-<td class="right">January 2026</td>
+<td class="right">March 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Jones, et al.</td>
-<td class="center">Expires 16 July 2026</td>
+<td class="center">Expires 3 September 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1075,12 +1077,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc7521" class="eref">7521</a>, <a href="https://www.rfc-editor.org/rfc/rfc7522" class="eref">7522</a>, <a href="https://www.rfc-editor.org/rfc/rfc7523" class="eref">7523</a>, <a href="https://www.rfc-editor.org/rfc/rfc9126" class="eref">9126</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-01-12" class="published">12 January 2026</time>
+<time datetime="2026-03-02" class="published">2 March 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-07-16">16 July 2026</time></dd>
+<dd class="expires"><time datetime="2026-09-03">3 September 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1130,7 +1132,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 16 July 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 3 September 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1356,8 +1358,17 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-3-3.1">
           <p id="section-3-3.1.1">
-     It is RECOMMENDED that SAML Bearer Assertions
-     not be used for client authentication.<a href="#section-3-3.1.1" class="pilcrow">¶</a></p>
+     SAML Bearer Assertions
+     MUST NOT be used for client authentication for any new applications.
+     (The authors are not actually aware of any applications
+     using this feature of <span>[<a href="#RFC7522" class="cite xref">RFC7522</a>]</span>.)
+     Should any applications already be doing this in the manner
+     described in Section 2.2 of <span>[<a href="#RFC7522" class="cite xref">RFC7522</a>]</span>,
+     it is left to the discretion of their implementers and deployers
+     whether to migrate away from this feature and/or
+     potentially tighten the audience values used
+     in a manner parallel to the changes being made to RFC 7523
+     by this specification.<a href="#section-3-3.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="section-3-4">
@@ -1595,8 +1606,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
  "OAuth 2.0 Pushed Authorization Requests" <span>[<a href="#RFC9126" class="cite xref">RFC9126</a>]</span>
  to tighten its audience requirements.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <p id="section-5-2">
- The paragraph describing the audience value
- in Section 2 of <span>[<a href="#RFC9126" class="cite xref">RFC9126</a>]</span> (Pushed Authorization Request Endpoint)
+ The last paragraph in Section 2 of <span>[<a href="#RFC9126" class="cite xref">RFC9126</a>]</span>
+ (Pushed Authorization Request Endpoint),
+ which describes the audience value
  is replaced by:<a href="#section-5-2" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-5-3.1">
@@ -1864,6 +1876,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dd>
 <span class="refAuthor">Cantor, S.</span>, <span class="refAuthor">Kemp, J.</span>, <span class="refAuthor">Philpott, R.</span>, and <span class="refAuthor">E. Maler</span>, <span class="refTitle">"Assertions and Protocols for the OASIS Security Assertion Markup Language (SAML) V2.0"</span>, <span class="seriesInfo">OASIS Standard saml-core-2.0-os</span>, <time datetime="2005-03" class="refDate">March 2005</time>, <span>&lt;<a href="https://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf">https://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="OpenID.Core">[OpenID.Core]</dt>
+        <dd>
+<span class="refAuthor">Sakimura, N.</span>, <span class="refAuthor">Bradley, J.</span>, <span class="refAuthor">Jones, M.B.</span>, <span class="refAuthor">de Medeiros, B.</span>, and <span class="refAuthor">C. Mortimore</span>, <span class="refTitle">"OpenID Connect Core 1.0 incorporating errata set 2"</span>, <time datetime="2023-12-15" class="refDate">15 December 2023</time>, <span>&lt;<a href="https://openid.net/specs/openid-connect-core-1_0.html">https://openid.net/specs/openid-connect-core-1_0.html</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
@@ -1923,13 +1939,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <dd>
 <span class="refAuthor">IANA</span>, <span class="refTitle">"OAuth Parameters"</span>, <span>&lt;<a href="https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml">https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="OpenID.Core">[OpenID.Core]</dt>
-        <dd>
-<span class="refAuthor">Sakimura, N.</span>, <span class="refAuthor">Bradley, J.</span>, <span class="refAuthor">Jones, M.B.</span>, <span class="refAuthor">de Medeiros, B.</span>, and <span class="refAuthor">C. Mortimore</span>, <span class="refTitle">"OpenID Connect Core 1.0 incorporating errata set 2"</span>, <time datetime="2023-12-15" class="refDate">15 December 2023</time>, <span>&lt;<a href="https://openid.net/specs/openid-connect-core-1_0.html">https://openid.net/specs/openid-connect-core-1_0.html</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="OpenID.Federation">[OpenID.Federation]</dt>
         <dd>
-<span class="refAuthor">Hedberg, R.</span>, <span class="refAuthor">Jones, M. B.</span>, <span class="refAuthor">Solberg, A.</span>, <span class="refAuthor">Bradley, J.</span>, <span class="refAuthor">Marco, G. D.</span>, and <span class="refAuthor">V. Dzhuvinov</span>, <span class="refTitle">"OpenID Federation 1.0"</span>, <time datetime="2025-12-04" class="refDate">4 December 2025</time>, <span>&lt;<a href="https://openid.net/specs/openid-federation-1_0.html">https://openid.net/specs/openid-federation-1_0.html</a>&gt;</span>. </dd>
+<span class="refAuthor">Hedberg, R.</span>, <span class="refAuthor">Jones, M. B.</span>, <span class="refAuthor">Solberg, A.</span>, <span class="refAuthor">Bradley, J.</span>, <span class="refAuthor">Marco, G. D.</span>, and <span class="refAuthor">V. Dzhuvinov</span>, <span class="refTitle">"OpenID Federation 1.0"</span>, <time datetime="2026-02-17" class="refDate">17 February 2026</time>, <span>&lt;<a href="https://openid.net/specs/openid-federation-1_0.html">https://openid.net/specs/openid-federation-1_0.html</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="private_key_jwt.Disclosure">[private_key_jwt.Disclosure]</dt>
         <dd>
@@ -1954,108 +1966,116 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="appendix-A-1">
  [[ to be removed by the RFC Editor before publication as an RFC ]]<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <p id="appendix-A-2">
- -05<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+ -06<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-3.1">
           <p id="appendix-A-3.1.1">
-     Applied editorial suggestions by Axel Nennker.<a href="#appendix-A-3.1.1" class="pilcrow">¶</a></p>
+     Applied shepherd review comments by Rifaat Shekh-Yusef.<a href="#appendix-A-3.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="appendix-A-4">
- -04<a href="#appendix-A-4" class="pilcrow">¶</a></p>
+ -05<a href="#appendix-A-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-5.1">
           <p id="appendix-A-5.1.1">
-     Applied editorial suggestions by Jamshid Khosravian.<a href="#appendix-A-5.1.1" class="pilcrow">¶</a></p>
+     Applied editorial suggestions by Axel Nennker.<a href="#appendix-A-5.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="appendix-A-6">
- -03<a href="#appendix-A-6" class="pilcrow">¶</a></p>
+ -04<a href="#appendix-A-6" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-7.1">
           <p id="appendix-A-7.1.1">
-     Update OAuth Token Endpoint Authentication Methods IANA entries with reference to this specification<a href="#appendix-A-7.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-7.2">
-          <p id="appendix-A-7.2.1">
-     Relaxed client requirement to use strong typed JWTs. SHOULD instead of MUST.<a href="#appendix-A-7.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-7.3">
-          <p id="appendix-A-7.3.1">
-     Do not restrict the "aud" claim's type. Allow it to be an array with a single member.<a href="#appendix-A-7.3.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-7.4">
-          <p id="appendix-A-7.4.1">
- Advise the client to ensure that the audience of an assertion authorization grant makes sense with respect to where it’s being sent.<a href="#appendix-A-7.4.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-7.5">
-          <p id="appendix-A-7.5.1">
-     Updates to the abstract and introduction to (hopefully) better reflect the more targeted scope of the work.<a href="#appendix-A-7.5.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-7.6">
-          <p id="appendix-A-7.6.1">
-     Remove JWTs for Client Authentication example replacement (not worth it for including typ in the encoded JWT header).<a href="#appendix-A-7.6.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-7.7">
-          <p id="appendix-A-7.7.1">
-     Add request to update existing OAuth URI registrations to add reference to this specification for the four relevant URNs.<a href="#appendix-A-7.7.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-7.8">
-          <p id="appendix-A-7.8.1">
-     Fixup the new Client Authentication JWT Example.<a href="#appendix-A-7.8.1" class="pilcrow">¶</a></p>
+     Applied editorial suggestions by Jamshid Khosravian.<a href="#appendix-A-7.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="appendix-A-8">
- -02<a href="#appendix-A-8" class="pilcrow">¶</a></p>
+ -03<a href="#appendix-A-8" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-9.1">
           <p id="appendix-A-9.1.1">
-     Added Filip Skokan as an author.<a href="#appendix-A-9.1.1" class="pilcrow">¶</a></p>
+     Update OAuth Token Endpoint Authentication Methods IANA entries with reference to this specification<a href="#appendix-A-9.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-A-9.2">
           <p id="appendix-A-9.2.1">
-     Applied Brian Campbell's suggestions made at IETF 122.  Specifically:<a href="#appendix-A-9.2.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="appendix-A-9.2.2.1">
-              <p id="appendix-A-9.2.2.1.1">
- Focused RFC 7523 updates on JWT client authentication case.<a href="#appendix-A-9.2.2.1.1" class="pilcrow">¶</a></p>
+     Relaxed client requirement to use strong typed JWTs. SHOULD instead of MUST.<a href="#appendix-A-9.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-A-9.2.2.2">
-              <p id="appendix-A-9.2.2.2.1">
+        <li class="normal" id="appendix-A-9.3">
+          <p id="appendix-A-9.3.1">
+     Do not restrict the "aud" claim's type. Allow it to be an array with a single member.<a href="#appendix-A-9.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-9.4">
+          <p id="appendix-A-9.4.1">
+ Advise the client to ensure that the audience of an assertion authorization grant makes sense with respect to where it’s being sent.<a href="#appendix-A-9.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-9.5">
+          <p id="appendix-A-9.5.1">
+     Updates to the abstract and introduction to (hopefully) better reflect the more targeted scope of the work.<a href="#appendix-A-9.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-9.6">
+          <p id="appendix-A-9.6.1">
+     Remove JWTs for Client Authentication example replacement (not worth it for including typ in the encoded JWT header).<a href="#appendix-A-9.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-9.7">
+          <p id="appendix-A-9.7.1">
+     Add request to update existing OAuth URI registrations to add reference to this specification for the four relevant URNs.<a href="#appendix-A-9.7.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-9.8">
+          <p id="appendix-A-9.8.1">
+     Fixup the new Client Authentication JWT Example.<a href="#appendix-A-9.8.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-A-10">
+ -02<a href="#appendix-A-10" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-11.1">
+          <p id="appendix-A-11.1.1">
+     Added Filip Skokan as an author.<a href="#appendix-A-11.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-11.2">
+          <p id="appendix-A-11.2.1">
+     Applied Brian Campbell's suggestions made at IETF 122.  Specifically:<a href="#appendix-A-11.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-11.2.2.1">
+              <p id="appendix-A-11.2.2.1.1">
+ Focused RFC 7523 updates on JWT client authentication case.<a href="#appendix-A-11.2.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-A-11.2.2.2">
+              <p id="appendix-A-11.2.2.2.1">
  Described client responsibilities for the audience value
  of authorization grants.
  No longer mandate that the audience for authorization grants
- be the issuer identifier, so as to make a minimum of breaking changes.<a href="#appendix-A-9.2.2.2.1" class="pilcrow">¶</a></p>
+ be the issuer identifier, so as to make a minimum of breaking changes.<a href="#appendix-A-11.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-A-9.2.2.3">
-              <p id="appendix-A-9.2.2.3.1">
- Deprecated the use of SAML assertions for client authentication.<a href="#appendix-A-9.2.2.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-A-11.2.2.3">
+              <p id="appendix-A-11.2.2.3.1">
+ Deprecated the use of SAML assertions for client authentication.<a href="#appendix-A-11.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
       </ul>
-<p id="appendix-A-10">
- -01<a href="#appendix-A-10" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="appendix-A-11.1">
-          <p id="appendix-A-11.1.1">
-     Reworked to make updates to RFC 7523, rather than replacing it.<a href="#appendix-A-11.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-11.2">
-          <p id="appendix-A-11.2.1">
-     Removed updates to RFC 9101.<a href="#appendix-A-11.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-11.3">
-          <p id="appendix-A-11.3.1">
-     Added reference to the University of Stuttgart paper <span>[<a href="#Audience.Injection" class="cite xref">Audience.Injection</a>]</span>.<a href="#appendix-A-11.3.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
 <p id="appendix-A-12">
- -00<a href="#appendix-A-12" class="pilcrow">¶</a></p>
+ -01<a href="#appendix-A-12" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-13.1">
           <p id="appendix-A-13.1.1">
-     Initial working group draft, replacing draft-jones-oauth-rfc7523bis-00.<a href="#appendix-A-13.1.1" class="pilcrow">¶</a></p>
+     Reworked to make updates to RFC 7523, rather than replacing it.<a href="#appendix-A-13.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-13.2">
+          <p id="appendix-A-13.2.1">
+     Removed updates to RFC 9101.<a href="#appendix-A-13.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-13.3">
+          <p id="appendix-A-13.3.1">
+     Added reference to the University of Stuttgart paper <span>[<a href="#Audience.Injection" class="cite xref">Audience.Injection</a>]</span>.<a href="#appendix-A-13.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-A-14">
+ -00<a href="#appendix-A-14" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-15.1">
+          <p id="appendix-A-15.1.1">
+     Initial working group draft, replacing draft-jones-oauth-rfc7523bis-00.<a href="#appendix-A-15.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
@@ -2081,6 +2101,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
  Aaron Parecki,
  Dean H. Saxe,
  Arndt Schwenkschuster,
+ Rifaat Shekh-Yusef,
  and
  Tim Würtele.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 </section>

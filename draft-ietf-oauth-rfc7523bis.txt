@@ -6,11 +6,11 @@ OAuth Working Group                                           M.B. Jones
 Internet-Draft                                    Self-Issued Consulting
 Updates: 7521, 7522, 7523, 9126 (if approved)                B. Campbell
 Intended status: Standards Track                           Ping Identity
-Expires: 16 July 2026                                       C. Mortimore
+Expires: 3 September 2026                                   C. Mortimore
                                                                   Disney
                                                                F. Skokan
                                                                     Okta
-                                                         12 January 2026
+                                                            2 March 2026
 
 
   Updates to OAuth 2.0 JSON Web Token (JWT) Client Authentication and
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 July 2026.
+   This Internet-Draft will expire on 3 September 2026.
 
 Copyright Notice
 
@@ -163,8 +163,15 @@ Table of Contents
    The text and example in Section 2.2 of [RFC7522] (Using SAML
    Assertions for Client Authentication) is replaced by:
 
-      It is RECOMMENDED that SAML Bearer Assertions not be used for
-      client authentication.
+      SAML Bearer Assertions MUST NOT be used for client authentication
+      for any new applications.  (The authors are not actually aware of
+      any applications using this feature of [RFC7522].)  Should any
+      applications already be doing this in the manner described in
+      Section 2.2 of [RFC7522], it is left to the discretion of their
+      implementers and deployers whether to migrate away from this
+      feature and/or potentially tighten the audience values used in a
+      manner parallel to the changes being made to RFC 7523 by this
+      specification.
 
    The description of the Audience element in Item 2 of Section 3 of
    [RFC7522] (Assertion Format and Processing Requirements) is replaced
@@ -334,8 +341,8 @@ Table of Contents
    This section updates "OAuth 2.0 Pushed Authorization Requests"
    [RFC9126] to tighten its audience requirements.
 
-   The paragraph describing the audience value in Section 2 of [RFC9126]
-   (Pushed Authorization Request Endpoint) is replaced by:
+   The last paragraph in Section 2 of [RFC9126] (Pushed Authorization
+   Request Endpoint), which describes the audience value is replaced by:
 
       This update resolves the potential ambiguity regarding the
       appropriate audience value to use when employing JWT client
@@ -464,6 +471,12 @@ Table of Contents
               2.0-os, March 2005, <https://docs.oasis-
               open.org/security/saml/v2.0/saml-core-2.0-os.pdf>.
 
+   [OpenID.Core]
+              Sakimura, N., Bradley, J., Jones, M.B., de Medeiros, B.,
+              and C. Mortimore, "OpenID Connect Core 1.0 incorporating
+              errata set 2", 15 December 2023,
+              <https://openid.net/specs/openid-connect-core-1_0.html>.
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -531,16 +544,10 @@ Table of Contents
               <https://www.iana.org/assignments/oauth-parameters/oauth-
               parameters.xhtml>.
 
-   [OpenID.Core]
-              Sakimura, N., Bradley, J., Jones, M.B., de Medeiros, B.,
-              and C. Mortimore, "OpenID Connect Core 1.0 incorporating
-              errata set 2", 15 December 2023,
-              <https://openid.net/specs/openid-connect-core-1_0.html>.
-
    [OpenID.Federation]
               Hedberg, R., Jones, M. B., Solberg, A., Bradley, J.,
-              Marco, G. D., and V. Dzhuvinov, "OpenID Federation 1.0", 4
-              December 2025,
+              Marco, G. D., and V. Dzhuvinov, "OpenID Federation 1.0",
+              17 February 2026,
               <https://openid.net/specs/openid-federation-1_0.html>.
 
    [private_key_jwt.Disclosure]
@@ -563,6 +570,10 @@ Table of Contents
 Appendix A.  Document History
 
    [[ to be removed by the RFC Editor before publication as an RFC ]]
+
+   -06
+
+   *  Applied shepherd review comments by Rifaat Shekh-Yusef.
 
    -05
 
@@ -635,7 +646,7 @@ Acknowledgements
    people to this specification: Brock Allen, John Bradley, Ralph Bragg,
    Joseph Heenan, Pedram Hosseyni, Pieter Kasselman, Jamshid Khosravian,
    Ralf Küsters, Martin Lindström, Axel Nennker, Aaron Parecki, Dean H.
-   Saxe, Arndt Schwenkschuster, and Tim Würtele.
+   Saxe, Arndt Schwenkschuster, Rifaat Shekh-Yusef, and Tim Würtele.
 
 Authors' Addresses
 
