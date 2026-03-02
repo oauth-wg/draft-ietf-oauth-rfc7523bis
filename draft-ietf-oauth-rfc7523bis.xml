@@ -287,7 +287,10 @@
 	    strong typing alone does not prevent the attacks described in <xref
 	      target="private_key_jwt.Disclosure" /> and <xref target="Audience.Injection" />, the
 	    use of explicit typing is RECOMMENDED for clients, enabling them to signal their intention of sending
-	    a JWT conforming to the requirements herein. This approach balances security signaling with practical
+	    a JWT conforming to the requirements herein. However, it is NOT RECOMMENDED for servers to reject JWTs
+	    that do not have explicit types, as doing so would cause interoperability issues with clients that
+	    already conform to the tightened audience requirements but have not yet adopted explicit typing.
+	    This approach balances security signaling with practical
 	    deployment considerations, avoiding disruption to client deployments that already
 	    conform to the tightened audience requirements but have not yet adopted explicit typing.
 	  </t>
@@ -445,6 +448,12 @@
             contain its own issuer identifier as the sole audience value.
 	  </t>
 	  <t>
+	    Client authentication JWTs SHOULD be explicitly typed by using the
+	    <spanx style="verb">typ</spanx> header parameter value
+	    <spanx style="verb">client-authentication+jwt</spanx>
+	    or another more specific explicit type value defined by a specification profiling this specification.
+	  </t>
+	  <t>
 	    The introduction of strong typing for JWTs (using explicit <spanx style="verb">typ</spanx>
 	    values) serves as a signal to distinguish between tokens produced in accordance with
 	    specifications published prior to these updates and those incorporating them. However,
@@ -452,15 +461,12 @@
 	    strong typing alone does not prevent the attacks described in <xref
 	      target="private_key_jwt.Disclosure" /> and <xref target="Audience.Injection" />, the
 	    use of explicit typing is RECOMMENDED for clients, enabling them to signal their intention of sending
-	    a JWT conforming to the requirements herein. This approach balances security signaling with practical
+	    a JWT conforming to the requirements herein. However, it is NOT RECOMMENDED for servers to reject JWTs
+	    that do not have explicit types, as doing so would cause interoperability issues with clients that
+	    already conform to the tightened audience requirements but have not yet adopted explicit typing.
+	    This approach balances security signaling with practical
 	    deployment considerations, avoiding disruption to client deployments that already
 	    conform to the tightened audience requirements but have not yet adopted explicit typing.
-	  </t>
-	  <t>
-	    Client authentication JWTs SHOULD be explicitly typed by using the
-	    <spanx style="verb">typ</spanx> header parameter value
-	    <spanx style="verb">client-authentication+jwt</spanx>
-	    or another more specific explicit type value defined by a specification profiling this specification.
 	  </t>
 	</list>
       </t>
