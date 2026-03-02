@@ -1471,7 +1471,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
      the primary security protection comes from the tightened audience requirements. Since
      strong typing alone does not prevent the attacks described in <span>[<a href="#private_key_jwt.Disclosure" class="cite xref">private_key_jwt.Disclosure</a>]</span> and <span>[<a href="#Audience.Injection" class="cite xref">Audience.Injection</a>]</span>, the
      use of explicit typing is RECOMMENDED for clients, enabling them to signal their intention of sending
-     a JWT conforming to the requirements herein. This approach balances security signaling with practical
+     a JWT conforming to the requirements herein. However, it is NOT RECOMMENDED for servers to reject JWTs
+     that do not have explicit types, as doing so would cause interoperability issues with clients that
+     already conform to the tightened audience requirements but have not yet adopted explicit typing.
+     This approach balances security signaling with practical
      deployment considerations, avoiding disruption to client deployments that already
      conform to the tightened audience requirements but have not yet adopted explicit typing.<a href="#section-4-5.2.1" class="pilcrow">¶</a></p>
 </li>
@@ -1630,22 +1633,25 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
         <li class="normal ulEmpty" id="section-5-3.2">
           <p id="section-5-3.2.1">
+     Client authentication JWTs SHOULD be explicitly typed by using the
+     <code>typ</code> header parameter value
+     <code>client-authentication+jwt</code>
+     or another more specific explicit type value defined by a specification profiling this specification.<a href="#section-5-3.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal ulEmpty" id="section-5-3.3">
+          <p id="section-5-3.3.1">
      The introduction of strong typing for JWTs (using explicit <code>typ</code>
      values) serves as a signal to distinguish between tokens produced in accordance with
      specifications published prior to these updates and those incorporating them. However,
      the primary security protection comes from the tightened audience requirements. Since
      strong typing alone does not prevent the attacks described in <span>[<a href="#private_key_jwt.Disclosure" class="cite xref">private_key_jwt.Disclosure</a>]</span> and <span>[<a href="#Audience.Injection" class="cite xref">Audience.Injection</a>]</span>, the
      use of explicit typing is RECOMMENDED for clients, enabling them to signal their intention of sending
-     a JWT conforming to the requirements herein. This approach balances security signaling with practical
+     a JWT conforming to the requirements herein. However, it is NOT RECOMMENDED for servers to reject JWTs
+     that do not have explicit types, as doing so would cause interoperability issues with clients that
+     already conform to the tightened audience requirements but have not yet adopted explicit typing.
+     This approach balances security signaling with practical
      deployment considerations, avoiding disruption to client deployments that already
-     conform to the tightened audience requirements but have not yet adopted explicit typing.<a href="#section-5-3.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal ulEmpty" id="section-5-3.3">
-          <p id="section-5-3.3.1">
-     Client authentication JWTs SHOULD be explicitly typed by using the
-     <code>typ</code> header parameter value
-     <code>client-authentication+jwt</code>
-     or another more specific explicit type value defined by a specification profiling this specification.<a href="#section-5-3.3.1" class="pilcrow">¶</a></p>
+     conform to the tightened audience requirements but have not yet adopted explicit typing.<a href="#section-5-3.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
