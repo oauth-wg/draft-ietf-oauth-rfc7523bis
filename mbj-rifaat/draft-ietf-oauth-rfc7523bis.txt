@@ -163,15 +163,15 @@ Table of Contents
    The text and example in Section 2.2 of [RFC7522] (Using SAML
    Assertions for Client Authentication) is replaced by:
 
-      It is RECOMMENDED that SAML Bearer Assertions not be used for
-      client authentication for any new applications.  (The authors are
-      not actually aware of any applications using this feature of
-      [RFC7522].)  Should any applications already be doing this in the
-      manner described in Section 2.2 of [RFC7522], it is left to the
-      discretion of their implementers and deployers whether to migrate
-      away from this feature and/or potentially tighten the audience
-      values used in a manner parallel to the changes being made to RFC
-      7523 by this specification.
+      SAML Bearer Assertions MUST NOT be used for client authentication
+      for any new applications.  (The authors are not actually aware of
+      any applications using this feature of [RFC7522].)  Should any
+      applications already be doing this in the manner described in
+      Section 2.2 of [RFC7522], it is left to the discretion of their
+      implementers and deployers whether to migrate away from this
+      feature and/or potentially tighten the audience values used in a
+      manner parallel to the changes being made to RFC 7523 by this
+      specification.
 
    The description of the Audience element in Item 2 of Section 3 of
    [RFC7522] (Assertion Format and Processing Requirements) is replaced
