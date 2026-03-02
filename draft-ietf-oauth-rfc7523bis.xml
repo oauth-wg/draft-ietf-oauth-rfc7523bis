@@ -49,7 +49,7 @@
       </address>
     </author>
 
-    <date day="12" month="January" year="2026" />
+    <date day="2" month="March" year="2026" />
 
     <area>Security</area>
     <workgroup>OAuth Working Group</workgroup>
@@ -178,8 +178,17 @@
 	is replaced by:
 	<list style="empty">
 	  <t>
-	    It is RECOMMENDED that SAML Bearer Assertions
-	    not be used for client authentication.
+	    SAML Bearer Assertions
+	    MUST NOT be used for client authentication for any new applications.
+	    (The authors are not actually aware of any applications
+	    using this feature of <xref target="RFC7522"/>.)
+	    Should any applications already be doing this in the manner
+	    described in Section 2.2 of <xref target="RFC7522"/>,
+	    it is left to the discretion of their implementers and deployers
+	    whether to migrate away from this feature and/or
+	    potentially tighten the audience values used
+	    in a manner parallel to the changes being made to RFC 7523
+	    by this specification.
 	  </t>
 	</list>
       </t>
@@ -414,8 +423,9 @@
 	to tighten its audience requirements.
       </t>
       <t>
-	The paragraph describing the audience value
-	in Section 2 of <xref target="RFC9126"/> (Pushed Authorization Request Endpoint)
+	The last paragraph in Section 2 of <xref target="RFC9126"/>
+	(Pushed Authorization Request Endpoint),
+	which describes the audience value
 	is replaced by:
 	<list style="empty">
 	  <t>
@@ -672,6 +682,34 @@
 	<seriesInfo name="OASIS Standard" value="saml-core-2.0-os"/>
       </reference>
 
+      <reference anchor="OpenID.Core" target="https://openid.net/specs/openid-connect-core-1_0.html">
+	<front>
+	  <title>OpenID Connect Core 1.0 incorporating errata set 2</title>
+
+	  <author fullname="Nat Sakimura" initials="N." surname="Sakimura">
+	    <organization abbrev="NAT.Consulting (was at NRI)">NAT.Consulting</organization>
+	  </author>
+
+	  <author fullname="John Bradley" initials="J." surname="Bradley">
+	    <organization abbrev="Yubico (was at Ping Identity)">Yubico</organization>
+	  </author>
+
+	  <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
+	    <organization abbrev="Self-Issued Consulting (was at Microsoft)">Self-Issued Consulting</organization>
+	  </author>
+
+	  <author fullname="Breno de Medeiros" initials="B." surname="de Medeiros">
+	    <organization abbrev="Google">Google</organization>
+	  </author>
+
+	  <author fullname="Chuck Mortimore" initials="C." surname="Mortimore">
+	    <organization abbrev="Disney (was at Salesforce)">Disney</organization>
+	  </author>
+
+	  <date day="15" month="December" year="2023"/>
+	</front>
+      </reference>
+
     </references>
 
     <references title="Informative References">
@@ -709,34 +747,6 @@
 	</front>
       </reference>
 
-      <reference anchor="OpenID.Core" target="https://openid.net/specs/openid-connect-core-1_0.html">
-	<front>
-	  <title>OpenID Connect Core 1.0 incorporating errata set 2</title>
-
-	  <author fullname="Nat Sakimura" initials="N." surname="Sakimura">
-	    <organization abbrev="NAT.Consulting (was at NRI)">NAT.Consulting</organization>
-	  </author>
-
-	  <author fullname="John Bradley" initials="J." surname="Bradley">
-	    <organization abbrev="Yubico (was at Ping Identity)">Yubico</organization>
-	  </author>
-
-	  <author fullname="Michael B. Jones" initials="M.B." surname="Jones">
-	    <organization abbrev="Self-Issued Consulting (was at Microsoft)">Self-Issued Consulting</organization>
-	  </author>
-
-	  <author fullname="Breno de Medeiros" initials="B." surname="de Medeiros">
-	    <organization abbrev="Google">Google</organization>
-	  </author>
-
-	  <author fullname="Chuck Mortimore" initials="C." surname="Mortimore">
-	    <organization abbrev="Disney (was at Salesforce)">Disney</organization>
-	  </author>
-
-	  <date day="15" month="December" year="2023"/>
-	</front>
-      </reference>
-
       <reference anchor="OpenID.Federation" target="https://openid.net/specs/openid-federation-1_0.html">
 	<front>
 	  <title>OpenID Federation 1.0</title>
@@ -758,7 +768,7 @@
 	  <author fullname="Vladimir Dzhuvinov">
 	    <organization>Connect2id</organization>
 	  </author>
-	  <date day="4" month="December" year="2025"/>
+	  <date day="17" month="February" year="2026"/>
 	</front>
       </reference>
 
@@ -787,6 +797,15 @@
     <section title="Document History" anchor="History">
       <t>
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
+      </t>
+
+      <t>
+	-06
+	<list style="symbols">
+	  <t>
+	    Applied shepherd review comments by Rifaat Shekh-Yusef.
+	  </t>
+	</list>
       </t>
 
       <t>
@@ -904,6 +923,7 @@
 	Aaron Parecki,
 	Dean H. Saxe,
 	Arndt Schwenkschuster,
+	Rifaat Shekh-Yusef,
 	and
 	Tim Würtele.
       </t>
