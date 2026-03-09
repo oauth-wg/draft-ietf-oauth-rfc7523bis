@@ -62,7 +62,7 @@
 
     <abstract>
       <t>
-	This specification updates the requirements for audience values
+	This document updates RFC7521, RFC7522, RFC7523 and RFC9126 with respect to the treatment of audience values
 	in OAuth 2.0 Client Assertion Authentication and Assertion-based Authorization Grants
 	to address a security vulnerability identified in the previous
 	requirements for those audience values in multiple OAuth 2.0 specifications.
@@ -804,6 +804,17 @@
       <t>
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
       </t>
+    <t>
+        -07
+        <list style="symbols">
+            <t>
+                Address comments from AD review by Deb Cooley:
+                <list style="symbols">
+                    <t>RFCs to be updated are now in the Abstract (per idnits's nits)</t>
+                </list>
+            </t>
+        </list>
+    </t>
 
       <t>
 	-06
