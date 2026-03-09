@@ -805,15 +805,15 @@
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
       </t>
     <t>
-        -07
+     -07
+     <list style="symbols">
+      <t>
+       Address comments from AD review by Deb Cooley:
         <list style="symbols">
-            <t>
-                Address comments from AD review by Deb Cooley:
-                <list style="symbols">
-                    <t>RFCs to be updated are now in the Abstract (per idnits's nits)</t>
-                </list>
-            </t>
+         <t>RFCs to be updated are now in the Abstract (per idnits's nits)</t>
         </list>
+       </t>
+     </list>
     </t>
 
       <t>
