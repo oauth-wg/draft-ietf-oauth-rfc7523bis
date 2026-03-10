@@ -124,7 +124,7 @@
 	  The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 	  "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
 	  "OPTIONAL" in this document are to be interpreted as described in
-	  BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/> when, and
+	  BCP 14 <xref target="BCP14"/> <xref target="RFC2119"/> <xref target="RFC8174"/> when, and
 	  only when, they appear in all capitals, as shown here.
 	</t>
       </section>
@@ -644,16 +644,16 @@
 
     <references title="Normative References">
 
-      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.3986.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6749.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7521.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7522.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7523.xml"/>
-      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8414.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8725.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9126.xml"/>
+
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml9/reference.BCP.14.xml"/>
 
       <!-- Reference from https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7519.xml with change to anchor="JWT" -->
 
@@ -811,6 +811,7 @@
        Address comments from AD review by Deb Cooley:
         <list style="symbols">
          <t>RFCs to be updated are now in the Abstract (per idnits's nits)</t>
+         <t>Add (hopefully) real/full BCP 14 reference</t>
         </list>
        </t>
      </list>
