@@ -6,11 +6,11 @@ OAuth Working Group                                           M.B. Jones
 Internet-Draft                                    Self-Issued Consulting
 Updates: 7521, 7522, 7523, 9126 (if approved)                B. Campbell
 Intended status: Standards Track                           Ping Identity
-Expires: 3 September 2026                                   C. Mortimore
+Expires: 27 September 2026                                  C. Mortimore
                                                                   Disney
                                                                F. Skokan
                                                                     Okta
-                                                            2 March 2026
+                                                           26 March 2026
 
 
   Updates to OAuth 2.0 JSON Web Token (JWT) Client Authentication and
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 September 2026.
+   This Internet-Draft will expire on 27 September 2026.
 
 Copyright Notice
 
@@ -581,15 +581,15 @@ Appendix A.  Document History
 
    *  Address comments from AD review by Deb Cooley:
 
-      -  RFCs to be updated are now in the Abstract (per idnits's nits)
+      -  RFCs to be updated are now in the Abstract (per idnits's nits).
 
-      -  Improved clarity of the audience description in Section 1
+      -  Improved clarity of the audience description in Section 1.
 
-      -  Removed parenthetical in Section 3 about SAML client
-         authentication usage
+      -  Removed parenthetical remark in Section 3 about SAML client
+         authentication usage.
 
       -  Changed IANA media type registration contact to the OAuth
-         Working Group
+         Working Group.
 
    -06
 
