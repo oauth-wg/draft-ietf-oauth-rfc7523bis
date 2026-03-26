@@ -49,7 +49,7 @@
       </address>
     </author>
 
-    <date day="2" month="March" year="2026" />
+    <date day="26" month="March" year="2026" />
 
     <area>Security</area>
     <workgroup>OAuth Working Group</workgroup>
@@ -807,10 +807,10 @@
       <t>
        Address comments from AD review by Deb Cooley:
         <list style="symbols">
-         <t>RFCs to be updated are now in the Abstract (per idnits's nits)</t>
-         <t>Improved clarity of the audience description in Section 1</t>
-         <t>Removed parenthetical in Section 3 about SAML client authentication usage</t>
-         <t>Changed IANA media type registration contact to the OAuth Working Group</t>
+         <t>RFCs to be updated are now in the Abstract (per idnits's nits).</t>
+         <t>Improved clarity of the audience description in Section 1.</t>
+         <t>Removed parenthetical remark in Section 3 about SAML client authentication usage.</t>
+         <t>Changed IANA media type registration contact to the OAuth Working Group.</t>
         </list>
        </t>
      </list>
