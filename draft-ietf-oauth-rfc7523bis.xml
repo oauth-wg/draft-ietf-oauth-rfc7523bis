@@ -75,8 +75,7 @@
       <t>
 	Multiple OAuth 2.0 specifications use tokens (also known as "assertions")
 	that are sent to authorization servers.
-	These tokens contain an audience value or values intended to
-	identify the recipients that the token is intended for.
+	These tokens contain audience value(s) that identify the intended recipient(s).
 	When the token is a JSON Web Token (JWT) <xref target="JWT"/>,
 	the audience value(s) are contained in the
 	<spanx style="verb">aud</spanx> (audience) claim.
@@ -124,7 +123,7 @@
 	  The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 	  "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
 	  "OPTIONAL" in this document are to be interpreted as described in
-	  BCP 14 <xref target="BCP14"/> <xref target="RFC2119"/> <xref target="RFC8174"/> when, and
+	  BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/> when, and
 	  only when, they appear in all capitals, as shown here.
 	</t>
       </section>
@@ -180,8 +179,6 @@
 	  <t>
 	    SAML Bearer Assertions
 	    MUST NOT be used for client authentication for any new applications.
-	    (The authors are not actually aware of any applications
-	    using this feature of <xref target="RFC7522"/>.)
 	    Should any applications already be doing this in the manner
 	    described in Section 2.2 of <xref target="RFC7522"/>,
 	    it is left to the discretion of their implementers and deployers
@@ -555,7 +552,7 @@
               <t>
                 Person &amp; email address to contact for further information:
                 <vspace/>
-                Michael B. Jones, michael_b_jones@hotmail.com
+                IETF OAuth Working Group &lt;oauth@ietf.org&gt;
               </t>
               <t>
                 Intended usage: COMMON
@@ -644,16 +641,16 @@
 
     <references title="Normative References">
 
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.3986.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6749.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7521.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7522.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7523.xml"/>
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8414.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8725.xml"/>
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9126.xml"/>
-
-      <xi:include href="https://bib.ietf.org/public/rfc/bibxml9/reference.BCP.14.xml"/>
 
       <!-- Reference from https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7519.xml with change to anchor="JWT" -->
 
@@ -811,7 +808,9 @@
        Address comments from AD review by Deb Cooley:
         <list style="symbols">
          <t>RFCs to be updated are now in the Abstract (per idnits's nits)</t>
-         <t>Add (hopefully) real/full BCP 14 reference</t>
+         <t>Improved clarity of the audience description in Section 1</t>
+         <t>Removed parenthetical in Section 3 about SAML client authentication usage</t>
+         <t>Changed IANA media type registration contact to the OAuth Working Group</t>
         </list>
        </t>
      </list>
