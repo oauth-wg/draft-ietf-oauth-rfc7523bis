@@ -348,7 +348,7 @@
 	</t>
 	<t>
 	  The example shows a JWT issued and signed by the OAuth client identified as
-	  <spanx style='verb'>https://client.example/</spanx>.
+	  <spanx style='verb'>https://client.example</spanx>.
 	  The intended audience of the JWT is
 	  <spanx style="verb">https://authz.example.net</spanx>,
 	  which is the authorization server's issuer identifier.
@@ -363,8 +363,8 @@
 	  <artwork><![CDATA[
   {
     "aud": "https://authz.example.net",
-    "iss": "https://client.example/",
-    "sub": "https://client.example/",
+    "iss": "https://client.example",
+    "sub": "https://client.example",
     "iat": 1752702206,
     "exp": 1752705806
   }
@@ -405,10 +405,10 @@
   client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
     client-assertion-type%3Ajwt-bearer&
   client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0IiwiYWx
-    nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.eyJhdWQiOiAiaHR0cHM6Ly9hdXRoei5leGFt
-    cGxlLm5ldCIsImlzcyI6ICJodHRwczovL2NsaWVudC5leGFtcGxlLyIsInN1YiI6IC
-    JodHRwczovL2NsaWVudC5leGFtcGxlLyIsImlhdCI6IDE3NTI3MDIyMDYsImV4cCI6
-    IDE3NTI3MDU4MDZ9.6KrSQUxdl9ehs[...omitted for brevity...]bwc0ZOJw
+    nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.eyJhdWQiOiJodHRwczovL2F1dGh6LmV4YW1w
+    bGUubmV0IiwiaXNzIjoiaHR0cHM6Ly9jbGllbnQuZXhhbXBsZSIsInN1YiI6Imh0dH
+    BzOi8vY2xpZW50LmV4YW1wbGUiLCJpYXQiOjE3NTI3MDIyMDYsImV4cCI6MTc1Mjcw
+    NTgwNn0.6KrSQUxdl9ehs[...omitted for brevity...]bwc0ZOJw
 ]]></artwork>
 	</figure>
 
@@ -802,6 +802,14 @@
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
       </t>
     <t>
+     -08
+        <list style="symbols">
+            <t>
+                Addressed ARTART review comments.
+            </t>
+        </list>
+    </t>
+    <t>
      -07
      <list style="symbols">
       <t>
@@ -930,6 +938,7 @@
 	Brock Allen,
 	John Bradley,
 	Ralph Bragg,
+	Jim Fenton,
 	Joseph Heenan,
 	Pedram Hosseyni,
 	Pieter Kasselman,
