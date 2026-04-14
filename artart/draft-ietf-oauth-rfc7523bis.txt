@@ -211,11 +211,10 @@ Table of Contents
       b.  For client authentication, the aud (audience) claim value MUST
           use the issuer identifier [RFC8414] of the authorization
           server as its sole value.  The authorization server MUST have
-          an issuer identifier to be used with this specification.
-          Unlike the aud value specified in [RFC7523], there MUST be no
-          value other than the issuer identifier of the intended
-          authorization server used as the audience of the JWT; this
-          includes that the token endpoint URL of the authorization
+          an issuer identifier to be used with this specification.  The
+          aud claim value MUST indicate only the issuer identifier of
+          the intended authorization server as the audience of the JWT;
+          this includes that the token endpoint URL of the authorization
           server MUST NOT be used as an audience value.  The
           authorization server MUST reject any JWT that does not contain
           its issuer identifier as its sole audience value.

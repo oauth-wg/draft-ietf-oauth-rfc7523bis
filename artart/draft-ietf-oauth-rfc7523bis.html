@@ -1431,10 +1431,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
  of the authorization server as its sole value.
  The authorization server MUST have an issuer identifier
  to be used with this specification.
- Unlike the <code>aud</code> value specified
- in <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span>, there MUST be no value other than
+ The <code>aud</code> claim value MUST indicate only
  the issuer identifier of the intended authorization server
- used as the audience of the JWT;
+ as the audience of the JWT;
  this includes that the token endpoint URL of the authorization server
  MUST NOT be used as an audience value.
  The authorization server MUST reject any JWT that does not
