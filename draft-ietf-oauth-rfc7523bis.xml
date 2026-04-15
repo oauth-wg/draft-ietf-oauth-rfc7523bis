@@ -428,15 +428,14 @@
 	is replaced by:
 	<list style="empty">
 	  <t>
-	    This update resolves the potential ambiguity regarding
+	    Due to historical reasons, there is potential ambiguity regarding
 	    the appropriate audience value to use when employing
 	    JWT client assertion-based authentication
 	    (as defined in Section 2.2 of <xref target="RFC7523"/>
 	    and as updated by <xref target="RFC7523Updates"/> with the
 	    <spanx style="verb">private_key_jwt</spanx> or
 	    <spanx style="verb">client_secret_jwt</spanx> authentication method names
-	    per Section 9 of <xref target="OpenID.Core"/>)
-	    that was described in <xref target="RFC9126"/>.
+	    per Section 9 of <xref target="OpenID.Core"/>).
 	    To address that ambiguity, the issuer identifier URL
 	    of the authorization server according to <xref target="RFC8414"/>
 	    MUST be used as the sole value of the audience.
