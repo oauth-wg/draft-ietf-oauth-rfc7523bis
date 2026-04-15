@@ -395,7 +395,8 @@ Table of Contents
    specification.  Deployments upgrading to this specification should
    consider this asymmetry when planning rollouts or migrations, as it
    may be necessary to ensure that clients are updated before, or in
-   coordination with, receivers that enforce the updated behavior.
+   coordination with, authorization servers that enforce the updated
+   behavior.
 
 7.  Security Considerations
 
