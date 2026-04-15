@@ -345,17 +345,16 @@ Table of Contents
    The last paragraph in Section 2 of [RFC9126] (Pushed Authorization
    Request Endpoint), which describes the audience value is replaced by:
 
-      This update resolves the potential ambiguity regarding the
-      appropriate audience value to use when employing JWT client
+      Due to historical reasons, there is potential ambiguity regarding
+      the appropriate audience value to use when employing JWT client
       assertion-based authentication (as defined in Section 2.2 of
       [RFC7523] and as updated by Section 4 with the private_key_jwt or
       client_secret_jwt authentication method names per Section 9 of
-      [OpenID.Core]) that was described in [RFC9126].  To address that
-      ambiguity, the issuer identifier URL of the authorization server
-      according to [RFC8414] MUST be used as the sole value of the
-      audience.  The authorization server MUST reject any such JWT that
-      does not contain its own issuer identifier as the sole audience
-      value.
+      [OpenID.Core]).  To address that ambiguity, the issuer identifier
+      URL of the authorization server according to [RFC8414] MUST be
+      used as the sole value of the audience.  The authorization server
+      MUST reject any such JWT that does not contain its own issuer
+      identifier as the sole audience value.
 
       Client authentication JWTs SHOULD be explicitly typed by using the
       typ header parameter value client-authentication+jwt or another
