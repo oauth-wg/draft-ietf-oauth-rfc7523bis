@@ -471,11 +471,17 @@
 
     <section title="Operational Considerations">
       <t>
-        Changes in this specification affect interoperability between senders and receivers that implement different versions. In particular, the resulting compatibility is not entirely symmetric.
+        Changes in this specification affect interoperability between senders and receivers that implement
+        different versions. In particular, the resulting compatibility is not entirely symmetric.
 
-        A client implementing this specification will interoperate with both authorization servers conforming to the updates herein as well as authorization servers implementing earlier versions. However, some senders implementing earlier versions may not interoperate with receivers that strictly enforce the updated requirements in this specification.
+        A client implementing this specification will interoperate with both authorization servers conforming
+        to the updates herein as well as authorization servers implementing earlier versions.
+        However, some senders implementing earlier versions may not interoperate with receivers that
+        strictly enforce the updated requirements in this specification.
 
-        Deployments upgrading to this specification should consider this asymmetry when planning rollouts or migrations, as it may be necessary to ensure that clients are updated before, or in coordination with, authorization servers that enforce the updated behavior.
+        Deployments upgrading to this specification should consider this asymmetry when planning rollouts
+        or migrations, as it may be necessary to ensure that clients are updated before, or in coordination
+        with, authorization servers that enforce the updated behavior.
       </t>
     </section>
 
