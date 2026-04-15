@@ -469,6 +469,16 @@
       </t>
     </section>
 
+    <section title="Operational Considerations">
+      <t>
+        Changes in this specification affect interoperability between senders and receivers that implement different versions. In particular, the resulting compatibility is not entirely symmetric.
+
+        A client implementing this specification will interoperate with both authorization servers conforming to the updates herein as well as authorization servers implementing earlier versions. However, some senders implementing earlier versions may not interoperate with receivers that strictly enforce the updated requirements in this specification.
+
+        Deployments upgrading to this specification should consider this asymmetry when planning rollouts or migrations, as it may be necessary to ensure that clients are updated before, or in coordination with, receivers that enforce the updated behavior.
+      </t>
+    </section>
+
     <section anchor="Security" title="Security Considerations">
 
       <t>
@@ -801,6 +811,12 @@
       <t>
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
       </t>
+      <t>
+        -08
+        <list style="symbols">
+          <t>Added an Operational Considerations section based on SECDIR and OPSDIR review comments from Rich Salz and Luigi Iannone.</t>
+        </list>
+      </t>
     <t>
      -07
      <list style="symbols">
@@ -932,12 +948,14 @@
 	Ralph Bragg,
 	Joseph Heenan,
 	Pedram Hosseyni,
+	Luigi Iannone,
 	Pieter Kasselman,
 	Jamshid Khosravian,
 	Ralf Küsters,
 	Martin Lindström,
 	Axel Nennker,
 	Aaron Parecki,
+	Rich Salz,
 	Dean H. Saxe,
 	Arndt Schwenkschuster,
 	Rifaat Shekh-Yusef,
