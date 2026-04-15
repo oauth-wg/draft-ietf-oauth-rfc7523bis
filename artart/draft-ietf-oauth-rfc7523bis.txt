@@ -577,7 +577,7 @@ Appendix A.  Document History
 
    -08
 
-   *  Addressed ARTART review comments.
+   *  Addressed Jim Fenton's ARTART review comments.
 
    -07
 
