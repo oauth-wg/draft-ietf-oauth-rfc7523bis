@@ -211,11 +211,10 @@ Table of Contents
       b.  For client authentication, the aud (audience) claim value MUST
           use the issuer identifier [RFC8414] of the authorization
           server as its sole value.  The authorization server MUST have
-          an issuer identifier to be used with this specification.
-          Unlike the aud value specified in [RFC7523], there MUST be no
-          value other than the issuer identifier of the intended
-          authorization server used as the audience of the JWT; this
-          includes that the token endpoint URL of the authorization
+          an issuer identifier to be used with this specification.  The
+          aud claim value MUST indicate only the issuer identifier of
+          the intended authorization server as the audience of the JWT;
+          this includes that the token endpoint URL of the authorization
           server MUST NOT be used as an audience value.  The
           authorization server MUST reject any JWT that does not contain
           its issuer identifier as its sole audience value.
@@ -290,7 +289,7 @@ Table of Contents
    and token request using it would look like.
 
    The example shows a JWT issued and signed by the OAuth client
-   identified as https://client.example/.  The intended audience of the
+   identified as https://client.example.  The intended audience of the
    JWT is https://authz.example.net, which is the authorization server's
    issuer identifier.  The JWT is sent as part of a token request to the
    authorization server's token endpoint at https://authz.example.net/
@@ -301,8 +300,8 @@ Table of Contents
 
      {
        "aud": "https://authz.example.net",
-       "iss": "https://client.example/",
-       "sub": "https://client.example/",
+       "iss": "https://client.example",
+       "sub": "https://client.example",
        "iat": 1752702206,
        "exp": 1752705806
      }
@@ -333,10 +332,10 @@ Table of Contents
     client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
       client-assertion-type%3Ajwt-bearer&
     client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0IiwiYWx
-      nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.eyJhdWQiOiAiaHR0cHM6Ly9hdXRoei5leGFt
-      cGxlLm5ldCIsImlzcyI6ICJodHRwczovL2NsaWVudC5leGFtcGxlLyIsInN1YiI6IC
-      JodHRwczovL2NsaWVudC5leGFtcGxlLyIsImlhdCI6IDE3NTI3MDIyMDYsImV4cCI6
-      IDE3NTI3MDU4MDZ9.6KrSQUxdl9ehs[...omitted for brevity...]bwc0ZOJw
+      nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.eyJhdWQiOiJodHRwczovL2F1dGh6LmV4YW1w
+      bGUubmV0IiwiaXNzIjoiaHR0cHM6Ly9jbGllbnQuZXhhbXBsZSIsInN1YiI6Imh0dH
+      BzOi8vY2xpZW50LmV4YW1wbGUiLCJpYXQiOjE3NTI3MDIyMDYsImV4cCI6MTc1Mjcw
+      NTgwNn0.6KrSQUxdl9ehs[...omitted for brevity...]bwc0ZOJw
 
 5.  Updates to RFC 9126
 
@@ -346,17 +345,16 @@ Table of Contents
    The last paragraph in Section 2 of [RFC9126] (Pushed Authorization
    Request Endpoint), which describes the audience value is replaced by:
 
-      This update resolves the potential ambiguity regarding the
-      appropriate audience value to use when employing JWT client
+      Due to historical reasons, there is potential ambiguity regarding
+      the appropriate audience value to use when employing JWT client
       assertion-based authentication (as defined in Section 2.2 of
       [RFC7523] and as updated by Section 4 with the private_key_jwt or
       client_secret_jwt authentication method names per Section 9 of
-      [OpenID.Core]) that was described in [RFC9126].  To address that
-      ambiguity, the issuer identifier URL of the authorization server
-      according to [RFC8414] MUST be used as the sole value of the
-      audience.  The authorization server MUST reject any such JWT that
-      does not contain its own issuer identifier as the sole audience
-      value.
+      [OpenID.Core]).  To address that ambiguity, the issuer identifier
+      URL of the authorization server according to [RFC8414] MUST be
+      used as the sole value of the audience.  The authorization server
+      MUST reject any such JWT that does not contain its own issuer
+      identifier as the sole audience value.
 
       Client authentication JWTs SHOULD be explicitly typed by using the
       typ header parameter value client-authentication+jwt or another
@@ -577,6 +575,10 @@ Appendix A.  Document History
 
    [[ to be removed by the RFC Editor before publication as an RFC ]]
 
+   -08
+
+   *  Addressed Jim Fenton's ARTART review comments.
+
    -07
 
    *  Address comments from AD review by Deb Cooley:
@@ -664,9 +666,10 @@ Acknowledgements
 
    We would like to acknowledge the contributions of the following
    people to this specification: Brock Allen, John Bradley, Ralph Bragg,
-   Joseph Heenan, Pedram Hosseyni, Pieter Kasselman, Jamshid Khosravian,
-   Ralf Küsters, Martin Lindström, Axel Nennker, Aaron Parecki, Dean H.
-   Saxe, Arndt Schwenkschuster, Rifaat Shekh-Yusef, and Tim Würtele.
+   Jim Fenton, Joseph Heenan, Pedram Hosseyni, Pieter Kasselman, Jamshid
+   Khosravian, Ralf Küsters, Martin Lindström, Axel Nennker, Aaron
+   Parecki, Dean H.  Saxe, Arndt Schwenkschuster, Rifaat Shekh-Yusef,
+   and Tim Würtele.
 
 Authors' Addresses
 
