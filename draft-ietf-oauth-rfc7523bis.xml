@@ -248,10 +248,9 @@
 		of the authorization server as its sole value.
 		The authorization server MUST have an issuer identifier
 		to be used with this specification.
-		Unlike the <spanx style="verb">aud</spanx> value specified
-		in <xref target="RFC7523"/>, there MUST be no value other than
+		The <spanx style="verb">aud</spanx> claim value MUST indicate only
 		the issuer identifier of the intended authorization server
-		used as the audience of the JWT;
+		as the audience of the JWT;
 		this includes that the token endpoint URL of the authorization server
 		MUST NOT be used as an audience value.
 		The authorization server MUST reject any JWT that does not
@@ -348,7 +347,7 @@
 	</t>
 	<t>
 	  The example shows a JWT issued and signed by the OAuth client identified as
-	  <spanx style='verb'>https://client.example/</spanx>.
+	  <spanx style='verb'>https://client.example</spanx>.
 	  The intended audience of the JWT is
 	  <spanx style="verb">https://authz.example.net</spanx>,
 	  which is the authorization server's issuer identifier.
@@ -363,8 +362,8 @@
 	  <artwork><![CDATA[
   {
     "aud": "https://authz.example.net",
-    "iss": "https://client.example/",
-    "sub": "https://client.example/",
+    "iss": "https://client.example",
+    "sub": "https://client.example",
     "iat": 1752702206,
     "exp": 1752705806
   }
@@ -405,10 +404,10 @@
   client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
     client-assertion-type%3Ajwt-bearer&
   client_assertion=eyJ0eXAiOiJjbGllbnQtYXV0aGVudGljYXRpb24rand0IiwiYWx
-    nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.eyJhdWQiOiAiaHR0cHM6Ly9hdXRoei5leGFt
-    cGxlLm5ldCIsImlzcyI6ICJodHRwczovL2NsaWVudC5leGFtcGxlLyIsInN1YiI6IC
-    JodHRwczovL2NsaWVudC5leGFtcGxlLyIsImlhdCI6IDE3NTI3MDIyMDYsImV4cCI6
-    IDE3NTI3MDU4MDZ9.6KrSQUxdl9ehs[...omitted for brevity...]bwc0ZOJw
+    nIjoiRVMyNTYiLCJraWQiOiIxNiJ9.eyJhdWQiOiJodHRwczovL2F1dGh6LmV4YW1w
+    bGUubmV0IiwiaXNzIjoiaHR0cHM6Ly9jbGllbnQuZXhhbXBsZSIsInN1YiI6Imh0dH
+    BzOi8vY2xpZW50LmV4YW1wbGUiLCJpYXQiOjE3NTI3MDIyMDYsImV4cCI6MTc1Mjcw
+    NTgwNn0.6KrSQUxdl9ehs[...omitted for brevity...]bwc0ZOJw
 ]]></artwork>
 	</figure>
 
@@ -429,15 +428,14 @@
 	is replaced by:
 	<list style="empty">
 	  <t>
-	    This update resolves the potential ambiguity regarding
+	    Due to historical reasons, there is potential ambiguity regarding
 	    the appropriate audience value to use when employing
 	    JWT client assertion-based authentication
 	    (as defined in Section 2.2 of <xref target="RFC7523"/>
 	    and as updated by <xref target="RFC7523Updates"/> with the
 	    <spanx style="verb">private_key_jwt</spanx> or
 	    <spanx style="verb">client_secret_jwt</spanx> authentication method names
-	    per Section 9 of <xref target="OpenID.Core"/>)
-	    that was described in <xref target="RFC9126"/>.
+	    per Section 9 of <xref target="OpenID.Core"/>).
 	    To address that ambiguity, the issuer identifier URL
 	    of the authorization server according to <xref target="RFC8414"/>
 	    MUST be used as the sole value of the audience.
@@ -802,6 +800,12 @@
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
       </t>
     <t>
+     -08
+        <list style="symbols">
+          <t>Addressed Jim Fenton's ARTART review comments.</t>
+        </list>
+    </t>
+    <t>
      -07
      <list style="symbols">
       <t>
@@ -930,6 +934,7 @@
 	Brock Allen,
 	John Bradley,
 	Ralph Bragg,
+	Jim Fenton,
 	Joseph Heenan,
 	Pedram Hosseyni,
 	Pieter Kasselman,
