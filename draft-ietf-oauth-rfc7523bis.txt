@@ -597,8 +597,6 @@ Appendix A.  Document History
    *  Added an Operational Considerations section based on SECDIR and
       OPSDIR review comments from Rich Salz and Luigi Iannone.
 
-   -08
-
    *  Addressed Jim Fenton's ARTART review comments.
 
    -07
