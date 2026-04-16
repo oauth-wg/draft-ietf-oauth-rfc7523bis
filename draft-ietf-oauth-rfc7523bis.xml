@@ -819,14 +819,9 @@
         -08
         <list style="symbols">
           <t>Added an Operational Considerations section based on SECDIR and OPSDIR review comments from Rich Salz and Luigi Iannone.</t>
-        </list>
-      </t>
-    <t>
-     -08
-        <list style="symbols">
           <t>Addressed Jim Fenton's ARTART review comments.</t>
         </list>
-    </t>
+      </t>
     <t>
      -07
      <list style="symbols">
