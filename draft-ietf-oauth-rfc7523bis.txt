@@ -106,9 +106,9 @@ Table of Contents
    eliminates former choices in the audience values of tokens sent to
    OAuth 2.0 authorization servers.  [RFC8414] section 3.3 requires that
    the client having retrieved the metadata validates the returned
-   issuer value.  Other endpoint values of the metadata are not directly
-   validated and, if used as audience when sent to a different endpoint,
-   can open an attack vector.
+   issuer value.  Other endpoint values of the metadata cannot be
+   directly validated and, if used as audience when sent to a different
+   endpoint, can open an attack vector.
 
    A general description of the updates made is to require that the
    issuer identifier URL of the authorization server, as defined in
@@ -237,17 +237,17 @@ Table of Contents
       values) serves as a signal to distinguish between tokens produced
       in accordance with specifications published prior to these updates
       and those incorporating them.  However, the primary security
-      protection comes from the tightened audience requirements.  Since
-      strong typing alone does not prevent the attacks described in
-      [private_key_jwt.Disclosure] and [Audience.Injection], the use of
-      explicit typing is RECOMMENDED for clients, enabling them to
+      protection comes from the tightened audience requirements.  The
+      use of explicit typing is REQUIRED for clients, enabling them to
       signal their intention of sending a JWT conforming to the
-      requirements herein.  However, it is NOT RECOMMENDED for servers
-      to reject JWTs that do not have explicit types, as doing so would
-      cause interoperability issues with clients that already conform to
-      the tightened audience requirements but have not yet adopted
-      explicit typing.  This approach balances security signaling with
-      practical deployment considerations, avoiding disruption to client
+      requirements herein.  However, since strong typing alone does not
+      prevent the attacks described in [private_key_jwt.Disclosure] and
+      [Audience.Injection], it is NOT RECOMMENDED for servers to reject
+      JWTs that do not have explicit types.  Such rejection would cause
+      interoperability issues with clients that already conform to the
+      tightened audience requirements but have not yet adopted explicit
+      typing.  This approach balances security signaling with practical
+      deployment considerations, avoiding disruption to client
       deployments that already conform to the tightened audience
       requirements but have not yet adopted explicit typing.
 
@@ -366,17 +366,17 @@ Table of Contents
       values) serves as a signal to distinguish between tokens produced
       in accordance with specifications published prior to these updates
       and those incorporating them.  However, the primary security
-      protection comes from the tightened audience requirements.  Since
-      strong typing alone does not prevent the attacks described in
-      [private_key_jwt.Disclosure] and [Audience.Injection], the use of
-      explicit typing is RECOMMENDED for clients, enabling them to
+      protection comes from the tightened audience requirements.  The
+      use of explicit typing is REQUIRED for clients, enabling them to
       signal their intention of sending a JWT conforming to the
-      requirements herein.  However, it is NOT RECOMMENDED for servers
-      to reject JWTs that do not have explicit types, as doing so would
-      cause interoperability issues with clients that already conform to
-      the tightened audience requirements but have not yet adopted
-      explicit typing.  This approach balances security signaling with
-      practical deployment considerations, avoiding disruption to client
+      requirements herein.  However, since strong typing alone does not
+      prevent the attacks described in [private_key_jwt.Disclosure] and
+      [Audience.Injection], it is NOT RECOMMENDED for servers to reject
+      JWTs that do not have explicit types.  Such rejection would cause
+      interoperability issues with clients that already conform to the
+      tightened audience requirements but have not yet adopted explicit
+      typing.  This approach balances security signaling with practical
+      deployment considerations, avoiding disruption to client
       deployments that already conform to the tightened audience
       requirements but have not yet adopted explicit typing.
 
@@ -591,6 +591,10 @@ Table of Contents
 Appendix A.  Document History
 
    [[ to be removed by the RFC Editor before publication as an RFC ]]
+
+   -09
+
+   *  Few more items from Jim Fenton's ARTART review.
 
    -08
 
