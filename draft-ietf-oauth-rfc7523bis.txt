@@ -116,8 +116,8 @@ Table of Contents
    client authentication assertion.  Furthermore, the authorization
    server rejects any JWT client authentication assertion that does not
    contain its own issuer identifier as the sole audience value.  An
-   explicit type for each affected kind of token, as defined in
-   [RFC8725], is also defined to facilitate distinguishing between
+   explicit type for the JWT client authentication assertion, as defined
+   in [RFC8725], is also defined to facilitate distinguishing between
    tokens produced in accordance with specifications published prior to
    these updates and those incorporating them.  Specific updates made to
    each affected specification follow.
