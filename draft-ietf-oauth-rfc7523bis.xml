@@ -101,7 +101,7 @@
 	Specifically, it eliminates former choices in the audience values
 	of tokens sent to OAuth 2.0 authorization servers.
 	<xref target="RFC8414"/> section 3.3 requires that the client having retrieved the metadata validates the returned issuer value.
-	Other endpoint values of the metadata are not directly validated and, if used as audience when sent to a different endpoint, can open an attack vector.
+	Other endpoint values of the metadata cannot be directly validated and, if used as audience when sent to a different endpoint, can open an attack vector.
       </t>
       <t>
 	A general description of the updates made is
@@ -279,12 +279,13 @@
 	    The introduction of strong typing for JWTs (using explicit <spanx style="verb">typ</spanx>
 	    values) serves as a signal to distinguish between tokens produced in accordance with
 	    specifications published prior to these updates and those incorporating them. However,
-	    the primary security protection comes from the tightened audience requirements. Since
+	    the primary security protection comes from the tightened audience requirements. The
+	    use of explicit typing is REQUIRED for clients, enabling them to signal their intention of sending
+	    a JWT conforming to the requirements herein. However, since
 	    strong typing alone does not prevent the attacks described in <xref
-	      target="private_key_jwt.Disclosure" /> and <xref target="Audience.Injection" />, the
-	    use of explicit typing is RECOMMENDED for clients, enabling them to signal their intention of sending
-	    a JWT conforming to the requirements herein. However, it is NOT RECOMMENDED for servers to reject JWTs
-	    that do not have explicit types, as doing so would cause interoperability issues with clients that
+	    target="private_key_jwt.Disclosure" /> and <xref target="Audience.Injection" />,
+	    it is NOT RECOMMENDED for servers to reject JWTs
+	    that do not have explicit types. Such rejection would cause interoperability issues with clients that
 	    already conform to the tightened audience requirements but have not yet adopted explicit typing.
 	    This approach balances security signaling with practical
 	    deployment considerations, avoiding disruption to client deployments that already
@@ -452,12 +453,13 @@
 	    The introduction of strong typing for JWTs (using explicit <spanx style="verb">typ</spanx>
 	    values) serves as a signal to distinguish between tokens produced in accordance with
 	    specifications published prior to these updates and those incorporating them. However,
-	    the primary security protection comes from the tightened audience requirements. Since
+	    the primary security protection comes from the tightened audience requirements. The
+	    use of explicit typing is REQUIRED for clients, enabling them to signal their intention of sending
+	    a JWT conforming to the requirements herein. However, since
 	    strong typing alone does not prevent the attacks described in <xref
-	      target="private_key_jwt.Disclosure" /> and <xref target="Audience.Injection" />, the
-	    use of explicit typing is RECOMMENDED for clients, enabling them to signal their intention of sending
-	    a JWT conforming to the requirements herein. However, it is NOT RECOMMENDED for servers to reject JWTs
-	    that do not have explicit types, as doing so would cause interoperability issues with clients that
+	    target="private_key_jwt.Disclosure" /> and <xref target="Audience.Injection" />,
+	    it is NOT RECOMMENDED for servers to reject JWTs
+	    that do not have explicit types. Such rejection would cause interoperability issues with clients that
 	    already conform to the tightened audience requirements but have not yet adopted explicit typing.
 	    This approach balances security signaling with practical
 	    deployment considerations, avoiding disruption to client deployments that already
@@ -814,6 +816,12 @@
     <section title="Document History" anchor="History">
       <t>
 	[[ to be removed by the RFC Editor before publication as an RFC ]]
+      </t>
+      <t>
+        -09
+        <list style="symbols">
+          <t>Few more items from Jim Fenton's ARTART review.</t>
+        </list>
       </t>
       <t>
         -08
