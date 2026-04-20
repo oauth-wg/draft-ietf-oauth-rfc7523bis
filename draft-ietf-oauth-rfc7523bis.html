@@ -17,7 +17,7 @@
  requirements for those audience values in multiple OAuth 2.0 specifications.
        
     " name="description">
-<meta content="xml2rfc 3.32.0" name="generator">
+<meta content="xml2rfc 3.33.0" name="generator">
 <meta content="OAuth" name="keyword">
 <meta content="JWT" name="keyword">
 <meta content="Assertion" name="keyword">
@@ -25,14 +25,14 @@
 <meta content="Security Token" name="keyword">
 <meta content="draft-ietf-oauth-rfc7523bis-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.32.0
-    Python 3.12.12
+  xml2rfc 3.33.0
+    Python 3.12.13
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.0.2
-    platformdirs 4.9.4
+    platformdirs 4.9.6
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.32.5
@@ -1661,12 +1661,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-operational-considerations" class="section-name selfRef">Operational Considerations</a>
       </h2>
 <p id="section-6-1">
-        Changes in this specification affect interoperability between senders and receivers that implement
+        Changes in this specification affect interoperability between clients and authorization servers that implement
         different versions. In particular, the resulting compatibility is not entirely symmetric.
 
         A client implementing this specification will interoperate with both authorization servers conforming
         to the updates herein as well as authorization servers implementing earlier versions.
-        However, some senders implementing earlier versions may not interoperate with receivers that
+        However, some clients implementing earlier versions may not interoperate with authorization servers that
         strictly enforce the updated requirements in this specification.
 
         Deployments upgrading to this specification should consider this asymmetry when planning rollouts
@@ -1989,155 +1989,162 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="appendix-A-1">
  [[ to be removed by the RFC Editor before publication as an RFC ]]<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <p id="appendix-A-2">
-        -09<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+        -10<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-3.1">
-          <p id="appendix-A-3.1.1">Few more items from Jim Fenton's ARTART review.<a href="#appendix-A-3.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-A-3.1.1">Few more edits Deb suggested on text that went in -09 and -10.<a href="#appendix-A-3.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="appendix-A-4">
-        -08<a href="#appendix-A-4" class="pilcrow">¶</a></p>
+        -09<a href="#appendix-A-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-5.1">
-          <p id="appendix-A-5.1.1">Added an Operational Considerations section based on SECDIR and OPSDIR review comments from Rich Salz and Luigi Iannone.<a href="#appendix-A-5.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-5.2">
-          <p id="appendix-A-5.2.1">Addressed Jim Fenton's ARTART review comments.<a href="#appendix-A-5.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-A-5.1.1">Few more items from Jim Fenton's ARTART review.<a href="#appendix-A-5.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="appendix-A-6">
-     -07<a href="#appendix-A-6" class="pilcrow">¶</a></p>
+        -08<a href="#appendix-A-6" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-7.1">
-          <p id="appendix-A-7.1.1">
-       Address comments from AD review by Deb Cooley:<a href="#appendix-A-7.1.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="appendix-A-7.1.2.1">
-              <p id="appendix-A-7.1.2.1.1">RFCs to be updated are now in the Abstract (per idnits's nits).<a href="#appendix-A-7.1.2.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-A-7.1.1">Added an Operational Considerations section based on SECDIR and OPSDIR review comments from Rich Salz and Luigi Iannone.<a href="#appendix-A-7.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-A-7.1.2.2">
-              <p id="appendix-A-7.1.2.2.1">Improved clarity of the audience description in Section 1.<a href="#appendix-A-7.1.2.2.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="appendix-A-7.1.2.3">
-              <p id="appendix-A-7.1.2.3.1">Removed parenthetical remark in Section 3 about SAML client authentication usage.<a href="#appendix-A-7.1.2.3.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="appendix-A-7.1.2.4">
-              <p id="appendix-A-7.1.2.4.1">Changed IANA media type registration contact to the OAuth Working Group.<a href="#appendix-A-7.1.2.4.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
+        <li class="normal" id="appendix-A-7.2">
+          <p id="appendix-A-7.2.1">Addressed Jim Fenton's ARTART review comments.<a href="#appendix-A-7.2.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="appendix-A-8">
- -06<a href="#appendix-A-8" class="pilcrow">¶</a></p>
+     -07<a href="#appendix-A-8" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-9.1">
           <p id="appendix-A-9.1.1">
-     Applied shepherd review comments by Rifaat Shekh-Yusef.<a href="#appendix-A-9.1.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
-<p id="appendix-A-10">
- -05<a href="#appendix-A-10" class="pilcrow">¶</a></p>
+       Address comments from AD review by Deb Cooley:<a href="#appendix-A-9.1.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A-11.1">
-          <p id="appendix-A-11.1.1">
-     Applied editorial suggestions by Axel Nennker.<a href="#appendix-A-11.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-A-9.1.2.1">
+              <p id="appendix-A-9.1.2.1.1">RFCs to be updated are now in the Abstract (per idnits's nits).<a href="#appendix-A-9.1.2.1.1" class="pilcrow">¶</a></p>
 </li>
-      </ul>
-<p id="appendix-A-12">
- -04<a href="#appendix-A-12" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="appendix-A-13.1">
-          <p id="appendix-A-13.1.1">
-     Applied editorial suggestions by Jamshid Khosravian.<a href="#appendix-A-13.1.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-A-9.1.2.2">
+              <p id="appendix-A-9.1.2.2.1">Improved clarity of the audience description in Section 1.<a href="#appendix-A-9.1.2.2.1" class="pilcrow">¶</a></p>
 </li>
-      </ul>
-<p id="appendix-A-14">
- -03<a href="#appendix-A-14" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="appendix-A-15.1">
-          <p id="appendix-A-15.1.1">
-     Update OAuth Token Endpoint Authentication Methods IANA entries with reference to this specification<a href="#appendix-A-15.1.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-A-9.1.2.3">
+              <p id="appendix-A-9.1.2.3.1">Removed parenthetical remark in Section 3 about SAML client authentication usage.<a href="#appendix-A-9.1.2.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-15.2">
-          <p id="appendix-A-15.2.1">
-     Relaxed client requirement to use strong typed JWTs. SHOULD instead of MUST.<a href="#appendix-A-15.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-15.3">
-          <p id="appendix-A-15.3.1">
-     Do not restrict the "aud" claim's type. Allow it to be an array with a single member.<a href="#appendix-A-15.3.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-15.4">
-          <p id="appendix-A-15.4.1">
- Advise the client to ensure that the audience of an assertion authorization grant makes sense with respect to where it’s being sent.<a href="#appendix-A-15.4.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-15.5">
-          <p id="appendix-A-15.5.1">
-     Updates to the abstract and introduction to (hopefully) better reflect the more targeted scope of the work.<a href="#appendix-A-15.5.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-15.6">
-          <p id="appendix-A-15.6.1">
-     Remove JWTs for Client Authentication example replacement (not worth it for including typ in the encoded JWT header).<a href="#appendix-A-15.6.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-15.7">
-          <p id="appendix-A-15.7.1">
-     Add request to update existing OAuth URI registrations to add reference to this specification for the four relevant URNs.<a href="#appendix-A-15.7.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-15.8">
-          <p id="appendix-A-15.8.1">
-     Fixup the new Client Authentication JWT Example.<a href="#appendix-A-15.8.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
-<p id="appendix-A-16">
- -02<a href="#appendix-A-16" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="appendix-A-17.1">
-          <p id="appendix-A-17.1.1">
-     Added Filip Skokan as an author.<a href="#appendix-A-17.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-A-17.2">
-          <p id="appendix-A-17.2.1">
-     Applied Brian Campbell's suggestions made at IETF 122.  Specifically:<a href="#appendix-A-17.2.1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="appendix-A-17.2.2.1">
-              <p id="appendix-A-17.2.2.1.1">
- Focused RFC 7523 updates on JWT client authentication case.<a href="#appendix-A-17.2.2.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="appendix-A-17.2.2.2">
-              <p id="appendix-A-17.2.2.2.1">
- Described client responsibilities for the audience value
- of authorization grants.
- No longer mandate that the audience for authorization grants
- be the issuer identifier, so as to make a minimum of breaking changes.<a href="#appendix-A-17.2.2.2.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="appendix-A-17.2.2.3">
-              <p id="appendix-A-17.2.2.3.1">
- Deprecated the use of SAML assertions for client authentication.<a href="#appendix-A-17.2.2.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-A-9.1.2.4">
+              <p id="appendix-A-9.1.2.4.1">Changed IANA media type registration contact to the OAuth Working Group.<a href="#appendix-A-9.1.2.4.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </li>
       </ul>
+<p id="appendix-A-10">
+ -06<a href="#appendix-A-10" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-11.1">
+          <p id="appendix-A-11.1.1">
+     Applied shepherd review comments by Rifaat Shekh-Yusef.<a href="#appendix-A-11.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-A-12">
+ -05<a href="#appendix-A-12" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-13.1">
+          <p id="appendix-A-13.1.1">
+     Applied editorial suggestions by Axel Nennker.<a href="#appendix-A-13.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-A-14">
+ -04<a href="#appendix-A-14" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-15.1">
+          <p id="appendix-A-15.1.1">
+     Applied editorial suggestions by Jamshid Khosravian.<a href="#appendix-A-15.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-A-16">
+ -03<a href="#appendix-A-16" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-17.1">
+          <p id="appendix-A-17.1.1">
+     Update OAuth Token Endpoint Authentication Methods IANA entries with reference to this specification<a href="#appendix-A-17.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-17.2">
+          <p id="appendix-A-17.2.1">
+     Relaxed client requirement to use strong typed JWTs. SHOULD instead of MUST.<a href="#appendix-A-17.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-17.3">
+          <p id="appendix-A-17.3.1">
+     Do not restrict the "aud" claim's type. Allow it to be an array with a single member.<a href="#appendix-A-17.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-17.4">
+          <p id="appendix-A-17.4.1">
+ Advise the client to ensure that the audience of an assertion authorization grant makes sense with respect to where it’s being sent.<a href="#appendix-A-17.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-17.5">
+          <p id="appendix-A-17.5.1">
+     Updates to the abstract and introduction to (hopefully) better reflect the more targeted scope of the work.<a href="#appendix-A-17.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-17.6">
+          <p id="appendix-A-17.6.1">
+     Remove JWTs for Client Authentication example replacement (not worth it for including typ in the encoded JWT header).<a href="#appendix-A-17.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-17.7">
+          <p id="appendix-A-17.7.1">
+     Add request to update existing OAuth URI registrations to add reference to this specification for the four relevant URNs.<a href="#appendix-A-17.7.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-17.8">
+          <p id="appendix-A-17.8.1">
+     Fixup the new Client Authentication JWT Example.<a href="#appendix-A-17.8.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
 <p id="appendix-A-18">
- -01<a href="#appendix-A-18" class="pilcrow">¶</a></p>
+ -02<a href="#appendix-A-18" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-19.1">
           <p id="appendix-A-19.1.1">
-     Reworked to make updates to RFC 7523, rather than replacing it.<a href="#appendix-A-19.1.1" class="pilcrow">¶</a></p>
+     Added Filip Skokan as an author.<a href="#appendix-A-19.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-A-19.2">
           <p id="appendix-A-19.2.1">
-     Removed updates to RFC 9101.<a href="#appendix-A-19.2.1" class="pilcrow">¶</a></p>
+     Applied Brian Campbell's suggestions made at IETF 122.  Specifically:<a href="#appendix-A-19.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-19.2.2.1">
+              <p id="appendix-A-19.2.2.1.1">
+ Focused RFC 7523 updates on JWT client authentication case.<a href="#appendix-A-19.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-19.3">
-          <p id="appendix-A-19.3.1">
-     Added reference to the University of Stuttgart paper <span>[<a href="#Audience.Injection" class="cite xref">Audience.Injection</a>]</span>.<a href="#appendix-A-19.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-A-19.2.2.2">
+              <p id="appendix-A-19.2.2.2.1">
+ Described client responsibilities for the audience value
+ of authorization grants.
+ No longer mandate that the audience for authorization grants
+ be the issuer identifier, so as to make a minimum of breaking changes.<a href="#appendix-A-19.2.2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-A-19.2.2.3">
+              <p id="appendix-A-19.2.2.3.1">
+ Deprecated the use of SAML assertions for client authentication.<a href="#appendix-A-19.2.2.3.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
 </li>
       </ul>
 <p id="appendix-A-20">
- -00<a href="#appendix-A-20" class="pilcrow">¶</a></p>
+ -01<a href="#appendix-A-20" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A-21.1">
           <p id="appendix-A-21.1.1">
-     Initial working group draft, replacing draft-jones-oauth-rfc7523bis-00.<a href="#appendix-A-21.1.1" class="pilcrow">¶</a></p>
+     Reworked to make updates to RFC 7523, rather than replacing it.<a href="#appendix-A-21.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-21.2">
+          <p id="appendix-A-21.2.1">
+     Removed updates to RFC 9101.<a href="#appendix-A-21.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-21.3">
+          <p id="appendix-A-21.3.1">
+     Added reference to the University of Stuttgart paper <span>[<a href="#Audience.Injection" class="cite xref">Audience.Injection</a>]</span>.<a href="#appendix-A-21.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-A-22">
+ -00<a href="#appendix-A-22" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-23.1">
+          <p id="appendix-A-23.1.1">
+     Initial working group draft, replacing draft-jones-oauth-rfc7523bis-00.<a href="#appendix-A-23.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
@@ -2153,6 +2160,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
  Brock Allen,
  John Bradley,
  Ralph Bragg,
+ Deb Cooley,
  Jim Fenton,
  Joseph Heenan,
  Pedram Hosseyni,

@@ -382,18 +382,18 @@ Table of Contents
 
 6.  Operational Considerations
 
-   Changes in this specification affect interoperability between senders
-   and receivers that implement different versions.  In particular, the
-   resulting compatibility is not entirely symmetric.  A client
-   implementing this specification will interoperate with both
+   Changes in this specification affect interoperability between clients
+   and authorization servers that implement different versions.  In
+   particular, the resulting compatibility is not entirely symmetric.  A
+   client implementing this specification will interoperate with both
    authorization servers conforming to the updates herein as well as
    authorization servers implementing earlier versions.  However, some
-   senders implementing earlier versions may not interoperate with
-   receivers that strictly enforce the updated requirements in this
-   specification.  Deployments upgrading to this specification should
-   consider this asymmetry when planning rollouts or migrations, as it
-   may be necessary to ensure that clients are updated before, or in
-   coordination with, authorization servers that enforce the updated
+   clients implementing earlier versions may not interoperate with
+   authorization servers that strictly enforce the updated requirements
+   in this specification.  Deployments upgrading to this specification
+   should consider this asymmetry when planning rollouts or migrations,
+   as it may be necessary to ensure that clients are updated before, or
+   in coordination with, authorization servers that enforce the updated
    behavior.
 
 7.  Security Considerations
@@ -592,6 +592,10 @@ Appendix A.  Document History
 
    [[ to be removed by the RFC Editor before publication as an RFC ]]
 
+   -10
+
+   *  Few more edits Deb suggested on text that went in -09 and -10.
+
    -09
 
    *  Few more items from Jim Fenton's ARTART review.
@@ -690,10 +694,10 @@ Acknowledgements
 
    We would like to acknowledge the contributions of the following
    people to this specification: Brock Allen, John Bradley, Ralph Bragg,
-   Jim Fenton, Joseph Heenan, Pedram Hosseyni, Luigi Iannone, Pieter
-   Kasselman, Jamshid Khosravian, Ralf Küsters, Martin Lindström, Axel
-   Nennker, Aaron Parecki, Rich Salz, Dean H.  Saxe, Arndt
-   Schwenkschuster, Rifaat Shekh-Yusef, and Tim Würtele.
+   Deb Cooley, Jim Fenton, Joseph Heenan, Pedram Hosseyni, Luigi
+   Iannone, Pieter Kasselman, Jamshid Khosravian, Ralf Küsters, Martin
+   Lindström, Axel Nennker, Aaron Parecki, Rich Salz, Dean H.  Saxe,
+   Arndt Schwenkschuster, Rifaat Shekh-Yusef, and Tim Würtele.
 
 Authors' Addresses
 
