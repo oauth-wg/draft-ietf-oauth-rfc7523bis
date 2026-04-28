@@ -408,11 +408,11 @@ Table of Contents
    Authorization Requests" [RFC9126], "The OAuth 2.0 Authorization
    Framework" [RFC6749], and "JSON Web Token (JWT)" [JWT].
 
-   This specification tightens token audience requirements to prevent
-   attacks that could result from exploiting audience ambiguities
-   previously allowed by [RFC7521], [RFC7522], [RFC7523], and [RFC9126].
-   These attacks are described in [private_key_jwt.Disclosure] and
-   [Audience.Injection].
+   This specification tightens treatment of assertion audience values to
+   prevent attacks that could result from exploiting audience
+   ambiguities previously allowed by [RFC7521], [RFC7522], [RFC7523],
+   and [RFC9126].  These attacks are described in
+   [private_key_jwt.Disclosure] and [Audience.Injection].
 
 8.  IANA Considerations
 
