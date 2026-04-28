@@ -499,7 +499,7 @@
 	and "JSON Web Token (JWT)" <xref target="JWT"/>.
       </t>
       <t>
-	This specification tightens token audience requirements to prevent attacks
+	This specification tightens treatment of assertion audience values to prevent attacks
 	that could result from exploiting audience ambiguities
 	previously allowed by
 	<xref target="RFC7521"/>, <xref target="RFC7522"/>,
